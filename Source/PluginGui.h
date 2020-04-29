@@ -128,8 +128,14 @@ private:
 	AdlibBlasterAudioProcessor* processor;
 	std::array<ScopedPointer<TextButton>, Hiopl::CHANNELS> channels;
 	TooltipWindow tooltipWindow;
-	File instrumentLoadDirectory = File();
-	File instrumentSaveDirectory = File();
+#if JUCE_MAC
+    File instrumentLoadDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
+    File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
+#endif
+#if JUCE_IOS
+    File instrumentLoadDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
+    File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
+#endif
     //[/UserVariables]
 
     //==============================================================================
