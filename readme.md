@@ -8,7 +8,7 @@ This instrument provides an emulated OPL sound chip. It provides all features of
 
 **Release 1.0.0**
 
- https://www.discodsp.com/opl/ 
+ https://github.com/reales/OPL/releases/download/1.0/OPL10Mac.zip 
 
  - Built with JUCE 5.4.7
  - Notarized and code signed.
