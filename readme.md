@@ -26,21 +26,15 @@ Each instance of the plugin emulates an entire OPL chip, but with this plugin, e
 
 Some documentation which may be useful:
 
-- [Introduction to FM Synthesis](https://www.youtube.com/watch?v=ziFv00PegJg) (not specific to the OPL, but a great primer)
 - [OPL2 on Wikipedia](http://en.wikipedia.org/wiki/Yamaha_YM3812)
 - [Original Yamaha datasheet](http://www.alldatasheet.com/datasheet-pdf/pdf/84281/YAMAHA/YM3812.html)
-- [AdLib programming guide](http://www.shipbrook.net/jeff/sb.html) Dates back to 1991!
-- [Another programming guide](http://www.ugcs.caltech.edu/~john/computer/opledit/tech/opl3.txt) This one is for the OPL3, but most of the information still applies.
 
 ## What can it do? ##
 
 Here are some examples:
 
 - [Demo showing how parameters affect sound](https://www.youtube.com/watch?v=yU0CWQ66Z28)Thanks estonoesunusuario!
-- [Dune 2 music reproduced using the plugin](https://www.youtube.com/watch?v=w6Lu0C_vZwQ)Great work by Ion Claudiu Van Damme
 - [Tyrian remix](https://www.youtube.com/watch?v=ZGwhKVFMCqM) by Block35 Music
-- [Syndicate theme](https://www.youtube.com/watch?v=HI7U5XxTSW0) demo I created for the first release
-- (your link here...)
 
 ### SBI Files ###
 
