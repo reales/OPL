@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.0.0"
+<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.0.1"
               bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="OPL"
-              pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL"
-              pluginChannelConfigs="{0, 1}" pluginIsSynth="1" pluginWantsMidiIn="1"
-              pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
+              pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL1"
+              pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="oplAU" aaxIdentifier="com.discodsp.opl"
               pluginAAXCategory="2" jucerVersion="5.4.7" includeBinaryInAppConfig="1"
               pluginIsMidiEffectPlugin="0" companyWebsite="https://www.discodsp.com/"
@@ -15,7 +15,7 @@
               companyEmail="contactus@discodsp.com" pluginRTASDisableBypass="0"
               pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
               pluginAUMainType="'aumu'" pluginVST3Category="Instrument,Synth"
-              pluginVSTCategory="kPlugCategSynth">
+              pluginVSTCategory="kPlugCategSynth" pluginChannelConfigs="{0, 2}">
   <MAINGROUP id="TOefyq" name="OPL">
     <GROUP id="{DCA755EB-7953-0641-E719-95C7850E5B2B}" name="Source">
       <FILE id="aNR5I9" name="icon.png" compile="0" resource="0" file="Media/icon.png"/>

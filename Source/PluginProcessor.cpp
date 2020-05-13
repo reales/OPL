@@ -818,9 +818,9 @@ void AdlibBlasterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBu
 	Opl->Generate(buffer.getNumSamples(), buffer.getWritePointer(0));
     
 /// Jeff-Russ added loop to copy left channel to right channel. uncomment when building to {0,2} AU
-//    const float* LChanRead  = buffer.getReadPointer(0, 0);
-//    float* RChanWrite = buffer.getWritePointer(1, 0);
-//    for (int i = 0; i < buffer.getNumSamples(); i++) { RChanWrite[i] = LChanRead[i]; }
+    const float* LChanRead  = buffer.getReadPointer(0, 0);
+    float* RChanWrite = buffer.getWritePointer(1, 0);
+    for (int i = 0; i < buffer.getNumSamples(); i++) { RChanWrite[i] = LChanRead[i]; }
 }
 
 //==============================================================================
