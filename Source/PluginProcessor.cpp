@@ -410,7 +410,7 @@ void AdlibBlasterAudioProcessor::initPrograms()
 		0.0f,					// percussion mode
     };
     std::vector<float> v_i_params_bassdrum (i_params_bassdrum, i_params_bassdrum + sizeof(i_params_bassdrum) / sizeof(float));
-    programs["bassdrum"] = std::vector<float>(v_i_params_bassdrum);
+    programs["Bass Drum"] = std::vector<float>(v_i_params_bassdrum);
 
 }
 
