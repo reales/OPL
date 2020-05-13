@@ -2351,6 +2351,11 @@ void PluginGui::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
+    
+#ifdef JUCE_IOS
+    auto& desktop = Desktop::getInstance();
+    desktop.setGlobalScaleFactor(1.185); // scaling factor
+#endif
 
     //[UserResized] Add your own custom resize handling here..
 	for (unsigned int i = 0; i < channels.size(); ++i)
@@ -2680,7 +2685,15 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == exportButton.get())
     {
         //[UserButtonCode_exportButton] -- add your button handler code here..
-		WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
+        FileChooser browser("Select SBI instrument file",
+        instrumentLoadDirectory,
+        "*");//"*.sbi");
+        if (browser.browseForFileToSave(true)){
+            File selectedFile = browser.getResult();
+            instrumentSaveDirectory = selectedFile.getParentDirectory();
+            processor->saveInstrumentToFile(selectedFile.getFullPathName());
+        }
+		/*WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
 		FileBrowserComponent browser(FileBrowserComponent::saveMode + FileBrowserComponent::canSelectFiles,
 			instrumentSaveDirectory,
 			&wildcardFilter,
@@ -2689,19 +2702,27 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 			"Specify SBI output file",
 			browser,
 			true,
-			Colours::darkgreen);
+			Colours::darkgreen, this);
 		if (dialogBox.show())
 		{
 			File selectedFile = browser.getSelectedFile(0);
 			instrumentSaveDirectory = browser.getRoot();
 			processor->saveInstrumentToFile(selectedFile.getFullPathName());
-		}
+		}*/
         //[/UserButtonCode_exportButton]
     }
     else if (buttonThatWasClicked == loadButton.get())
     {
         //[UserButtonCode_loadButton] -- add your button handler code here..
-		WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
+		FileChooser browser("Select SBI instrument file",
+                            instrumentLoadDirectory,
+                            "*");//"*.sbi");
+        if (browser.browseForFileToOpen()){
+            File selectedFile = browser.getResult();
+            instrumentLoadDirectory = selectedFile.getParentDirectory();
+            processor->loadInstrumentFromFile(selectedFile.getFullPathName());
+        }
+        /*WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
 		FileBrowserComponent browser(FileBrowserComponent::openMode + FileBrowserComponent::canSelectFiles,
 			instrumentLoadDirectory,
 			&wildcardFilter,
@@ -2710,13 +2731,13 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 			"Select SBI instrument file",
 			browser,
 			false,
-			Colours::darkgreen);
+			Colours::darkgreen, this);
 		if (dialogBox.show())
 		{
 			File selectedFile = browser.getSelectedFile(0);
 			instrumentLoadDirectory = browser.getRoot();
 			processor->loadInstrumentFromFile(selectedFile.getFullPathName());
-		}
+		}*/
         //[/UserButtonCode_loadButton]
     }
     else if (buttonThatWasClicked == ToggleButtonOffExample.get())
