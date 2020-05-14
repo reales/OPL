@@ -1893,7 +1893,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     attenuationLabel5->setColour (TextEditor::textColourId, Colours::black);
     attenuationLabel5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    attenuationLabel5->setBounds (328, 376, 80, 48);
+    attenuationLabel5->setBounds (323, 376, 80, 48);
 
     fmButton.reset (new ImageButton ("fm button"));
     addAndMakeVisible (fmButton.get());
@@ -1903,10 +1903,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     fmButton->addListener (this);
 
     fmButton->setImages (false, true, true,
-                         ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
+                         ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
                          Image(), 0.500f, Colour (0x00000000),
                          Image(), 1.000f, Colour (0x00000000));
-    fmButton->setBounds (304, 472, 56, 56);
+    fmButton->setBounds (301, 464, 72, 72);
 
     additiveButton.reset (new ImageButton ("Additive mode button"));
     addAndMakeVisible (additiveButton.get());
@@ -1916,10 +1916,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     additiveButton->addListener (this);
 
     additiveButton->setImages (false, true, true,
-                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
                                Image(), 0.500f, Colour (0x00000000),
                                Image(), 1.000f, Colour (0x00000000));
-    additiveButton->setBounds (392, 464, 72, 72);
+    additiveButton->setBounds (402, 472, 56, 56);
 
     bassDrumButton.reset (new ImageButton ("bass drum button"));
     addAndMakeVisible (bassDrumButton.get());
