@@ -1,14 +1,16 @@
-# discoDSP OPL FM synth plugin for macOS #
-
-![OPL AU plugin](https://www.discodsp.com/img/opl.png)
+# discoDSP OPL FM synth plugin #
 
 This instrument provides an emulated OPL sound chip. It provides all features of the OPL2, and some features of the OPL3. It is a slightly modified JUCEOPLVSTi build compiled for macOS only. [The original coder and author is Bruce Sutherland](http://bsutherland.github.io/JuceOPLVSTi/).
 
 ## Binaries ##
 
-**Release 1.0.0**
+**Release 1.1**
 
- https://github.com/reales/OPL/releases/download/1.0/OPL10Mac.zip 
+**Windows** https://github.com/reales/OPL/releases/download/v1.1/OPL11Windows.zip
+
+**Mac** https://github.com/reales/OPL/releases/download/v1.1/OPL11Mac.zip
+
+**Linux** https://github.com/reales/OPL/releases/download/v1.1/OPL11Windows.zip
 
  - AU / VST / VST3 / Standalone.
  - Built with JUCE 5.4.7
