@@ -250,6 +250,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     aSlider->setRange (0, 15, 1);
     aSlider->setSliderStyle (Slider::LinearVertical);
     aSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    aSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     aSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     aSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     aSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -278,6 +279,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     dSlider->setRange (0, 15, 1);
     dSlider->setSliderStyle (Slider::LinearVertical);
     dSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    dSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     dSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     dSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     dSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -306,6 +308,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     sSlider->setRange (0, 15, 1);
     sSlider->setSliderStyle (Slider::LinearVertical);
     sSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    sSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     sSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     sSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     sSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -334,6 +337,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     rSlider->setRange (0, 15, 1);
     rSlider->setSliderStyle (Slider::LinearVertical);
     rSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    rSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     rSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     rSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     rSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -361,6 +365,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     attenuationSlider->setRange (-47.25, 0, 0.75);
     attenuationSlider->setSliderStyle (Slider::LinearVertical);
     attenuationSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 64, 20);
+    attenuationSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     attenuationSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     attenuationSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     attenuationSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -533,6 +538,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     aSlider2->setRange (0, 15, 1);
     aSlider2->setSliderStyle (Slider::LinearVertical);
     aSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
+    aSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     aSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     aSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     aSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -560,6 +566,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     dSlider2->setRange (0, 15, 1);
     dSlider2->setSliderStyle (Slider::LinearVertical);
     dSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
+    dSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     dSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     dSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     dSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -587,6 +594,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     sSlider2->setRange (0, 15, 1);
     sSlider2->setSliderStyle (Slider::LinearVertical);
     sSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
+    sSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     sSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     sSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     sSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -614,6 +622,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     rSlider2->setRange (0, 15, 1);
     rSlider2->setSliderStyle (Slider::LinearVertical);
     rSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
+    rSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     rSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     rSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     rSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -641,6 +650,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     attenuationSlider2->setRange (-47.25, 0, 0.75);
     attenuationSlider2->setSliderStyle (Slider::LinearVertical);
     attenuationSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 64, 20);
+    attenuationSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     attenuationSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     attenuationSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     attenuationSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -799,6 +809,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     tremoloSlider->setRange (1, 4.8, 3.8);
     tremoloSlider->setSliderStyle (Slider::LinearHorizontal);
     tremoloSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
+    tremoloSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     tremoloSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     tremoloSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     tremoloSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -839,6 +850,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     vibratoSlider->setRange (7, 14, 7);
     vibratoSlider->setSliderStyle (Slider::LinearHorizontal);
     vibratoSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
+    vibratoSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     vibratoSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     vibratoSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     vibratoSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
@@ -880,6 +892,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     feedbackSlider->setRange (0, 7, 1);
     feedbackSlider->setSliderStyle (Slider::RotaryHorizontalVerticalDrag);
     feedbackSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    feedbackSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     feedbackSlider->setColour (Slider::thumbColourId, Colour (0xff00af00));
     feedbackSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     feedbackSlider->setColour (Slider::rotarySliderFillColourId, Colour (0xff00af00));
@@ -2687,7 +2700,13 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_exportButton] -- add your button handler code here..
         FileChooser browser("Select SBI instrument file",
         instrumentLoadDirectory,
-        "*");//"*.sbi");
+#ifdef JUCE_IOS
+        "*");
+#endif
+        
+#ifndef JUCE_IOS
+        "*.sbi");
+#endif
         if (browser.browseForFileToSave(true)){
             File selectedFile = browser.getResult();
             instrumentSaveDirectory = selectedFile.getParentDirectory();
@@ -2716,7 +2735,13 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_loadButton] -- add your button handler code here..
 		FileChooser browser("Select SBI instrument file",
                             instrumentLoadDirectory,
-                            "*");//"*.sbi");
+#ifdef JUCE_IOS
+                            "*");
+#endif
+        
+#ifndef JUCE_IOS
+                            "*.sbi");
+#endif
         if (browser.browseForFileToOpen()){
             File selectedFile = browser.getResult();
             instrumentLoadDirectory = selectedFile.getParentDirectory();
