@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.1.0"
+<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.1.1"
               bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="Digital sound synthesis chip developed by Yamaha in the mid 1980s"
               pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL1"
               pluginChannelConfigs="{0, 2}" pluginIsSynth="1" pluginWantsMidiIn="1"
