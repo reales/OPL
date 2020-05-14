@@ -34,6 +34,7 @@ OPLLookAndFeel::OPLLookAndFeel()
 	setColour(PopupMenu::ColourIds::textColourId, DOS_GREEN);
 	setColour(PopupMenu::ColourIds::highlightedBackgroundColourId, DOS_GREEN);
 	setColour(PopupMenu::ColourIds::highlightedTextColourId, Colours::black);
+    
 }
 
 void OPLLookAndFeel::drawTickBox(Graphics &g,
@@ -117,7 +118,7 @@ void OPLLookAndFeel::drawLinearSliderBackground(Graphics& g, int x, int y, int w
 	float /*maxSliderPos*/,
 	const Slider::SliderStyle /*style*/, Slider& slider)
 {
-	const float sliderRadius = (float)(getSliderThumbRadius(slider) - 2);
+	const float sliderRadius = (float)(getSliderThumbRadius(slider) - -14);
 
 	const Colour trackColour(slider.findColour(Slider::trackColourId));
 	const Colour gradCol1(trackColour.overlaidWith(Colour(slider.isEnabled() ? 0x13000000 : 0x09000000)));
@@ -131,7 +132,7 @@ void OPLLookAndFeel::drawLinearSliderBackground(Graphics& g, int x, int y, int w
 		g.setGradientFill(ColourGradient(gradCol1, 0.0f, iy,
 			gradCol2, 0.0f, iy + sliderRadius, false));
 
-		indent.addRectangle(x - sliderRadius * 0.5f, iy, width + sliderRadius, sliderRadius);
+		indent.addRectangle(x - sliderRadius + 17, iy, width + sliderRadius - 10, sliderRadius);
 	}
 	else
 	{
@@ -140,7 +141,7 @@ void OPLLookAndFeel::drawLinearSliderBackground(Graphics& g, int x, int y, int w
 		g.setGradientFill(ColourGradient(gradCol1, ix, 0.0f,
 			gradCol2, ix + sliderRadius, 0.0f, false));
 
-		indent.addRectangle(ix, y - sliderRadius * 0.5f, sliderRadius, height + sliderRadius);
+		indent.addRectangle(ix , y - 8, sliderRadius, height + 16);
 	}
 
 	g.fillPath(indent);
