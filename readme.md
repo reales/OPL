@@ -33,7 +33,7 @@ Some documentation which may be useful:
 
 Here are some examples:
 
-- [Demo showing how parameters affect sound](https://www.youtube.com/watch?v=yU0CWQ66Z28)Thanks estonoesunusuario!
+- [Demo showing how parameters affect sound](https://www.youtube.com/watch?v=yU0CWQ66Z28) Thanks estonoesunusuario!
 - [Tyrian remix](https://www.youtube.com/watch?v=ZGwhKVFMCqM) by Block35 Music
 
 ### SBI Files ###
