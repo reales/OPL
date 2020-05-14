@@ -4,15 +4,15 @@ This instrument provides an emulated OPL sound chip. It provides all features of
 
 ## Binaries ##
 
-**Release 1.1**
+**Latest Release**
 
-**Windows** https://github.com/reales/OPL/releases/download/v1.1/OPL11Windows.zip
+**Windows** https://www.discodsp.com/download/?id=27
 
-**Mac** https://github.com/reales/OPL/releases/download/v1.1/OPL11Mac.zip
+**macOS** https://www.discodsp.com/download/?id=23
 
-**Linux** https://github.com/reales/OPL/releases/download/v1.1/OPL11Windows.zip
+**Linux** https://www.discodsp.com/download/?id=28
 
- - AU / VST / VST3 / Standalone.
+- AU / VST / VST3 / Standalone.
  - Built with JUCE 5.4.7
  - Notarized and code signed.
 
