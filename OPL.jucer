@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.1.0"
-              bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="OPL"
+              bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="Digital sound synthesis chip developed by Yamaha in the mid 1980s"
               pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL1"
-              pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
-              pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
+              pluginChannelConfigs="{0, 2}" pluginIsSynth="1" pluginWantsMidiIn="1"
+              pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="oplAU" aaxIdentifier="com.discodsp.opl"
               pluginAAXCategory="2" jucerVersion="5.4.7" includeBinaryInAppConfig="1"
               pluginIsMidiEffectPlugin="0" companyWebsite="https://www.discodsp.com/"
               splashScreenColour="Dark" companyCopyright="" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3,enableIAA"
-              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" buildStandalone="1" enableIAA="1" companyName="discoDSP"
-              companyEmail="contactus@discodsp.com" pluginRTASDisableBypass="0"
-              pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0" pluginAAXDisableMultiMono="0"
-              pluginAUMainType="'aumu'" pluginVST3Category="Instrument,Synth"
-              pluginVSTCategory="kPlugCategSynth" pluginChannelConfigs="{0, 2}">
+              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" buildVST="1"
+              buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
+              buildStandalone="1" enableIAA="0" companyName="discoDSP" companyEmail="contactus@discodsp.com"
+              pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
+              pluginAAXDisableMultiMono="0" pluginAUMainType="'aumu'" pluginVST3Category="Instrument,Synth"
+              pluginVSTCategory="kPlugCategSynth">
   <MAINGROUP id="TOefyq" name="OPL">
     <GROUP id="{DCA755EB-7953-0641-E719-95C7850E5B2B}" name="Source">
       <FILE id="aNR5I9" name="icon.png" compile="0" resource="0" file="Media/icon.png"/>
@@ -83,7 +82,7 @@
     <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
     <MODULES id="juce_video" showAllCode="1" useLocalCopy="1"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_WEB_BROWSER="0" JUCE_JACK="1"/>
   <EXPORTFORMATS>
     <XCODE_IPHONE targetFolder="Builds/iOS" iosDevelopmentTeamID="" iosScreenOrientation="landscape"
                   iPadScreenOrientation="landscape" UIFileSharingEnabled="1" UIStatusBarHidden="1"
@@ -136,6 +135,53 @@
         <MODULEPATH id="juce_audio_basics" path="modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstLegacyFolder="modules/vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="0" name="Release" libraryPath="/usr/X11R6/lib/" linuxArchitecture="-m64"
+                       headerPath="../../JuceLibraryCode&#10;../../Source&#10;../../Modules/vstsdk2.4&#10;/usr/include/freetype2&#10;/usr/include"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="modules"/>
+        <MODULEPATH id="juce_opengl" path="modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules"/>
+        <MODULEPATH id="juce_graphics" path="modules"/>
+        <MODULEPATH id="juce_events" path="modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules"/>
+        <MODULEPATH id="juce_cryptography" path="modules"/>
+        <MODULEPATH id="juce_core" path="modules"/>
+        <MODULEPATH id="juce_audio_utils" path="modules"/>
+        <MODULEPATH id="juce_audio_processors" path="modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="modules"/>
+        <MODULEPATH id="juce_audio_formats" path="modules"/>
+        <MODULEPATH id="juce_audio_devices" path="modules"/>
+        <MODULEPATH id="juce_audio_basics" path="modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="aNR5I9" bigIcon="aNR5I9"
+            vstLegacyFolder="modules/vstsdk2.4" vst3Folder="modules/vstsdk3">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="modules"/>
+        <MODULEPATH id="juce_opengl" path="modules"/>
+        <MODULEPATH id="juce_gui_extra" path="modules"/>
+        <MODULEPATH id="juce_gui_basics" path="modules"/>
+        <MODULEPATH id="juce_graphics" path="modules"/>
+        <MODULEPATH id="juce_events" path="modules"/>
+        <MODULEPATH id="juce_data_structures" path="modules"/>
+        <MODULEPATH id="juce_cryptography" path="modules"/>
+        <MODULEPATH id="juce_core" path="modules"/>
+        <MODULEPATH id="juce_audio_utils" path="modules"/>
+        <MODULEPATH id="juce_audio_processors" path="modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="modules"/>
+        <MODULEPATH id="juce_audio_formats" path="modules"/>
+        <MODULEPATH id="juce_audio_devices" path="modules"/>
+        <MODULEPATH id="juce_audio_basics" path="modules"/>
+      </MODULEPATHS>
+    </VS2019>
   </EXPORTFORMATS>
   <LIVE_SETTINGS>
     <WINDOWS systemHeaderPath="C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include"
