@@ -1,5 +1,5 @@
 #include "PluginProcessor.h"
-#include "PluginGui.h"
+#include "PluginEditor.h"
 #include "EnumFloatParameter.h"
 #include "IntFloatParameter.h"
 #include "SbiLoader.h"
@@ -671,10 +671,10 @@ int AdlibBlasterAudioProcessor::getCurrentProgram()
 
 void AdlibBlasterAudioProcessor::updateGuiIfPresent()
 {
-	PluginGui* gui = (PluginGui*)getActiveEditor();
-	if (gui) {
-		gui->updateFromParameters();
-	}
+    PluginEditor* gui = (PluginEditor*)getActiveEditor();
+    if (gui) {
+        gui->updateFromParameters();
+    }
 }
 
 void AdlibBlasterAudioProcessor::setCurrentProgram (int index)
@@ -831,7 +831,7 @@ bool AdlibBlasterAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* AdlibBlasterAudioProcessor::createEditor()
 {
-	PluginGui* gui = new PluginGui(this);
+	PluginEditor* gui = new PluginEditor(this);
 	gui->updateFromParameters();
 	return gui;
 }

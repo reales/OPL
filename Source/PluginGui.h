@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.7
 
   ------------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@
 	This is a GUI for the OPL2 VST plugin, created in Juce.
                                                                     //[/Comments]
 */
-class PluginGui  : public AudioProcessorEditor,
+class PluginGui  : public Component,
                    public FileDragAndDropTarget,
                    public DragAndDropContainer,
                    public Timer,
@@ -44,7 +44,7 @@ class PluginGui  : public AudioProcessorEditor,
 public:
     //==============================================================================
     PluginGui (AdlibBlasterAudioProcessor* ownerFilter);
-    ~PluginGui();
+    ~PluginGui() override;
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
@@ -304,3 +304,4 @@ private:
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+

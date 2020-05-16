@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.7
 
   ------------------------------------------------------------------------------
 
@@ -144,6 +144,7 @@ void PluginGui::updateFromParameters()
 
 	tooltipWindow.setColour(tooltipWindow.backgroundColourId, Colour(0x0));
 	tooltipWindow.setColour(tooltipWindow.textColourId, Colour(COLOUR_MID));
+
 }
 
 void PluginGui::setRecordButtonState(bool recording) {
@@ -162,7 +163,6 @@ void PluginGui::setRecordButtonState(bool recording) {
 
 //==============================================================================
 PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
-    : AudioProcessorEditor (ownerFilter)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -2169,6 +2169,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 		channels[i] = channel;
 	}
 	versionLabel->setText(String(ProjectInfo::versionString), NotificationType::dontSendNotification);
+
     //[/UserPreSize]
 
     setSize (860, 580);
@@ -2364,11 +2365,6 @@ void PluginGui::resized()
 {
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
-    
-#ifdef JUCE_IOS
-    auto& desktop = Desktop::getInstance();
-    desktop.setGlobalScaleFactor(1.185); // scaling factor
-#endif
 
     //[UserResized] Add your own custom resize handling here..
 	for (unsigned int i = 0; i < channels.size(); ++i)
@@ -2703,7 +2699,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 #ifdef JUCE_IOS
         "*");
 #endif
-        
+
 #ifndef JUCE_IOS
         "*.sbi");
 #endif
@@ -2738,7 +2734,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 #ifdef JUCE_IOS
                             "*");
 #endif
-        
+
 #ifndef JUCE_IOS
                             "*.sbi");
 #endif
@@ -2972,8 +2968,8 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="PluginGui" componentName=""
-                 parentClasses="public AudioProcessorEditor, public FileDragAndDropTarget, public DragAndDropContainer, public Timer"
-                 constructorParams="AdlibBlasterAudioProcessor* ownerFilter" variableInitialisers=" AudioProcessorEditor (ownerFilter)"
+                 parentClasses="public Component, public FileDragAndDropTarget, public DragAndDropContainer, public Timer"
+                 constructorParams="AdlibBlasterAudioProcessor* ownerFilter" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="1" initialWidth="860" initialHeight="580">
   <BACKGROUND backgroundColour="ff000000"/>
@@ -3002,113 +2998,107 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="40 168 152 24" tooltip="Multiplier applied to base note frequency"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Frequency Multiplier"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <SLIDER name="a slider" id="1b9be27726a5b3ae" memberName="aSlider" virtualName=""
           explicitFocusOrder="0" pos="40 208 30 88" tooltip="Envelope attack rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.00000000000000000000"
-          max="15.00000000000000000000" int="1.00000000000000000000" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="a label" id="9dd0b13f00b4de42" memberName="aLabel" virtualName=""
          explicitFocusOrder="0" pos="40 304 30 24" tooltip="Attack rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="A"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="d slider" id="d4cc8ddf2fc9cf2b" memberName="dSlider" virtualName=""
           explicitFocusOrder="0" pos="88 208 30 88" tooltip="Envelope decay rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.00000000000000000000"
-          max="15.00000000000000000000" int="1.00000000000000000000" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="d label" id="a7f17b098b85f10b" memberName="dLabel" virtualName=""
          explicitFocusOrder="0" pos="88 304 30 24" tooltip="Decay rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="D"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="s slider" id="9bcadfc61e498bce" memberName="sSlider" virtualName=""
           explicitFocusOrder="0" pos="136 208 30 88" tooltip="Envelope sustain level"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.00000000000000000000"
-          max="15.00000000000000000000" int="1.00000000000000000000" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="d label" id="6467455c7573fefa" memberName="dLabel2" virtualName=""
          explicitFocusOrder="0" pos="136 304 30 24" tooltip="Sustain level"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="S"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="r slider" id="5616976a8c5a3f5f" memberName="rSlider" virtualName=""
           explicitFocusOrder="0" pos="184 208 30 88" tooltip="Envelope release rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.00000000000000000000"
-          max="15.00000000000000000000" int="1.00000000000000000000" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="r label" id="ef30d2907e867666" memberName="rLabel" virtualName=""
          explicitFocusOrder="0" pos="184 304 30 24" tooltip="Release rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="R"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="attenuation slider" id="dfb943cd83b3977f" memberName="attenuationSlider"
           virtualName="" explicitFocusOrder="0" pos="328 184 56 142" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="-47.25000000000000000000" max="0.00000000000000000000"
-          int="0.75000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="64" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="-47.25" max="0.0" int="0.75"
+          style="LinearVertical" textBoxPos="TextBoxBelow" textBoxEditable="0"
+          textBoxWidth="64" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="attenuation label" id="643f88854c82ca3e" memberName="attenuationLabel"
          virtualName="" explicitFocusOrder="0" pos="304 160 112 24" tooltip="Final output level adjustment"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Attenuation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="db label" id="666be8c96c85c9f1" memberName="dbLabel" virtualName=""
          explicitFocusOrder="0" pos="384 304 32 24" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="dB"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="sine image button" id="5e72e0ec4fc09c1a" memberName="sineImageButton"
                virtualName="" explicitFocusOrder="0" pos="88 113 34 30" buttonText="Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="full_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="full_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="half sine image button" id="bf9e0504c5e9e5d5" memberName="halfsineImageButton"
                virtualName="" explicitFocusOrder="0" pos="128 113 34 30" buttonText="Half Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="half_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="half_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="abs sine image button" id="1b0b532ac934edae" memberName="abssineImageButton"
                virtualName="" explicitFocusOrder="0" pos="168 113 34 30" buttonText="Abs Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="abs_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="abs_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="quarter sine image button" id="47d1bd1fd4ae011d" memberName="quartersineImageButton"
                virtualName="" explicitFocusOrder="0" pos="208 113 34 30" buttonText="Quarter Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="quarter_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="quarter_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="wave label" id="d35c942584ea52a6" memberName="waveLabel"
          virtualName="" explicitFocusOrder="0" pos="32 115 48 24" textCol="ff007f00"
          edTextCol="ff000000" edBkgCol="0" labelText="Wave" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TOGGLEBUTTON name="tremolo button" id="1e6ab9b2f1fee312" memberName="tremoloButton"
                 virtualName="" explicitFocusOrder="0" pos="120 352 80 24" tooltip="Modulate amplitude at 3.7 Hz"
                 txtcol="ff007f00" buttonText="Tremolo" connectedEdges="0" needsCallback="1"
@@ -3129,8 +3119,8 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="792 712 72 16" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="dB/8ve&#10;"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <COMBOBOX name="frequency combo box" id="30b8c81b6bd2a17" memberName="frequencyComboBox2"
             virtualName="" explicitFocusOrder="0" pos="624 168 66 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
@@ -3138,113 +3128,103 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="464 168 152 24" tooltip="Multiplier applied to base note frequency"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Frequency Multiplier"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <SLIDER name="a slider" id="d6d2f4556ea9394" memberName="aSlider2" virtualName=""
           explicitFocusOrder="0" pos="464 208 30 88" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.00000000000000000000" max="15.00000000000000000000"
-          int="1.00000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="40" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
+          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="a label" id="9ec6412cc79720bc" memberName="aLabel2" virtualName=""
          explicitFocusOrder="0" pos="464 304 30 24" tooltip="Attack rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="A"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="d slider" id="4a1f1b6038500f67" memberName="dSlider2" virtualName=""
           explicitFocusOrder="0" pos="512 208 30 88" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.00000000000000000000" max="15.00000000000000000000"
-          int="1.00000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="40" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
+          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="d label" id="10231adaf9e23e14" memberName="dLabel3" virtualName=""
          explicitFocusOrder="0" pos="512 304 30 24" tooltip="Decay rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="D"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="s slider" id="2fc057248a815958" memberName="sSlider2" virtualName=""
           explicitFocusOrder="0" pos="560 208 30 88" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.00000000000000000000" max="15.00000000000000000000"
-          int="1.00000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="40" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
+          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="d label" id="5b881f2381defac" memberName="dLabel4" virtualName=""
          explicitFocusOrder="0" pos="560 304 30 24" tooltip="Sustain level"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="S"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="r slider" id="5474ad005fb58e97" memberName="rSlider2" virtualName=""
           explicitFocusOrder="0" pos="608 208 30 88" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.00000000000000000000" max="15.00000000000000000000"
-          int="1.00000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="40" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
+          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="r label" id="ca2834438bee82a9" memberName="rLabel2" virtualName=""
          explicitFocusOrder="0" pos="608 304 30 24" tooltip="Release rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="R"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <SLIDER name="attenuation slider" id="edb48da87d7535dd" memberName="attenuationSlider2"
           virtualName="" explicitFocusOrder="0" pos="752 184 56 142" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="-47.25000000000000000000" max="0.00000000000000000000"
-          int="0.75000000000000000000" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="64" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="-47.25" max="0.0" int="0.75"
+          style="LinearVertical" textBoxPos="TextBoxBelow" textBoxEditable="0"
+          textBoxWidth="64" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="attenuation label" id="958314f88253f461" memberName="attenuationLabel2"
          virtualName="" explicitFocusOrder="0" pos="728 160 112 24" tooltip="Final output level adjustment"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Attenuation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="db label" id="7efc6195ef5e25d1" memberName="dbLabel3" virtualName=""
          explicitFocusOrder="0" pos="800 304 40 24" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="dB"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="sine image button" id="27e01d31ba835965" memberName="sineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="512 113 34 30" buttonText="Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="full_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="full_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="half sine image button" id="6e9afdb08dd4edac" memberName="halfsineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="552 113 34 30" buttonText="Half Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="half_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="half_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="abs sine image button" id="361941cfa04130c1" memberName="abssineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="592 113 34 30" buttonText="Abs Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="abs_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="abs_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="quarter sine image button" id="3fa62f49fdd1a41f" memberName="quartersineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="632 113 34 30" buttonText="Quarter Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="quarter_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="quarter_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="wave label" id="c810628f3c772781" memberName="waveLabel2"
          virtualName="" explicitFocusOrder="0" pos="456 115 48 24" textCol="ff007f00"
          edTextCol="ff000000" edBkgCol="0" labelText="Wave" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TOGGLEBUTTON name="tremolo button" id="a517934e39704073" memberName="tremoloButton2"
                 virtualName="" explicitFocusOrder="0" pos="544 352 80 24" tooltip="Modulate amplitude at 3.7 Hz"
                 txtcol="ff007f00" buttonText="Tremolo" connectedEdges="0" needsCallback="1"
@@ -3265,63 +3245,60 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="656 376 88 48" tooltip="Attenuate amplitude with note frequency in dB per octave"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Keyscale Attenuation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <GROUPCOMPONENT name="new group" id="7392f7d1c8cf6e74" memberName="groupComponent3"
                   virtualName="" explicitFocusOrder="0" pos="16 440 248 120" outlinecol="ff007f00"
                   textcol="ff007f00" title="Effect depth" textpos="33"/>
   <SLIDER name="tremolo slider" id="ab64abee7ac8874b" memberName="tremoloSlider"
           virtualName="" explicitFocusOrder="0" pos="112 472 80 24" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="1.00000000000000000000" max="4.79999999999999982236"
-          int="3.79999999999999982236" style="LinearHorizontal" textBoxPos="TextBoxRight"
-          textBoxEditable="0" textBoxWidth="32" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="1.0" max="4.8" int="3.8" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="0" textBoxWidth="32"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="frequency label" id="134ce8f87da62b88" memberName="frequencyLabel5"
          virtualName="" explicitFocusOrder="0" pos="32 472 80 24" tooltip="OPL global tremolo depth"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Tremolo&#10;"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="db label" id="720df8e7c502dd91" memberName="dbLabel5" virtualName=""
          explicitFocusOrder="0" pos="200 464 32 40" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="dB"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <SLIDER name="vibrato slider" id="b45a1f20f22cf5ca" memberName="vibratoSlider"
           virtualName="" explicitFocusOrder="0" pos="112 512 80 24" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="7.00000000000000000000" max="14.00000000000000000000"
-          int="7.00000000000000000000" style="LinearHorizontal" textBoxPos="TextBoxRight"
-          textBoxEditable="0" textBoxWidth="32" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="7.0" max="14.0" int="7.0" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="0" textBoxWidth="32"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="frequency label" id="1412b9d14e37bcbe" memberName="frequencyLabel6"
          virtualName="" explicitFocusOrder="0" pos="32 512 80 24" tooltip="OPL global vibrato depth"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Vibrato"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="db label" id="e13e0aff8b974a36" memberName="dbLabel6" virtualName=""
          explicitFocusOrder="0" pos="200 504 48 40" tooltip="A unit of pitch; 100 cents per semitone"
          textCol="ff007f00" outlineCol="0" edTextCol="ff000000" edBkgCol="0"
          labelText="cents&#10;" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="feedback slider" id="f9d22e12f5e417e4" memberName="feedbackSlider"
           virtualName="" explicitFocusOrder="0" pos="248 237 30 59" thumbcol="ff00af00"
           trackcol="7f007f00" rotarysliderfill="ff00af00" rotaryslideroutline="ff007f00"
           textboxtext="ff007f00" textboxbkgd="ff000000" textboxhighlight="ff00af00"
-          min="0.00000000000000000000" max="7.00000000000000000000" int="1.00000000000000000000"
-          style="RotaryHorizontalVerticalDrag" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          min="0.0" max="7.0" int="1.0" style="RotaryHorizontalVerticalDrag"
+          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="frequency label" id="880eaf14af62578a" memberName="frequencyLabel7"
          virtualName="" explicitFocusOrder="0" pos="224 304 80 24" tooltip="Extent to which modulator output is fed back into itself"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Feedback"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <COMBOBOX name="velocity combo box" id="cbe10e5236447f15" memberName="velocityComboBox"
             virtualName="" explicitFocusOrder="0" pos="328 352 76 24" editable="0"
             layout="33" items="Off&#10;Light&#10;Heavy" textWhenNonSelected=""
@@ -3334,70 +3311,62 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="760 376 80 48" tooltip="Set or disable velocity senstivity"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Velocity Sensitivity"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="alternating sine image button" id="2a054359a782e92d" memberName="alternatingsineImageButton"
                virtualName="" explicitFocusOrder="0" pos="288 113 34 30" buttonText="Alternating Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="alternating_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="alternating_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="camel sine image button" id="d6f66822f7f64480" memberName="camelsineImageButton"
                virtualName="" explicitFocusOrder="0" pos="248 113 34 30" buttonText="Camel Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="camel_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="camel_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="square image button" id="85e53fb506289115" memberName="squareImageButton"
                virtualName="" explicitFocusOrder="0" pos="328 113 34 30" buttonText="Square"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="square_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="square_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="logsaw image button" id="fca4c858138cdd7b" memberName="logsawImageButton"
                virtualName="" explicitFocusOrder="0" pos="368 113 34 30" buttonText="Logarithmic Sawtooth"
                connectedEdges="0" needsCallback="1" radioGroupId="1" keepProportions="1"
-               resourceNormal="logarithmic_saw_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="logarithmic_saw_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="alternating sine image button" id="32c5f60cc145d464" memberName="alternatingsineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="714 114 34 30" buttonText="Alternating Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="alternating_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="alternating_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="camel sine image button" id="215395763c6a03f2" memberName="camelsineImageButton2"
                virtualName="" explicitFocusOrder="0" pos="674 114 34 30" buttonText="Camel Sine"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="camel_sine_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="camel_sine_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="square image button" id="d85202a2e5f8b158" memberName="squareImageButton2"
                virtualName="" explicitFocusOrder="0" pos="754 114 34 30" buttonText="Square"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="square_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="square_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="logsaw image button" id="d713984cff8b67b5" memberName="logsawImageButton2"
                virtualName="" explicitFocusOrder="0" pos="794 114 34 30" buttonText="Logarithmic Sawtooth"
                connectedEdges="0" needsCallback="1" radioGroupId="2" keepProportions="1"
-               resourceNormal="logarithmic_saw_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="logarithmic_saw_png" opacityNormal="0.5" colourNormal="0"
+               resourceOver="" opacityOver="0.5" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="db label" id="1f10b7e3cf477c89" memberName="dbLabel4" virtualName=""
          explicitFocusOrder="0" pos="792 688 72 16" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="dB/8ve&#10;"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <COMBOBOX name="keyscale combo box" id="9b766b7b6a67cbf4" memberName="keyscaleAttenuationComboBox2"
             virtualName="" explicitFocusOrder="0" pos="664 352 76 24" editable="0"
             layout="33" items="-0.0&#10;-3.0&#10;-1.5&#10;-6.0" textWhenNonSelected=""
@@ -3412,22 +3381,21 @@ BEGIN_JUCER_METADATA
   <SLIDER name="emulator slider" id="88ec3755c4760ed9" memberName="emulatorSlider"
           virtualName="" explicitFocusOrder="0" pos="208 736 40 24" thumbcol="ff00af00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.00000000000000000000" max="1.00000000000000000000"
-          int="1.00000000000000000000" style="LinearHorizontal" textBoxPos="NoTextBox"
-          textBoxEditable="0" textBoxWidth="44" textBoxHeight="20" skewFactor="1.00000000000000000000"
-          needsCallback="1"/>
+          textboxhighlight="ff00af00" min="0.0" max="1.0" int="1.0" style="LinearHorizontal"
+          textBoxPos="NoTextBox" textBoxEditable="0" textBoxWidth="44"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="emulator label" id="22c2c30d0f337081" memberName="emulatorLabel"
          virtualName="" explicitFocusOrder="0" pos="120 736 72 24" tooltip="Use the OPL emulator from the DOSBox project"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="DOSBox"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="34"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="34"/>
   <LABEL name="emulator label" id="4f8869b5724c0195" memberName="emulatorLabel2"
          virtualName="" explicitFocusOrder="0" pos="256 736 72 24" tooltip="Use the OPL emulator from the ZDoom project"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="ZDoom"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <TOGGLEBUTTON name="record button" id="880010ee79039cbe" memberName="recordButton"
                 virtualName="" explicitFocusOrder="0" pos="32 680 224 24" tooltip="Start recording all register writes to a DRO file - an OPL recording file format defined by DOSBox"
                 txtcol="ff007f00" buttonText="Record to DRO (not working yet)"
@@ -3444,370 +3412,334 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="648 560 198 16" textCol="ff007f00"
          edTextCol="ff000000" edBkgCol="0" labelText="" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="12.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="34"/>
+         fontsize="12.0" kerning="0.0" bold="0" italic="0" justification="34"/>
   <IMAGEBUTTON name="Toggle Button Off Example" id="672bea5ea2e1fabd" memberName="ToggleButtonOffExample"
                virtualName="" explicitFocusOrder="0" pos="1032 584 12 12" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="toggle_off_sq_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="toggle_off_sq_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Toggle Button On Example" id="1a4b1e2ee10b30aa" memberName="ToggleButtonOnExample"
                virtualName="" explicitFocusOrder="0" pos="1064 584 12 12" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="toggle_on_sq_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="toggle_on_sq_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="d00839172c49b458" memberName="label" virtualName=""
          explicitFocusOrder="0" pos="1000 608 104 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Toggle buttons"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="new label" id="75faa73445635a7f" memberName="label2" virtualName=""
          explicitFocusOrder="0" pos="872 608 104 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Line borders" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <IMAGEBUTTON name="Line Border 1C" id="d189b7564dfbe6f4" memberName="LineBorderButton1C"
                virtualName="" explicitFocusOrder="0" pos="20 336 400 6" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_horiz_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_horiz_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1A" id="e2102e76055ea2d2" memberName="LineBorderButton1A"
                virtualName="" explicitFocusOrder="0" pos="20 152 400 6" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_horiz_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_horiz_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1B" id="c602d4512bd5e4ad" memberName="LineBorderButton1B"
                virtualName="" explicitFocusOrder="0" pos="296 156 6 182" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_vert_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_vert_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <LABEL name="new label" id="96790ccaf0f7ecec" memberName="label3" virtualName=""
          explicitFocusOrder="0" pos="776 736 104 56" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Temporarily removed labels to avoid making wider boxes."
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="Line Border 1C" id="fb69fc397f48c0b2" memberName="LineBorderButton1C2"
                virtualName="" explicitFocusOrder="0" pos="444 336 400 6" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_horiz_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_horiz_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1A" id="2096630c63845b7d" memberName="LineBorderButton1A2"
                virtualName="" explicitFocusOrder="0" pos="444 152 400 6" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_horiz_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_horiz_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1B" id="84b521f64fc5ec24" memberName="LineBorderButton1B2"
                virtualName="" explicitFocusOrder="0" pos="720 156 6 182" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_vert_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_vert_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1C" id="d45929173c0e1a86" memberName="LineBorderButton1C3"
                virtualName="" explicitFocusOrder="0" pos="892 584 20 6" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_horiz_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_horiz_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_horiz_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_horiz_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Line Border 1B" id="1755b1c2b6e4ae68" memberName="LineBorderButton1B3"
                virtualName="" explicitFocusOrder="0" pos="936 576 6 20" buttonText="new button"
                connectedEdges="0" needsCallback="0" radioGroupId="0" keepProportions="0"
-               resourceNormal="line_border_vert_png" opacityNormal="0.60000002384185791016"
-               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.60000002384185791016"
-               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.60000002384185791016"
+               resourceNormal="line_border_vert_png" opacityNormal="0.6000000238418579"
+               colourNormal="0" resourceOver="line_border_vert_png" opacityOver="0.6000000238418579"
+               colourOver="0" resourceDown="line_border_vert_png" opacityDown="0.6000000238418579"
                colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch Off AM" id="c840af0d765d6eb3" memberName="algoSwitchButtonOffEx1"
                virtualName="" explicitFocusOrder="0" pos="952 701 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_off_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_off_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_off_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_off_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_off_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_off_png" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch Off FM" id="aa0f44b1ed8dad85" memberName="algoSwitchButtonOffEx2"
                virtualName="" explicitFocusOrder="0" pos="952 727 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_off_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_off_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_off_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_off_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_off_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_off_png" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch On AM" id="e876ffbe79764275" memberName="algoSwitchButtonOnEx1"
                virtualName="" explicitFocusOrder="0" pos="1040 701 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on_png" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch On FM" id="b215e3921423b6e4" memberName="algoSwitchButtonOnEx2"
                virtualName="" explicitFocusOrder="0" pos="1040 727 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="8e80bd8b126eeb36" memberName="label4" virtualName=""
          explicitFocusOrder="0" pos="970 701 32 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="1f98e50cc47ec1a6" memberName="label5" virtualName=""
          explicitFocusOrder="0" pos="971 727 32 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="8cfbc479cf413916" memberName="label6" virtualName=""
          explicitFocusOrder="0" pos="1057 701 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="e231c8016dbdd4b" memberName="label7" virtualName=""
          explicitFocusOrder="0" pos="1058 727 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="58e93cab537ef6c0" memberName="label8" virtualName=""
          explicitFocusOrder="0" pos="944 816 320 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Example AM/FM switches"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="Algorithm Switch On2 AM" id="afdb65f653352953" memberName="algoSwitchButtonOn2Ex1"
                virtualName="" explicitFocusOrder="0" pos="1128 700 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on2_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on2_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on2_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on2_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on2_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on2_png" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch On2 FM" id="92f052947cb1a55" memberName="algoSwitchButtonOn2Ex2"
                virtualName="" explicitFocusOrder="0" pos="1128 727 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on2_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on2_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on2_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on2_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on2_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on2_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="247e4f52e4cfd135" memberName="label9" virtualName=""
          explicitFocusOrder="0" pos="1145 700 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="aec882448be58719" memberName="label10" virtualName=""
          explicitFocusOrder="0" pos="1146 727 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Algorithm Switch On3 AM" id="9c9fbd61392d18d7" memberName="algoSwitchButtonOn3Ex1"
                virtualName="" explicitFocusOrder="0" pos="1216 700 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on3_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on3_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on3_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on3_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on3_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on3_png" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Algorithm Switch On3 FM" id="7c15f9c7da34e18d" memberName="algoSwitchButtonOn3Ex2"
                virtualName="" explicitFocusOrder="0" pos="1216 727 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on3_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on3_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on3_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on3_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on3_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on3_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="336158e70e8469ef" memberName="label11" virtualName=""
          explicitFocusOrder="0" pos="1233 700 31 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="281e5575b4c17d57" memberName="label12" virtualName=""
          explicitFocusOrder="0" pos="1234 727 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Two OP AM Button" id="bc89b5f960a478ae" memberName="TwoOpAMButton"
                virtualName="" explicitFocusOrder="0" pos="1173 484 60 56" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="0"
-               resourceNormal="twoopAm_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="twoopAm_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="twoopAm_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="twoopAm_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="twoopAm_png" opacityOver="1.0" colourOver="0" resourceDown="twoopAm_png"
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Two OP FM Button" id="5dbdd24f69156c98" memberName="TwoOpFMButton"
                virtualName="" explicitFocusOrder="0" pos="1156 568 80 26" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="twoopFm_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="twoopFm_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="twoopFm_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="twoopFm_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="twoopFm_png" opacityOver="1.0" colourOver="0" resourceDown="twoopFm_png"
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="54bf3742f6cf39a7" memberName="label13" virtualName=""
          explicitFocusOrder="0" pos="1179 489 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="M" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="a73d54281a9f1e4b" memberName="label14" virtualName=""
          explicitFocusOrder="0" pos="1179 518 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="C" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="c7714e4c9c108a80" memberName="label15" virtualName=""
          explicitFocusOrder="0" pos="1166 572 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="M" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="6fad65a5c825f676" memberName="label16" virtualName=""
          explicitFocusOrder="0" pos="1195 572 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="C" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="d9d895b8fa9bea7f" memberName="label17" virtualName=""
          explicitFocusOrder="0" pos="1128 608 136 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Example Algorithms"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <GROUPCOMPONENT name="new group" id="d489f4c4cbfaf3a" memberName="groupComponent6"
                   virtualName="" explicitFocusOrder="0" pos="933 56 168 95" outlinecol="ff008000"
                   title=""/>
   <IMAGEBUTTON name="Algorithm Switch On AM" id="3b9987473ffb3a54" memberName="algoSwitchButtonOnEx3"
                virtualName="" explicitFocusOrder="0" pos="949 82 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="ddfd6855a5c3769a" memberName="label18" virtualName=""
          explicitFocusOrder="0" pos="966 82 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Algorithm Switch Off FM" id="3bbe951e7d48f558" memberName="algoSwitchButtonOffEx3"
                virtualName="" explicitFocusOrder="0" pos="949 108 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_off_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_off_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_off_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_off_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_off_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_off_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="ec3250e2f0f72c27" memberName="label19" virtualName=""
          explicitFocusOrder="0" pos="968 108 32 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Two OP AM Button" id="6dd4e125e7f2454f" memberName="TwoOpAMButton2"
                virtualName="" explicitFocusOrder="0" pos="1029 77 60 56" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="0"
-               resourceNormal="twoopAm_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="twoopAm_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="twoopAm_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="twoopAm_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="twoopAm_png" opacityOver="1.0" colourOver="0" resourceDown="twoopAm_png"
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="6c2ac34805e7a509" memberName="label20" virtualName=""
          explicitFocusOrder="0" pos="1035 82 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="M" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="68b10a34cd551295" memberName="label21" virtualName=""
          explicitFocusOrder="0" pos="1035 111 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="C" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="5c48c62a06b13a38" memberName="label22" virtualName=""
          explicitFocusOrder="0" pos="952 160 328 40" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Example Algo Sections w/ Diagram"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="Algorithm Switch Off AM" id="1ca80deedba9b959" memberName="algoSwitchButtonOffEx4"
                virtualName="" explicitFocusOrder="0" pos="1125 82 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_off_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_off_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_off_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_off_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_off_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_off_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="c7f07212d02cdf5b" memberName="label23" virtualName=""
          explicitFocusOrder="0" pos="1143 82 32 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Algorithm Switch On3 FM" id="840e067b2b3498f8" memberName="algoSwitchButtonOn3Ex3"
                virtualName="" explicitFocusOrder="0" pos="1125 109 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on3_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on3_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on3_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on3_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on3_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on3_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="4f6fc36b09626a98" memberName="label24" virtualName=""
          explicitFocusOrder="0" pos="1143 109 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Two OP FM Button" id="6de80642ad3057e6" memberName="TwoOpFMButton2"
                virtualName="" explicitFocusOrder="0" pos="1196 94 80 26" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="twoopFm_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="twoopFm_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="twoopFm_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="twoopFm_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="twoopFm_png" opacityOver="1.0" colourOver="0" resourceDown="twoopFm_png"
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="5d9df21ba856feea" memberName="label25" virtualName=""
          explicitFocusOrder="0" pos="1206 98 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="M" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="bc2f20892df7121b" memberName="label26" virtualName=""
          explicitFocusOrder="0" pos="1235 98 24 24" edTextCol="ff000000"
          edBkgCol="0" labelText="C" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <GROUPCOMPONENT name="new group" id="35d4aeb27da92db" memberName="groupComponent7"
                   virtualName="" explicitFocusOrder="0" pos="1112 56 168 95" outlinecol="ff008000"
                   title=""/>
   <IMAGEBUTTON name="Algorithm Switch Off AM" id="186e15fd17374b39" memberName="algoSwitchButtonOffEx5"
                virtualName="" explicitFocusOrder="0" pos="1037 250 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_off_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_off_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_off_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_off_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_off_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_off_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="18a95b2639e6ca06" memberName="label27" virtualName=""
          explicitFocusOrder="0" pos="1055 250 32 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="Algorithm Switch On3 FM" id="a280aa6d341570b7" memberName="algoSwitchButtonOn3Ex4"
                virtualName="" explicitFocusOrder="0" pos="1103 250 64 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="algo_switch_on3_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="algo_switch_on3_png" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="algo_switch_on3_png" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="algo_switch_on3_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="algo_switch_on3_png" opacityOver="1.0" colourOver="0"
+               resourceDown="algo_switch_on3_png" opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="7f064fc52edca9aa" memberName="label28" virtualName=""
          explicitFocusOrder="0" pos="1121 250 32 24" textCol="ff000000"
          edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <GROUPCOMPONENT name="new group" id="4c77a30ef34ca25d" memberName="groupComponent8"
                   virtualName="" explicitFocusOrder="0" pos="1008 208 168 95" outlinecol="ff008000"
                   title=""/>
@@ -3815,100 +3747,92 @@ BEGIN_JUCER_METADATA
          virtualName="" explicitFocusOrder="0" pos="1067 216 72 24" tooltip="In additive mode, carrier and modulator output are simply summed rather than modulated"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Algorithm"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="new label" id="31a16fa32fc39ae9" memberName="label29" virtualName=""
          explicitFocusOrder="0" pos="944 304 328 40" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Example Algo Section w/o Diagram"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="new label" id="2470d0303393253b" memberName="label30" virtualName=""
          explicitFocusOrder="0" pos="961 768 319 24" textCol="ff008000"
          edTextCol="ff000000" edBkgCol="0" labelText="Off             On (Bright)          On (Dark)       On (Solid)"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="frequency label" id="9d58547998708b6b" memberName="frequencyLabel10"
          virtualName="" explicitFocusOrder="0" pos="224 376 88 48" tooltip="Attenuate amplitude with note frequency in dB per octave"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Keyscale Attenuation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <LABEL name="attenuation label" id="63aa860d1d8ae341" memberName="attenuationLabel5"
          virtualName="" explicitFocusOrder="0" pos="328 376 80 48" tooltip="Set or disable velocity senstivity"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Velocity Sensitivity"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <IMAGEBUTTON name="fm button" id="19b03dffaa7fc94" memberName="fmButton" virtualName=""
                explicitFocusOrder="0" pos="304 472 56 56" tooltip="FM: carrier frequency is modulated by the modulator"
                buttonText="FM" connectedEdges="0" needsCallback="1" radioGroupId="3"
-               keepProportions="1" resourceNormal="twoopAm_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="twoopAm_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Additive mode button" id="d3cf9bfa8c4d4885" memberName="additiveButton"
                virtualName="" explicitFocusOrder="0" pos="392 464 72 72" tooltip="Additive: output the sum of the modulator and carrier"
                buttonText="Additive Mode" connectedEdges="0" needsCallback="1"
                radioGroupId="3" keepProportions="1" resourceNormal="twoopFm_png"
-               opacityNormal="0.50000000000000000000" colourNormal="0" resourceOver=""
-               opacityOver="0.50000000000000000000" colourOver="0" resourceDown=""
-               opacityDown="1.00000000000000000000" colourDown="0"/>
+               opacityNormal="0.5" colourNormal="0" resourceOver="" opacityOver="0.5"
+               colourOver="0" resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="bass drum button" id="2c8905c4541593a7" memberName="bassDrumButton"
                virtualName="" explicitFocusOrder="0" pos="576 464 30 30" tooltip="Bass drum"
                buttonText="bass drum" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="bassdrum_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="bassdrum_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="snare drum button" id="bcbb7e2c191a56e8" memberName="snareDrumButton"
                virtualName="" explicitFocusOrder="0" pos="632 464 30 30" tooltip="Snare"
                buttonText="snare" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="snare_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="snare_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="percussion disabled button" id="fcecada70009babc" memberName="disablePercussionButton"
                virtualName="" explicitFocusOrder="0" pos="520 464 30 30" tooltip="Disable percussion"
                buttonText="disabled" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="disabled_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="disabled_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="tom tom button" id="7ab8c7e4677552" memberName="tomTomButton"
                virtualName="" explicitFocusOrder="0" pos="520 512 30 30" tooltip="Tom-tom"
                buttonText="tom tom" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="tom_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="tom_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="cymbalButton" id="a4334a83ef3cbbde" memberName="cymbalButton"
                virtualName="" explicitFocusOrder="0" pos="576 512 30 30" tooltip="Cymbal"
                buttonText="snare" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="cymbal_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="cymbal_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="hi hat button" id="49d70294c1d75708" memberName="hiHatButton"
                virtualName="" explicitFocusOrder="0" pos="632 512 30 30" tooltip="Hi-hat"
                buttonText="hi-hat" connectedEdges="0" needsCallback="1" radioGroupId="4"
-               keepProportions="1" resourceNormal="hihat_png" opacityNormal="0.50000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="0.50000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               keepProportions="1" resourceNormal="hihat_png" opacityNormal="0.5"
+               colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
+               resourceDown="" opacityDown="1.0" colourDown="0"/>
   <LABEL name="db label" id="56a8c68b3fd380e8" memberName="dbLabel7" virtualName=""
          explicitFocusOrder="0" pos="320 520 32 40" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="FM"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="db label" id="a358d95f525350f5" memberName="dbLabel8" virtualName=""
          explicitFocusOrder="0" pos="392 520 72 40" textCol="ff007f00"
          outlineCol="0" edTextCol="ff000000" edBkgCol="0" labelText="Additive"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
@@ -4238,3 +4162,4 @@ const int PluginGui::adlib_pngSize = 1605;
 
 //[EndFile] You can add extra defines here...
 //[/EndFile]
+
