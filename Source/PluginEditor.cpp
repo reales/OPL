@@ -39,9 +39,8 @@ PluginEditor::PluginEditor (AdlibBlasterAudioProcessor* ownerFilter)
     options.storageFormat = PropertiesFile::storeAsXML;
     #if JUCE_LINUX
     options.folderName          = "~/.config";
-    #endif
-    #if JUCE_WINDOWS
-    options.folderName          = "~/";
+    #else
+    options.folderName          = "";
     #endif
     pluginSettings.setStorageParameters (options);
 
