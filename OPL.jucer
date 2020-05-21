@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.2.0"
+<JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.3.0"
               bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="Digital sound synthesis chip developed by Yamaha in the mid 1980s"
               pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL1"
               pluginChannelConfigs="{0, 2}" pluginIsSynth="1" pluginWantsMidiIn="1"
@@ -9,15 +9,16 @@
               pluginAAXCategory="2" jucerVersion="5.4.7" includeBinaryInAppConfig="1"
               pluginIsMidiEffectPlugin="0" companyWebsite="https://www.discodsp.com/"
               splashScreenColour="Dark" companyCopyright="" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
-              pluginFormats="buildAU,buildStandalone,buildVST,buildVST3" buildVST="1"
-              buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0" buildAAX="0"
-              buildStandalone="1" enableIAA="0" companyName="discoDSP" companyEmail="contactus@discodsp.com"
+              companyName="discoDSP" companyEmail="contactus@discodsp.com"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" pluginAUMainType="'aumu'" pluginVST3Category="Instrument,Synth"
-              pluginVSTCategory="kPlugCategSynth">
+              pluginVSTCategory="kPlugCategSynth" pluginFormats="buildAU,buildStandalone,buildVST3"
+              buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" buildStandalone="1" enableIAA="0">
   <MAINGROUP id="TOefyq" name="OPL">
     <GROUP id="{DCA755EB-7953-0641-E719-95C7850E5B2B}" name="Source">
       <FILE id="aNR5I9" name="icon.png" compile="0" resource="0" file="Media/icon.png"/>
+      <FILE id="lWChlc" name="icon_ios.png" compile="0" resource="0" file="Media/icon_ios.png"/>
       <FILE id="AqQcu5" name="ChannelButtonLookAndFeel.cpp" compile="1" resource="0"
             file="Source/ChannelButtonLookAndFeel.cpp"/>
       <FILE id="yqL2ZN" name="ChannelButtonLookAndFeel.h" compile="0" resource="0"
@@ -69,28 +70,30 @@
     </GROUP>
   </MAINGROUP>
   <MODULES>
-    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
-    <MODULES id="juce_core" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_events" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
-    <MODULES id="juce_video" showAllCode="1" useLocalCopy="1"/>
+    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"
+             useGlobalPath="1"/>
+    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULES id="juce_video" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_WEB_BROWSER="0" JUCE_JACK="1"/>
   <EXPORTFORMATS>
-    <XCODE_IPHONE targetFolder="Builds/iOS" iosDevelopmentTeamID="" iosScreenOrientation="landscape"
-                  iPadScreenOrientation="landscape" UIFileSharingEnabled="1" UIStatusBarHidden="1"
-                  iosBackgroundAudio="1" iosBackgroundBle="1" UISupportsDocumentBrowser="1"
-                  iosDeviceFamily="2" smallIcon="aNR5I9" bigIcon="aNR5I9">
+    <XCODE_IPHONE targetFolder="Builds/iOS" iosScreenOrientation="landscape"
+                  iPadScreenOrientation="landscape" UIStatusBarHidden="1" iosBackgroundAudio="1"
+                  iosBackgroundBle="1" iosDeviceFamily="2" smallIcon="lWChlc" bigIcon="lWChlc"
+                  iosAppGroupsId="group.com.discodsp.opl" extraDefs="JUCE_DISABLE_NATIVE_FILECHOOSERS=1"
+                  customXcodeResourceFolders="sbi">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" iosCompatibility="11.0"/>
         <CONFIGURATION isDebug="0" name="Release" iosCompatibility="11.0"/>
@@ -113,12 +116,13 @@
         <MODULEPATH id="juce_audio_utils" path="modules"/>
       </MODULEPATHS>
     </XCODE_IPHONE>
-    <XCODE_MAC targetFolder="Builds/MacOSX" iosDevelopmentTeamID=""
+    <XCODE_MAC targetFolder="Builds/MacOSX" iosDevelopmentTeamID="96UBP6BN94"
                vstLegacyFolder="modules/vstsdk2.4" vst3Folder="modules/vstsdk3"
                smallIcon="aNR5I9" bigIcon="aNR5I9">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
-        <CONFIGURATION isDebug="0" name="Release" linkTimeOptimisation="1"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+        <CONFIGURATION isDebug="0" name="Demo" defines="DEMOVERSION=1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="modules"/>
@@ -143,6 +147,9 @@
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="0" name="Release" libraryPath="/usr/X11R6/lib/" linuxArchitecture="-m64"
                        headerPath="../../JuceLibraryCode&#10;../../Source&#10;../../Modules/vstsdk2.4&#10;/usr/include/freetype2&#10;/usr/include"/>
+        <CONFIGURATION isDebug="0" name="Demo" libraryPath="/usr/X11R6/lib/" linuxArchitecture="-m64"
+                       headerPath="../../JuceLibraryCode&#10;../../Source&#10;../../Modules/vstsdk2.4&#10;/usr/include/freetype2&#10;/usr/include"
+                       defines="DEMOVERSION=1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="modules"/>
@@ -167,6 +174,7 @@
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
+        <CONFIGURATION isDebug="0" name="Demo" defines="DEMOVERSION=1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="modules"/>

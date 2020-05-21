@@ -133,8 +133,8 @@ private:
     File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
 #endif
 #if JUCE_IOS
-    File instrumentLoadDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
-    File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
+        File instrumentLoadDirectory = File::getSpecialLocation (File::invokedExecutableFile).getParentDirectory().getChildFile("sbi"); // File();
+        File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
 #endif
     //[/UserVariables]
 

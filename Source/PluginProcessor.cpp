@@ -867,6 +867,7 @@ void AdlibBlasterAudioProcessor::getStateInformation(MemoryBlock& destData)
 
 void AdlibBlasterAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
+#if ! DEMOVERSION
 	if (sizeInBytes < 1)
 		return;
 
@@ -906,6 +907,7 @@ void AdlibBlasterAudioProcessor::setStateInformation (const void* data, int size
 	for (int i = 0; i < parametersToLoad; i++) {
 		setParameter(i, fdata[i]);
 	}
+#endif
 }
 
 bool AdlibBlasterAudioProcessor::isChannelEnabled(const int idx) const {

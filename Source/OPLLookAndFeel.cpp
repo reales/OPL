@@ -22,7 +22,7 @@ OPLLookAndFeel::OPLLookAndFeel()
 
 	// Prevents an ugly white border from being drawn around a component with keyboard focus.
 	setColour(TextEditor::ColourIds::focusedOutlineColourId, Colours::black);
-	setColour(Slider::ColourIds::textBoxOutlineColourId, DOS_GREEN);
+	// setColour(Slider::ColourIds::textBoxOutlineColourId, DOS_GREEN);
 
 	setColour(TextButton::ColourIds::buttonColourId, DOS_GREEN);
 	setColour(TextButton::ColourIds::buttonOnColourId, DOS_GREEN);

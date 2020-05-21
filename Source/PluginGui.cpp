@@ -249,16 +249,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     aSlider->setTooltip (TRANS("Envelope attack rate"));
     aSlider->setRange (0, 15, 1);
     aSlider->setSliderStyle (Slider::LinearVertical);
-    aSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
-    aSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    aSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     aSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     aSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     aSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     aSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     aSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    aSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     aSlider->addListener (this);
 
-    aSlider->setBounds (40, 208, 30, 88);
+    aSlider->setBounds (40, 200, 30, 104);
 
     aLabel.reset (new Label ("a label",
                              TRANS("A")));
@@ -278,16 +278,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     dSlider->setTooltip (TRANS("Envelope decay rate"));
     dSlider->setRange (0, 15, 1);
     dSlider->setSliderStyle (Slider::LinearVertical);
-    dSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
-    dSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    dSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     dSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     dSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     dSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     dSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     dSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    dSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     dSlider->addListener (this);
 
-    dSlider->setBounds (88, 208, 30, 88);
+    dSlider->setBounds (88, 200, 30, 104);
 
     dLabel.reset (new Label ("d label",
                              TRANS("D")));
@@ -307,16 +307,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     sSlider->setTooltip (TRANS("Envelope sustain level"));
     sSlider->setRange (0, 15, 1);
     sSlider->setSliderStyle (Slider::LinearVertical);
-    sSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
-    sSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    sSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     sSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     sSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     sSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     sSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    sSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     sSlider->addListener (this);
 
-    sSlider->setBounds (136, 208, 30, 88);
+    sSlider->setBounds (136, 200, 30, 104);
 
     dLabel2.reset (new Label ("d label",
                               TRANS("S")));
@@ -336,16 +336,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     rSlider->setTooltip (TRANS("Envelope release rate"));
     rSlider->setRange (0, 15, 1);
     rSlider->setSliderStyle (Slider::LinearVertical);
-    rSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
-    rSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    rSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     rSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     rSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     rSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     rSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     rSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    rSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     rSlider->addListener (this);
 
-    rSlider->setBounds (184, 208, 30, 88);
+    rSlider->setBounds (184, 200, 30, 104);
 
     rLabel.reset (new Label ("r label",
                              TRANS("R")));
@@ -364,13 +364,13 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (attenuationSlider.get());
     attenuationSlider->setRange (-47.25, 0, 0.75);
     attenuationSlider->setSliderStyle (Slider::LinearVertical);
-    attenuationSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 64, 20);
-    attenuationSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    attenuationSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 64, 20);
     attenuationSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     attenuationSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     attenuationSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     attenuationSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     attenuationSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    attenuationSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     attenuationSlider->addListener (this);
 
     attenuationSlider->setBounds (328, 184, 56, 142);
@@ -537,16 +537,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (aSlider2.get());
     aSlider2->setRange (0, 15, 1);
     aSlider2->setSliderStyle (Slider::LinearVertical);
-    aSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
-    aSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    aSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
     aSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     aSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     aSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     aSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     aSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    aSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     aSlider2->addListener (this);
 
-    aSlider2->setBounds (464, 208, 30, 88);
+    aSlider2->setBounds (464, 200, 30, 104);
 
     aLabel2.reset (new Label ("a label",
                               TRANS("A")));
@@ -565,16 +565,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (dSlider2.get());
     dSlider2->setRange (0, 15, 1);
     dSlider2->setSliderStyle (Slider::LinearVertical);
-    dSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
-    dSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    dSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
     dSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     dSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     dSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     dSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     dSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    dSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     dSlider2->addListener (this);
 
-    dSlider2->setBounds (512, 208, 30, 88);
+    dSlider2->setBounds (512, 200, 30, 104);
 
     dLabel3.reset (new Label ("d label",
                               TRANS("D")));
@@ -593,16 +593,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (sSlider2.get());
     sSlider2->setRange (0, 15, 1);
     sSlider2->setSliderStyle (Slider::LinearVertical);
-    sSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
-    sSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    sSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
     sSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     sSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     sSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     sSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     sSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    sSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     sSlider2->addListener (this);
 
-    sSlider2->setBounds (560, 208, 30, 88);
+    sSlider2->setBounds (560, 200, 30, 104);
 
     dLabel4.reset (new Label ("d label",
                               TRANS("S")));
@@ -621,16 +621,16 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (rSlider2.get());
     rSlider2->setRange (0, 15, 1);
     rSlider2->setSliderStyle (Slider::LinearVertical);
-    rSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 40, 20);
-    rSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    rSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
     rSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     rSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     rSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     rSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     rSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    rSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     rSlider2->addListener (this);
 
-    rSlider2->setBounds (608, 208, 30, 88);
+    rSlider2->setBounds (608, 200, 30, 104);
 
     rLabel2.reset (new Label ("r label",
                               TRANS("R")));
@@ -649,13 +649,13 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     addAndMakeVisible (attenuationSlider2.get());
     attenuationSlider2->setRange (-47.25, 0, 0.75);
     attenuationSlider2->setSliderStyle (Slider::LinearVertical);
-    attenuationSlider2->setTextBoxStyle (Slider::TextBoxBelow, true, 64, 20);
-    attenuationSlider2->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
+    attenuationSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 64, 20);
     attenuationSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
     attenuationSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
     attenuationSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     attenuationSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     attenuationSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    attenuationSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     attenuationSlider2->addListener (this);
 
     attenuationSlider2->setBounds (752, 184, 56, 142);
@@ -809,12 +809,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     tremoloSlider->setRange (1, 4.8, 3.8);
     tremoloSlider->setSliderStyle (Slider::LinearHorizontal);
     tremoloSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
-    tremoloSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     tremoloSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     tremoloSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     tremoloSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     tremoloSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     tremoloSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    tremoloSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     tremoloSlider->addListener (this);
 
     tremoloSlider->setBounds (112, 472, 80, 24);
@@ -850,12 +850,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     vibratoSlider->setRange (7, 14, 7);
     vibratoSlider->setSliderStyle (Slider::LinearHorizontal);
     vibratoSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
-    vibratoSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     vibratoSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
     vibratoSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     vibratoSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     vibratoSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     vibratoSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    vibratoSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     vibratoSlider->addListener (this);
 
     vibratoSlider->setBounds (112, 512, 80, 24);
@@ -892,7 +892,6 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     feedbackSlider->setRange (0, 7, 1);
     feedbackSlider->setSliderStyle (Slider::RotaryHorizontalVerticalDrag);
     feedbackSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
-    feedbackSlider->setColour (Slider::textBoxOutlineColourId, Colours::transparentBlack);
     feedbackSlider->setColour (Slider::thumbColourId, Colour (0xff00af00));
     feedbackSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
     feedbackSlider->setColour (Slider::rotarySliderFillColourId, Colour (0xff00af00));
@@ -900,9 +899,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     feedbackSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
     feedbackSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
     feedbackSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    feedbackSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     feedbackSlider->addListener (this);
 
-    feedbackSlider->setBounds (248, 237, 30, 59);
+    feedbackSlider->setBounds (248, 237, 30, 67);
 
     frequencyLabel7.reset (new Label ("frequency label",
                                       TRANS("Feedback")));
@@ -1893,7 +1893,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     attenuationLabel5->setColour (TextEditor::textColourId, Colours::black);
     attenuationLabel5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    attenuationLabel5->setBounds (323, 376, 80, 48);
+    attenuationLabel5->setBounds (328, 376, 80, 48);
 
     fmButton.reset (new ImageButton ("fm button"));
     addAndMakeVisible (fmButton.get());
@@ -1903,10 +1903,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     fmButton->addListener (this);
 
     fmButton->setImages (false, true, true,
-                         ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
+                         ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
                          Image(), 0.500f, Colour (0x00000000),
                          Image(), 1.000f, Colour (0x00000000));
-    fmButton->setBounds (301, 464, 72, 72);
+    fmButton->setBounds (304, 472, 56, 56);
 
     additiveButton.reset (new ImageButton ("Additive mode button"));
     addAndMakeVisible (additiveButton.get());
@@ -1916,10 +1916,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     additiveButton->addListener (this);
 
     additiveButton->setImages (false, true, true,
-                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
                                Image(), 0.500f, Colour (0x00000000),
                                Image(), 1.000f, Colour (0x00000000));
-    additiveButton->setBounds (402, 472, 56, 56);
+    additiveButton->setBounds (392, 464, 72, 72);
 
     bassDrumButton.reset (new ImageButton ("bass drum button"));
     addAndMakeVisible (bassDrumButton.get());
@@ -2168,7 +2168,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 		addAndMakeVisible(channel);
 		channels[i] = channel;
 	}
-	versionLabel->setText(String(ProjectInfo::versionString), NotificationType::dontSendNotification);
+
+    versionLabel->setText(String(ProjectInfo::versionString).dropLastCharacters(2)
+#if DEMOVERSION
+                          += " Demo"
+#endif
+                          , NotificationType::dontSendNotification);
 
     //[/UserPreSize]
 
@@ -2732,7 +2737,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 		FileChooser browser("Select SBI instrument file",
                             instrumentLoadDirectory,
 #ifdef JUCE_IOS
-                            "*");
+                            "*.sbi");
 #endif
 
 #ifndef JUCE_IOS
@@ -3001,11 +3006,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="33"/>
   <SLIDER name="a slider" id="1b9be27726a5b3ae" memberName="aSlider" virtualName=""
-          explicitFocusOrder="0" pos="40 208 30 88" tooltip="Envelope attack rate"
+          explicitFocusOrder="0" pos="40 200 30 104" tooltip="Envelope attack rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
-          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" textboxoutline="8e989b"
+          min="0.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="a label" id="9dd0b13f00b4de42" memberName="aLabel" virtualName=""
          explicitFocusOrder="0" pos="40 304 30 24" tooltip="Attack rate"
@@ -3014,11 +3019,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="d slider" id="d4cc8ddf2fc9cf2b" memberName="dSlider" virtualName=""
-          explicitFocusOrder="0" pos="88 208 30 88" tooltip="Envelope decay rate"
+          explicitFocusOrder="0" pos="88 200 30 104" tooltip="Envelope decay rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
-          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" textboxoutline="8e989b"
+          min="0.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="d label" id="a7f17b098b85f10b" memberName="dLabel" virtualName=""
          explicitFocusOrder="0" pos="88 304 30 24" tooltip="Decay rate"
@@ -3027,11 +3032,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="s slider" id="9bcadfc61e498bce" memberName="sSlider" virtualName=""
-          explicitFocusOrder="0" pos="136 208 30 88" tooltip="Envelope sustain level"
+          explicitFocusOrder="0" pos="136 200 30 104" tooltip="Envelope sustain level"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
-          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" textboxoutline="8e989b"
+          min="0.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="d label" id="6467455c7573fefa" memberName="dLabel2" virtualName=""
          explicitFocusOrder="0" pos="136 304 30 24" tooltip="Sustain level"
@@ -3040,11 +3045,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="r slider" id="5616976a8c5a3f5f" memberName="rSlider" virtualName=""
-          explicitFocusOrder="0" pos="184 208 30 88" tooltip="Envelope release rate"
+          explicitFocusOrder="0" pos="184 200 30 104" tooltip="Envelope release rate"
           thumbcol="ff007f00" trackcol="7f007f00" textboxtext="ff007f00"
-          textboxbkgd="ff000000" textboxhighlight="ff00af00" min="0.0"
-          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
-          textBoxEditable="0" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
+          textboxbkgd="ff000000" textboxhighlight="ff00af00" textboxoutline="8e989b"
+          min="0.0" max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="r label" id="ef30d2907e867666" memberName="rLabel" virtualName=""
          explicitFocusOrder="0" pos="184 304 30 24" tooltip="Release rate"
@@ -3055,9 +3060,10 @@ BEGIN_JUCER_METADATA
   <SLIDER name="attenuation slider" id="dfb943cd83b3977f" memberName="attenuationSlider"
           virtualName="" explicitFocusOrder="0" pos="328 184 56 142" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="-47.25" max="0.0" int="0.75"
-          style="LinearVertical" textBoxPos="TextBoxBelow" textBoxEditable="0"
-          textBoxWidth="64" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="-47.25"
+          max="0.0" int="0.75" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="64" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="attenuation label" id="643f88854c82ca3e" memberName="attenuationLabel"
          virtualName="" explicitFocusOrder="0" pos="304 160 112 24" tooltip="Final output level adjustment"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Attenuation"
@@ -3131,11 +3137,12 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="33"/>
   <SLIDER name="a slider" id="d6d2f4556ea9394" memberName="aSlider2" virtualName=""
-          explicitFocusOrder="0" pos="464 208 30 88" thumbcol="ff007f00"
+          explicitFocusOrder="0" pos="464 200 30 104" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="40" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="a label" id="9ec6412cc79720bc" memberName="aLabel2" virtualName=""
          explicitFocusOrder="0" pos="464 304 30 24" tooltip="Attack rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="A"
@@ -3143,11 +3150,12 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="d slider" id="4a1f1b6038500f67" memberName="dSlider2" virtualName=""
-          explicitFocusOrder="0" pos="512 208 30 88" thumbcol="ff007f00"
+          explicitFocusOrder="0" pos="512 200 30 104" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="40" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="d label" id="10231adaf9e23e14" memberName="dLabel3" virtualName=""
          explicitFocusOrder="0" pos="512 304 30 24" tooltip="Decay rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="D"
@@ -3155,11 +3163,12 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="s slider" id="2fc057248a815958" memberName="sSlider2" virtualName=""
-          explicitFocusOrder="0" pos="560 208 30 88" thumbcol="ff007f00"
+          explicitFocusOrder="0" pos="560 200 30 104" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="40" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="d label" id="5b881f2381defac" memberName="dLabel4" virtualName=""
          explicitFocusOrder="0" pos="560 304 30 24" tooltip="Sustain level"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="S"
@@ -3167,11 +3176,12 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <SLIDER name="r slider" id="5474ad005fb58e97" memberName="rSlider2" virtualName=""
-          explicitFocusOrder="0" pos="608 208 30 88" thumbcol="ff007f00"
+          explicitFocusOrder="0" pos="608 200 30 104" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="0.0" max="15.0" int="1.0" style="LinearVertical"
-          textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="40"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="0.0"
+          max="15.0" int="1.0" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="40" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="r label" id="ca2834438bee82a9" memberName="rLabel2" virtualName=""
          explicitFocusOrder="0" pos="608 304 30 24" tooltip="Release rate"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="R"
@@ -3181,9 +3191,10 @@ BEGIN_JUCER_METADATA
   <SLIDER name="attenuation slider" id="edb48da87d7535dd" memberName="attenuationSlider2"
           virtualName="" explicitFocusOrder="0" pos="752 184 56 142" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="-47.25" max="0.0" int="0.75"
-          style="LinearVertical" textBoxPos="TextBoxBelow" textBoxEditable="0"
-          textBoxWidth="64" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="-47.25"
+          max="0.0" int="0.75" style="LinearVertical" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="64" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="attenuation label" id="958314f88253f461" memberName="attenuationLabel2"
          virtualName="" explicitFocusOrder="0" pos="728 160 112 24" tooltip="Final output level adjustment"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Attenuation"
@@ -3253,9 +3264,10 @@ BEGIN_JUCER_METADATA
   <SLIDER name="tremolo slider" id="ab64abee7ac8874b" memberName="tremoloSlider"
           virtualName="" explicitFocusOrder="0" pos="112 472 80 24" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="1.0" max="4.8" int="3.8" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="0" textBoxWidth="32"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="1.0"
+          max="4.8" int="3.8" style="LinearHorizontal" textBoxPos="TextBoxRight"
+          textBoxEditable="0" textBoxWidth="32" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="frequency label" id="134ce8f87da62b88" memberName="frequencyLabel5"
          virtualName="" explicitFocusOrder="0" pos="32 472 80 24" tooltip="OPL global tremolo depth"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Tremolo&#10;"
@@ -3271,9 +3283,10 @@ BEGIN_JUCER_METADATA
   <SLIDER name="vibrato slider" id="b45a1f20f22cf5ca" memberName="vibratoSlider"
           virtualName="" explicitFocusOrder="0" pos="112 512 80 24" thumbcol="ff007f00"
           trackcol="7f007f00" textboxtext="ff007f00" textboxbkgd="ff000000"
-          textboxhighlight="ff00af00" min="7.0" max="14.0" int="7.0" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="0" textBoxWidth="32"
-          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+          textboxhighlight="ff00af00" textboxoutline="8e989b" min="7.0"
+          max="14.0" int="7.0" style="LinearHorizontal" textBoxPos="TextBoxRight"
+          textBoxEditable="0" textBoxWidth="32" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <LABEL name="frequency label" id="1412b9d14e37bcbe" memberName="frequencyLabel6"
          virtualName="" explicitFocusOrder="0" pos="32 512 80 24" tooltip="OPL global vibrato depth"
          textCol="ff007f00" edTextCol="ff000000" edBkgCol="0" labelText="Vibrato"
@@ -3287,10 +3300,10 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="feedback slider" id="f9d22e12f5e417e4" memberName="feedbackSlider"
-          virtualName="" explicitFocusOrder="0" pos="248 237 30 59" thumbcol="ff00af00"
+          virtualName="" explicitFocusOrder="0" pos="248 237 30 67" thumbcol="ff00af00"
           trackcol="7f007f00" rotarysliderfill="ff00af00" rotaryslideroutline="ff007f00"
           textboxtext="ff007f00" textboxbkgd="ff000000" textboxhighlight="ff00af00"
-          min="0.0" max="7.0" int="1.0" style="RotaryHorizontalVerticalDrag"
+          textboxoutline="8e989b" min="0.0" max="7.0" int="1.0" style="RotaryHorizontalVerticalDrag"
           textBoxPos="TextBoxBelow" textBoxEditable="0" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="frequency label" id="880eaf14af62578a" memberName="frequencyLabel7"
