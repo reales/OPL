@@ -1153,7 +1153,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     exportButton.reset (new TextButton ("export button"));
     addAndMakeVisible (exportButton.get());
-    exportButton->setButtonText (TRANS("Export .SBI"));
+    exportButton->setButtonText (TRANS("Export"));
     exportButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     exportButton->addListener (this);
     exportButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
@@ -1163,13 +1163,13 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     loadButton.reset (new TextButton ("load button"));
     addAndMakeVisible (loadButton.get());
-    loadButton->setButtonText (TRANS("Load .SBI"));
+    loadButton->setButtonText (TRANS("Load"));
     loadButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     loadButton->addListener (this);
     loadButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
     loadButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    loadButton->setBounds (728, 472, 96, 24);
+    loadButton->setBounds (728, 472, 48, 24);
 
     versionLabel.reset (new Label ("version label",
                                    String()));
@@ -2025,6 +2025,26 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     dbLabel8->setBounds (392, 520, 72, 40);
 
+    previousButton.reset (new TextButton ("previous button"));
+    addAndMakeVisible (previousButton.get());
+    previousButton->setButtonText (TRANS("-"));
+    previousButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    previousButton->addListener (this);
+    previousButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
+    previousButton->setColour (TextButton::buttonOnColourId, Colours::lime);
+
+    previousButton->setBounds (776, 472, 24, 24);
+
+    nextButton.reset (new TextButton ("next button"));
+    addAndMakeVisible (nextButton.get());
+    nextButton->setButtonText (TRANS("+"));
+    nextButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    nextButton->addListener (this);
+    nextButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
+    nextButton->setColour (TextButton::buttonOnColourId, Colours::lime);
+
+    nextButton->setBounds (800, 472, 24, 24);
+
 
     //[UserPreSize]
 	LookAndFeel::setDefaultLookAndFeel(new OPLLookAndFeel());
@@ -2348,6 +2368,8 @@ PluginGui::~PluginGui()
     hiHatButton = nullptr;
     dbLabel7 = nullptr;
     dbLabel8 = nullptr;
+    previousButton = nullptr;
+    nextButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -2914,6 +2936,16 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 		processor->setEnumParameter("Percussion Mode", 5);
         //[/UserButtonCode_hiHatButton]
     }
+    else if (buttonThatWasClicked == previousButton.get())
+    {
+        //[UserButtonCode_previousButton] -- add your button handler code here..
+        //[/UserButtonCode_previousButton]
+    }
+    else if (buttonThatWasClicked == nextButton.get())
+    {
+        //[UserButtonCode_nextButton] -- add your button handler code here..
+        //[/UserButtonCode_nextButton]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -3415,12 +3447,12 @@ BEGIN_JUCER_METADATA
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TEXTBUTTON name="export button" id="88c84ed1e2b284d3" memberName="exportButton"
               virtualName="" explicitFocusOrder="0" pos="728 512 96 24" bgColOff="ff007f00"
-              bgColOn="ff00ff00" buttonText="Export .SBI" connectedEdges="3"
-              needsCallback="1" radioGroupId="0"/>
+              bgColOn="ff00ff00" buttonText="Export" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
   <TEXTBUTTON name="load button" id="a42176161523f448" memberName="loadButton"
-              virtualName="" explicitFocusOrder="0" pos="728 472 96 24" bgColOff="ff007f00"
-              bgColOn="ff00ff00" buttonText="Load .SBI" connectedEdges="3"
-              needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="728 472 48 24" bgColOff="ff007f00"
+              bgColOn="ff00ff00" buttonText="Load" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
   <LABEL name="version label" id="cd68ca110847cc18" memberName="versionLabel"
          virtualName="" explicitFocusOrder="0" pos="648 560 198 16" textCol="ff007f00"
          edTextCol="ff000000" edBkgCol="0" labelText="" editableSingleClick="0"
@@ -3846,6 +3878,14 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
+  <TEXTBUTTON name="previous button" id="984b463c7d35a177" memberName="previousButton"
+              virtualName="" explicitFocusOrder="0" pos="776 472 24 24" bgColOff="ff007f00"
+              bgColOn="ff00ff00" buttonText="-" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
+  <TEXTBUTTON name="next button" id="d6684ea8f9f9ded7" memberName="nextButton"
+              virtualName="" explicitFocusOrder="0" pos="800 472 24 24" bgColOff="ff007f00"
+              bgColOn="ff00ff00" buttonText="+" connectedEdges="3" needsCallback="1"
+              radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

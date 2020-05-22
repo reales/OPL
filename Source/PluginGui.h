@@ -296,6 +296,8 @@ private:
     std::unique_ptr<ImageButton> hiHatButton;
     std::unique_ptr<Label> dbLabel7;
     std::unique_ptr<Label> dbLabel8;
+    std::unique_ptr<TextButton> previousButton;
+    std::unique_ptr<TextButton> nextButton;
 
 
     //==============================================================================
