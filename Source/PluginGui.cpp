@@ -18,8 +18,6 @@
 */
 
 //[Headers] You can add your own extra header files here...
-#include "OPLLookAndFeel.h"
-#include "ChannelButtonLookAndFeel.h"
 //[/Headers]
 
 #include "PluginGui.h"
@@ -2047,7 +2045,8 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
 
     //[UserPreSize]
-	LookAndFeel::setDefaultLookAndFeel(new OPLLookAndFeel());
+    oplLookAndFeel.reset(new OPLLookAndFeel());
+	LookAndFeel::setDefaultLookAndFeel(oplLookAndFeel.get());
 
 	frequencyComboBox->setColour (ComboBox::textColourId, Colour (COLOUR_MID));
 	frequencyComboBox->setColour (ComboBox::outlineColourId, Colour (COLOUR_MID));
@@ -2174,12 +2173,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 	sustainButton2->setColour(TextButton::buttonColourId, Colour(COLOUR_MID));
 
 	Font fw(Font::getDefaultMonospacedFontName(), 14, Font::bold);
-	ChannelButtonLookAndFeel *channelButtonLookAndFeel = new ChannelButtonLookAndFeel();
+	channelButtonLookAndFeel.reset(new ChannelButtonLookAndFeel());
 	String context = String("Disable channel ");
 	for (unsigned int i = 0; i < channels.size(); ++i)
 	{
 		TextButton *channel = new TextButton(TRANS("-"), context + String(i + 1));
-		channel->setLookAndFeel(channelButtonLookAndFeel);
+		channel->setLookAndFeel(channelButtonLookAndFeel.get());
 		channel->setColour(TextButton::ColourIds::buttonColourId, Colours::black);
 		channel->setColour(TextButton::ColourIds::buttonOnColourId, Colours::black);
 		channel->setColour(TextButton::ColourIds::textColourOnId, OPLLookAndFeel::DOS_GREEN);
@@ -2370,8 +2369,12 @@ PluginGui::~PluginGui()
     dbLabel8 = nullptr;
     previousButton = nullptr;
     nextButton = nullptr;
-
-
+    oplLookAndFeel = nullptr;
+    for (unsigned int i = 0; i < channels.size(); ++i) {
+        channels[i].reset();
+    }
+    
+    channelButtonLookAndFeel = nullptr;
     //[Destructor]. You can add your own custom destruction code here..
     //[/Destructor]
 }
@@ -2756,19 +2759,9 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == loadButton.get())
     {
         //[UserButtonCode_loadButton] -- add your button handler code here..
-		FileChooser browser("Select SBI instrument file",
-                            instrumentLoadDirectory,
-#ifdef JUCE_IOS
-                            "*.sbi");
-#endif
-
-#ifndef JUCE_IOS
-                            "*.sbi");
-#endif
-        if (browser.browseForFileToOpen()){
-            File selectedFile = browser.getResult();
-            instrumentLoadDirectory = selectedFile.getParentDirectory();
-            processor->loadInstrumentFromFile(selectedFile.getFullPathName());
+        
+        if (!showLoadMenu()){
+            loadBrowserFile();
         }
         /*WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
 		FileBrowserComponent browser(FileBrowserComponent::openMode + FileBrowserComponent::canSelectFiles,
@@ -2939,11 +2932,13 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == previousButton.get())
     {
         //[UserButtonCode_previousButton] -- add your button handler code here..
+        loadPreNextFile(true);
         //[/UserButtonCode_previousButton]
     }
     else if (buttonThatWasClicked == nextButton.get())
     {
         //[UserButtonCode_nextButton] -- add your button handler code here..
+        loadPreNextFile(false);
         //[/UserButtonCode_nextButton]
     }
 
@@ -2991,7 +2986,119 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 		for (int i = 0; i < Hiopl::CHANNELS; ++i) {
 			channels[i]->setButtonText(processor->getChannelEnvelopeStage(i + 1));
 		}
-	}
+    }
+    void PluginGui::loadPreNextFile(bool pre){
+        if (pre){
+            selectedIdxFile -=1;
+        }
+        else{
+            selectedIdxFile +=1;
+        }
+        if (allSbiFiles.size() > 0){
+            if (selectedIdxFile > allSbiFiles.size() -1 ){
+                selectedIdxFile = 0;
+            }
+            if (selectedIdxFile <0 ){
+                selectedIdxFile = allSbiFiles.size() - 1;
+            }
+            if (allSbiFiles[selectedIdxFile].existsAsFile()){
+                processor->loadInstrumentFromFile(allSbiFiles[selectedIdxFile].getFullPathName());
+            } else {
+                loadBrowserFile();
+            }
+        }
+        else{
+            Array<File> dirs;
+            instrumentLoadDirectory.findChildFiles(dirs, File::findDirectories, false);
+            bool hasFile = false;
+            dirs.sort();
+            for (auto dir: dirs){
+                Array<File> files;
+                dir.findChildFiles (files, File::findFiles, false, "*.sbi");
+                files.sort();
+                if (files.size() > 0){
+                    for (auto file : files){
+                        hasFile = true;
+                        allSbiFiles.add(file);
+                    }
+                }
+            }
+            if (selectedIdxFile > allSbiFiles.size() - 1){
+                selectedIdxFile = 0;
+            }
+            if (selectedIdxFile <0 ){
+                selectedIdxFile = allSbiFiles.size() - 1;
+            }
+            if(hasFile){
+                if (allSbiFiles[selectedIdxFile].existsAsFile()){
+                    processor->loadInstrumentFromFile(allSbiFiles[selectedIdxFile].getFullPathName());
+                } else {
+                    loadBrowserFile();
+                }
+            }
+            else {
+                loadBrowserFile();
+            }
+        }
+        
+    }
+    bool PluginGui::loadBrowserFile(){
+        FileChooser browser("Select SBI instrument file",
+                                    instrumentLoadDirectory,
+    #ifdef JUCE_IOS
+                                "*.sbi");
+    #endif
+
+    #ifndef JUCE_IOS
+                                "*.sbi");
+    #endif
+                    if (browser.browseForFileToOpen()){
+                        File selectedFile = browser.getResult();
+                        instrumentLoadDirectory = selectedFile.getParentDirectory();
+                        processor->loadInstrumentFromFile(selectedFile.getFullPathName());
+                    }
+    }
+
+    bool PluginGui::showLoadMenu()
+    {
+        menuLoad.clear();
+        Array<File> dirs;
+        allSbiFiles.clear();
+        bool hasFile = false;
+        instrumentLoadDirectory.findChildFiles(dirs, File::findDirectories, false);
+        dirs.sort();
+        for (auto dir: dirs){
+            Array<File> files;
+            dir.findChildFiles (files, File::findFiles, false, "*.sbi");
+            files.sort();
+            if (files.size() > 0){
+                PopupMenu subMenu;
+                for (auto file : files){
+                    allSbiFiles.add(file);
+                    hasFile = true;
+                    subMenu.addItem(allSbiFiles.size(), file.getFileNameWithoutExtension());
+                }
+                menuLoad.addSubMenu(dir.getFileName(), subMenu);
+            }
+        }
+        if(hasFile){
+            int id = menuLoad.show();
+            if (id > 0) {
+                selectedIdxFile = id -1;
+                if (allSbiFiles[selectedIdxFile].existsAsFile()){
+                    processor->loadInstrumentFromFile(allSbiFiles[selectedIdxFile].getFullPathName());
+                } else {
+                    loadBrowserFile();
+                }
+                
+            }
+            // No select, return true to ignore the popup menu
+            else{
+                return true;
+            }
+        }
+        return hasFile;
+    }
 //[/MiscUserCode]
 
 

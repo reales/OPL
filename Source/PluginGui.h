@@ -23,6 +23,8 @@
 #include <array>
 #include "JuceHeader.h"
 #include "PluginProcessor.h"
+#include "OPLLookAndFeel.h"
+#include "ChannelButtonLookAndFeel.h"
 //[/Headers]
 
 
@@ -56,6 +58,9 @@ public:
     void filesDropped (const StringArray& files, int x, int y) override;
 	void timerCallback() override;
 	void setRecordButtonState(bool recording);
+    bool showLoadMenu();
+    bool loadBrowserFile();
+    void loadPreNextFile(bool pre = true);
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -128,6 +133,9 @@ private:
 	AdlibBlasterAudioProcessor* processor;
 	std::array<ScopedPointer<TextButton>, Hiopl::CHANNELS> channels;
 	TooltipWindow tooltipWindow;
+    PopupMenu menuLoad;
+    Array<File> allSbiFiles;
+    int selectedIdxFile = 0;
 #if!JUCE_IOS
     File instrumentLoadDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
     File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
@@ -135,6 +143,7 @@ private:
 #if JUCE_IOS
         File instrumentLoadDirectory = File::getSpecialLocation (File::invokedExecutableFile).getParentDirectory().getChildFile("sbi"); // File();
         File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
+    
 #endif
     //[/UserVariables]
 
@@ -298,7 +307,8 @@ private:
     std::unique_ptr<Label> dbLabel8;
     std::unique_ptr<TextButton> previousButton;
     std::unique_ptr<TextButton> nextButton;
-
+    std::unique_ptr<OPLLookAndFeel> oplLookAndFeel;
+    std::unique_ptr<ChannelButtonLookAndFeel> channelButtonLookAndFeel;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginGui)
