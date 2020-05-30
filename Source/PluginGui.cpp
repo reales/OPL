@@ -163,6 +163,7 @@ void PluginGui::setRecordButtonState(bool recording) {
 PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+    
     //[/Constructor_pre]
 
     groupComponent2.reset (new GroupComponent ("new group",
@@ -3043,6 +3044,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
         
     }
     bool PluginGui::loadBrowserFile(){
+        
         FileChooser browser("Select SBI instrument file",
                                     instrumentLoadDirectory,
     #ifdef JUCE_IOS
@@ -3082,20 +3084,23 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
             }
         }
         if(hasFile){
-            int id = menuLoad.show();
-            if (id > 0) {
-                selectedIdxFile = id -1;
-                if (allSbiFiles[selectedIdxFile].existsAsFile()){
-                    processor->loadInstrumentFromFile(allSbiFiles[selectedIdxFile].getFullPathName());
-                } else {
-                    loadBrowserFile();
+            //int id = menuLoad.show();
+            menuLoad.showMenuAsync (PopupMenu::Options().withParentComponent (this->getTopLevelComponent()), [this](int id){
+                if (id > 0) {
+                    this->selectedIdxFile = id -1;
+                    if (this->allSbiFiles[selectedIdxFile].existsAsFile()){
+                        this->processor->loadInstrumentFromFile(allSbiFiles[selectedIdxFile].getFullPathName());
+                    } else {
+                        this->loadBrowserFile();
+                    }
+                    
                 }
-                
-            }
-            // No select, return true to ignore the popup menu
-            else{
-                return true;
-            }
+                // No select, return true to ignore the popup menu
+                else{
+                    return;
+                }
+            });
+            
         }
         return hasFile;
     }

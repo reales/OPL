@@ -31,7 +31,6 @@ PluginEditor::PluginEditor (AdlibBlasterAudioProcessor* ownerFilter)
     : AudioProcessorEditor (ownerFilter)
 {
     //[Constructor_pre] You can add your own custom stuff here..
-
     PropertiesFile::Options options;
     options.applicationName = ProjectInfo::projectName;
     options.osxLibrarySubFolder = "Application Support";
