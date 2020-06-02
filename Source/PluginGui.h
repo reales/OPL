@@ -124,6 +124,8 @@ public:
     static const int cymbal_pngSize;
     static const char* adlib_png;
     static const int adlib_pngSize;
+    static const char* gui_svg;
+    static const int gui_svgSize;
 
 
 private:
@@ -143,8 +145,12 @@ private:
 #if JUCE_IOS
         File instrumentLoadDirectory = File::getSpecialLocation (File::invokedExecutableFile).getParentDirectory().getChildFile("sbi"); // File();
         File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory); // File();
-    
+
 #endif
+
+    std::unique_ptr<OPLLookAndFeel> oplLookAndFeel;
+    std::unique_ptr<ChannelButtonLookAndFeel> channelButtonLookAndFeel;
+
     //[/UserVariables]
 
     //==============================================================================
@@ -307,8 +313,8 @@ private:
     std::unique_ptr<Label> dbLabel8;
     std::unique_ptr<TextButton> previousButton;
     std::unique_ptr<TextButton> nextButton;
-    std::unique_ptr<OPLLookAndFeel> oplLookAndFeel;
-    std::unique_ptr<ChannelButtonLookAndFeel> channelButtonLookAndFeel;
+    std::unique_ptr<Drawable> drawable1;
+
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginGui)
