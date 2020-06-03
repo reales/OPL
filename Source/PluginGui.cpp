@@ -3076,6 +3076,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
                         instrumentLoadDirectory = selectedFile.getParentDirectory();
                         processor->loadInstrumentFromFile(selectedFile.getFullPathName());
                     }
+        return 0;
     }
 
     bool PluginGui::showLoadMenu()
