@@ -1157,9 +1157,9 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     exportButton->addListener (this);
     exportButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
     exportButton->setColour (TextButton::buttonOnColourId, Colours::lime);
-
+#if!JUCE_IOS
     exportButton->setBounds (728, 512, 96, 24);
-
+#endif
     loadButton.reset (new TextButton ("load button"));
     addAndMakeVisible (loadButton.get());
     loadButton->setButtonText (TRANS("Load"));

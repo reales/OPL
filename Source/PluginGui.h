@@ -130,21 +130,21 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    class OPLComboBoxLookAndFeelMethods:
-        public LookAndFeel_V3
-    {
-        virtual PopupMenu::Options getOptionsForComboBoxPopupMenu (ComboBox& comBox, Label& label) override{
-            PopupMenu::Options options = LookAndFeel_V3::getOptionsForComboBoxPopupMenu(comBox, label);
-            #if JUCE_IOS
-                if (PluginHostType::getPluginLoadedAs() == AudioProcessor::wrapperType_AudioUnitv3)
-                {
-                    if (options.getTargetComponent() != nullptr)
-                        return options.withParentComponent(options.getTargetComponent()->getTopLevelComponent());
-                }
-            #endif
-            return options;
-        };
+class OPLComboBoxLookAndFeelMethods:
+    public OPLLookAndFeel
+{
+    virtual PopupMenu::Options getOptionsForComboBoxPopupMenu (ComboBox& comBox, Label& label) override{
+            PopupMenu::Options options = OPLLookAndFeel::getOptionsForComboBoxPopupMenu(comBox, label);
+#if JUCE_IOS
+        if (PluginHostType::getPluginLoadedAs() == AudioProcessor::wrapperType_AudioUnitv3)
+            {
+                if (options.getTargetComponent() != nullptr)
+                return options.withParentComponent(options.getTargetComponent()->getTopLevelComponent());
+            }
+#endif
+return options;
     };
+};
     
     std::unique_ptr<OPLComboBoxLookAndFeelMethods> oplComboBoxLookAndFeel;
     
