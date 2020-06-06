@@ -130,6 +130,24 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    class OPLComboBoxLookAndFeelMethods:
+        public LookAndFeel_V3
+    {
+        virtual PopupMenu::Options getOptionsForComboBoxPopupMenu (ComboBox& comBox, Label& label) override{
+            PopupMenu::Options options = LookAndFeel_V3::getOptionsForComboBoxPopupMenu(comBox, label);
+            #if JUCE_IOS
+                if (PluginHostType::getPluginLoadedAs() == AudioProcessor::wrapperType_AudioUnitv3)
+                {
+                    if (options.getTargetComponent() != nullptr)
+                        return options.withParentComponent(options.getTargetComponent()->getTopLevelComponent());
+                }
+            #endif
+            return options;
+        };
+    };
+    
+    std::unique_ptr<OPLComboBoxLookAndFeelMethods> oplComboBoxLookAndFeel;
+    
 	static const uint32 COLOUR_MID = 0xff007f00;
 	static const uint32 COLOUR_RECORDING = 0xffff0000;
 	AdlibBlasterAudioProcessor* processor;

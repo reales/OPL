@@ -2195,7 +2195,13 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
                           += " Demo"
 #endif
                           , NotificationType::dontSendNotification);
-
+    
+    // Change LookandFeelFree combobox
+    oplComboBoxLookAndFeel.reset(new OPLComboBoxLookAndFeelMethods());
+    
+    for (auto comB : {frequencyComboBox.get(), frequencyComboBox2.get(), velocityComboBox.get(), velocityComboBox2.get(), keyscaleAttenuationComboBox2.get(), keyscaleAttenuationComboBox.get()}){
+        comB->setLookAndFeel(oplComboBoxLookAndFeel.get());
+    }
     //[/UserPreSize]
 
     setSize (860, 580);
