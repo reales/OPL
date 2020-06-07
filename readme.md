@@ -1,6 +1,6 @@
 # discoDSP OPL FM synth plugin #
 
-This instrument provides an emulated OPL sound chip. It provides all features of the OPL2, and some features of the OPL3. It is a slightly modified JUCEOPLVSTi build compiled for macOS only. [The original coder and author is Bruce Sutherland](http://bsutherland.github.io/JuceOPLVSTi/).
+This instrument provides an emulated OPL sound chip. It provides all features of the OPL2, and some features of the OPL3. [The original coder and author is Bruce Sutherland](http://bsutherland.github.io/JuceOPLVSTi/).
 
 ## Binaries ##
 
@@ -15,8 +15,8 @@ This instrument provides an emulated OPL sound chip. It provides all features of
 **iOS** https://apps.apple.com/us/app/opl-auv3-fm-synth/id1516617949?ls=1
 
 - AU / VST / VST3 / Standalone.
- - Built with JUCE 5.4.7
- - Notarized and code signed.
+- Built with JUCE 5.4.7
+- Notarized and code signed.
 
 ## What's an OPL? ##
 
