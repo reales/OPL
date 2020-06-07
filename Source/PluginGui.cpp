@@ -1902,10 +1902,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     fmButton->addListener (this);
 
     fmButton->setImages (false, true, true,
-                         ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
+                         ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
                          Image(), 0.500f, Colour (0x00000000),
                          Image(), 1.000f, Colour (0x00000000));
-    fmButton->setBounds (304, 472, 56, 56);
+    fmButton->setBounds (298, 472, 72, 56);
 
     additiveButton.reset (new ImageButton ("Additive mode button"));
     addAndMakeVisible (additiveButton.get());
@@ -1915,10 +1915,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     additiveButton->addListener (this);
 
     additiveButton->setImages (false, true, true,
-                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
                                Image(), 0.500f, Colour (0x00000000),
                                Image(), 1.000f, Colour (0x00000000));
-    additiveButton->setBounds (392, 464, 72, 72);
+    additiveButton->setBounds (400, 472, 56, 56);
 
     bassDrumButton.reset (new ImageButton ("bass drum button"));
     addAndMakeVisible (bassDrumButton.get());
@@ -2195,10 +2195,10 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
                           += " Demo"
 #endif
                           , NotificationType::dontSendNotification);
-    
+
     // Change LookandFeelFree combobox
     oplComboBoxLookAndFeel.reset(new OPLComboBoxLookAndFeelMethods());
-    
+
     for (auto comB : {frequencyComboBox.get(), frequencyComboBox2.get(), velocityComboBox.get(), velocityComboBox2.get(), keyscaleAttenuationComboBox2.get(), keyscaleAttenuationComboBox.get()}){
         comB->setLookAndFeel(oplComboBoxLookAndFeel.get());
     }
@@ -3957,15 +3957,15 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <IMAGEBUTTON name="fm button" id="19b03dffaa7fc94" memberName="fmButton" virtualName=""
-               explicitFocusOrder="0" pos="304 472 56 56" tooltip="FM: carrier frequency is modulated by the modulator"
+               explicitFocusOrder="0" pos="298 472 72 56" tooltip="FM: carrier frequency is modulated by the modulator"
                buttonText="FM" connectedEdges="0" needsCallback="1" radioGroupId="3"
-               keepProportions="1" resourceNormal="twoopAm_png" opacityNormal="0.5"
+               keepProportions="1" resourceNormal="twoopFm_png" opacityNormal="0.5"
                colourNormal="0" resourceOver="" opacityOver="0.5" colourOver="0"
                resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="Additive mode button" id="d3cf9bfa8c4d4885" memberName="additiveButton"
-               virtualName="" explicitFocusOrder="0" pos="392 464 72 72" tooltip="Additive: output the sum of the modulator and carrier"
+               virtualName="" explicitFocusOrder="0" pos="400 472 56 56" tooltip="Additive: output the sum of the modulator and carrier"
                buttonText="Additive Mode" connectedEdges="0" needsCallback="1"
-               radioGroupId="3" keepProportions="1" resourceNormal="twoopFm_png"
+               radioGroupId="3" keepProportions="1" resourceNormal="twoopAm_png"
                opacityNormal="0.5" colourNormal="0" resourceOver="" opacityOver="0.5"
                colourOver="0" resourceDown="" opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="bass drum button" id="2c8905c4541593a7" memberName="bassDrumButton"
