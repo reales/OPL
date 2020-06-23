@@ -130,6 +130,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    void loadandUpdateInstrument(String path);
 class OPLComboBoxLookAndFeelMethods:
     public OPLLookAndFeel
 {
@@ -145,9 +146,9 @@ class OPLComboBoxLookAndFeelMethods:
 return options;
     };
 };
-    
+
     std::unique_ptr<OPLComboBoxLookAndFeelMethods> oplComboBoxLookAndFeel;
-    
+
 	static const uint32 COLOUR_MID = 0xff007f00;
 	static const uint32 COLOUR_RECORDING = 0xffff0000;
 	AdlibBlasterAudioProcessor* processor;
@@ -155,7 +156,7 @@ return options;
 	TooltipWindow tooltipWindow;
     PopupMenu menuLoad;
     Array<File> allSbiFiles;
-    int selectedIdxFile = 0;
+
 #if!JUCE_IOS
     File instrumentLoadDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();
     File instrumentSaveDirectory = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP").getChildFile("OPL"); // File();

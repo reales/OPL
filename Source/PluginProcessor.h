@@ -87,6 +87,9 @@ public:
     void getStateInformation (MemoryBlock& destData);
     void setStateInformation (const void* data, int sizeInBytes);
 
+public:
+    String lastLoadFile;
+    int selectedIdxFile = -1;
 private:
 	Hiopl *Opl;
 	std::vector<FloatParameter*> params;

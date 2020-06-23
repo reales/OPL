@@ -1162,7 +1162,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     exportButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
     exportButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    exportButton->setBounds (728, 512, 48, 24);
+    exportButton->setBounds (728, 512, 96, 24);
 
     loadButton.reset (new TextButton ("load button"));
     addAndMakeVisible (loadButton.get());
@@ -2036,7 +2036,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     previousButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
     previousButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    previousButton->setBounds (776, 512, 24, 24);
+    previousButton->setBounds (728, 512, 48, 24);
 
     nextButton.reset (new TextButton ("next button"));
     addAndMakeVisible (nextButton.get());
@@ -2046,7 +2046,7 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     nextButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
     nextButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    nextButton->setBounds (800, 512, 24, 24);
+    nextButton->setBounds (776, 512, 48, 24);
 
     drawable1 = Drawable::createFromImageData (gui_svg, gui_svgSize);
 
@@ -3613,7 +3613,7 @@ BEGIN_JUCER_METADATA
                 txtcol="ff007f00" buttonText="Record to DRO (not working yet)"
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TEXTBUTTON name="export button" id="88c84ed1e2b284d3" memberName="exportButton"
-              virtualName="" explicitFocusOrder="0" pos="728 512 48 24" bgColOff="ff007f00"
+              virtualName="" explicitFocusOrder="0" pos="728 512 96 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="Export" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTBUTTON name="load button" id="a42176161523f448" memberName="loadButton"
@@ -4046,11 +4046,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <TEXTBUTTON name="previous button" id="984b463c7d35a177" memberName="previousButton"
-              virtualName="" explicitFocusOrder="0" pos="776 512 24 24" bgColOff="ff007f00"
+              virtualName="" explicitFocusOrder="0" pos="728 512 48 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="-" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTBUTTON name="next button" id="d6684ea8f9f9ded7" memberName="nextButton"
-              virtualName="" explicitFocusOrder="0" pos="800 512 24 24" bgColOff="ff007f00"
+              virtualName="" explicitFocusOrder="0" pos="776 512 48 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="+" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>

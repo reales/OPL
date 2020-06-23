@@ -534,6 +534,7 @@ void AdlibBlasterAudioProcessor::setParameter (int index, float newValue)
 
 void AdlibBlasterAudioProcessor::loadInstrumentFromFile(String filename)
 {
+    lastLoadFile = filename;
 	FILE* f = fopen(filename.toUTF8(), "rb");
 	unsigned char buf[MAX_INSTRUMENT_FILE_SIZE_BYTES];
 	int n = (int)fread(buf, 1, MAX_INSTRUMENT_FILE_SIZE_BYTES, f);
@@ -858,6 +859,9 @@ void AdlibBlasterAudioProcessor::getStateInformation(MemoryBlock& destData)
 
 		v->setProperty(stringToIdentifier(getParameterName(i)), p);
 	}
+    
+    v->setProperty("lastLoadFile", lastLoadFile);
+    v->setProperty("selectedIdxFile", selectedIdxFile);
 
 	String s = JSON::toString(v.get());
 
@@ -896,6 +900,16 @@ void AdlibBlasterAudioProcessor::setStateInformation (const void* data, int size
 				setParameter(i, param);
 		}
 
+        var file = v["lastLoadFile"];
+        if (file.isString()){
+            lastLoadFile = file;
+        }
+        
+        var idx = v["selectedIdxFile"];
+        if (idx.isInt()){
+            selectedIdxFile = idx;
+        }
+        
 		updateGuiIfPresent();
 
 		return;
