@@ -3,15 +3,33 @@
 #include "EnumFloatParameter.h"
 #include "IntFloatParameter.h"
 #include "SbiLoader.h"
+#include "iOSPluginEditorWrapper/iOSPluginEditorWrapper.h"
 
 #include <iterator>
 
 const char *AdlibBlasterAudioProcessor::PROGRAM_INDEX = "Program Index";
 
+static String doubleToString(double val) { return String(val); }
+static double stringToDouble(String s){return std::stod(s.toStdString());}
+
+static String volumeDoubleToString(double val) { return String(val*100); }
+static double volumeStringToDouble(String s){return std::stod(s.toStdString())/100.0;}
+
+
+//static String boolToString(float val) { return (val == 1.0f) ? "active" : "inactive"; }
+//static bool stringToBool(String s) { return (s == "active") ? true : false; }
+
+static String intToString(int val) { return String(val); }
+static int stringToInt(String s) { return std::stoi(s.toStdString()); }
+
 //==============================================================================
 AdlibBlasterAudioProcessor::AdlibBlasterAudioProcessor()
 	: i_program(-1)
 {
+    //
+    undoManager.reset(new UndoManager());
+    valueTree.reset(new AudioProcessorValueTreeState(*this,  undoManager.get()));
+    using Parameter = AudioProcessorValueTreeState::Parameter;
 	// Initalize OPL
 	velocity = false;
 	Opl = new Hiopl();
@@ -24,9 +42,33 @@ AdlibBlasterAudioProcessor::AdlibBlasterAudioProcessor()
 	params.push_back(new EnumFloatParameter("Carrier Wave",
 		StringArray(waveforms, sizeof(waveforms)/sizeof(String)))
 	);
+    
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Wave"),
+                                                                  String("Carrier Wave"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(waveforms)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
 	params.push_back(new EnumFloatParameter("Modulator Wave",
 		StringArray(waveforms, sizeof(waveforms)/sizeof(String)))
 	);
+    
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Wave"),
+                                                                  String("Modulator Wave"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(waveforms)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                     );
 
 	const String frq_multipliers[] = {
 		"x0.5", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x10", "x12", "x12", "x15", "x15"
@@ -34,97 +76,426 @@ AdlibBlasterAudioProcessor::AdlibBlasterAudioProcessor()
 	params.push_back(new EnumFloatParameter("Carrier Frequency Multiplier",
 		StringArray(frq_multipliers, sizeof(frq_multipliers)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Frequency Multiplier"),
+                                                                  String("Carrier Frequency Multiplier"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(frq_multipliers)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
 	params.push_back(new EnumFloatParameter("Modulator Frequency Multiplier",
 		StringArray(frq_multipliers, sizeof(frq_multipliers)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Frequency Multiplier"),
+                                                                  String("Modulator Frequency Multiplier"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(frq_multipliers)/sizeof(String)),
+                                                                   NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
 	const String levels[] = {"0.00 dB", "0.75 dB", "1.50 dB", "2.25 dB", "3.00 dB", "3.75 dB", "4.50 dB", "5.25 dB", "6.00 dB", "6.75 dB", "7.50 dB", "8.25 dB", "9.00 dB", "9.75 dB", "10.50 dB", "11.25 dB", "12.00 dB", "12.75 dB", "13.50 dB", "14.25 dB", "15.00 dB", "15.75 dB", "16.50 dB", "17.25 dB", "18.00 dB", "18.75 dB", "19.50 dB", "20.25 dB", "21.00 dB", "21.75 dB", "22.50 dB", "23.25 dB", "24.00 dB", "24.75 dB", "25.50 dB", "26.25 dB", "27.00 dB", "27.75 dB", "28.50 dB", "29.25 dB", "30.00 dB", "30.75 dB", "31.50 dB", "32.25 dB", "33.00 dB", "33.75 dB", "34.50 dB", "35.25 dB", "36.00 dB", "36.75 dB", "37.50 dB", "38.25 dB", "39.00 dB", "39.75 dB", "40.50 dB", "41.25 dB", "42.00 dB", "42.75 dB", "43.50 dB", "44.25 dB", "45.00 dB", "45.75 dB", "46.50 dB", "47.25 dB"};
 	params.push_back(new EnumFloatParameter("Carrier Attenuation",
 		StringArray(levels, sizeof(levels)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Attenuation"),
+                                  String("Carrier Attenuation"),
+                                  "",
+                                  // NormalisableRange<float>(0.0f, sizeof(levels)/sizeof(String)),
+                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Attenuation",
 		StringArray(levels, sizeof(levels)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Attenuation"),
+                                                                  String("Modulator Attenuation"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(levels)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
+    
 	const String depth[] = {"Light", "Heavy"};
 	params.push_back(new EnumFloatParameter("Tremolo Depth",
 		StringArray(depth, sizeof(depth)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Tremolo Depth"),
+                                                                  String("Tremolo Depth"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(depth)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
+    
 	params.push_back(new EnumFloatParameter("Vibrato Depth",
 		StringArray(depth, sizeof(depth)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Vibrato Depth"),
+                                                                  String("Vibrato Depth"),
+                                                                  "",
+                                                                  //NormalisableRange<float>(0.0f, sizeof(depth)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                                                  0.0f,
+                                                                  doubleToString,
+                                                                  stringToDouble,
+                                                                  false,
+                                                                  true)
+                                    );
 	const String onoff[] = {"Disable", "Enable"};
 	params.push_back(new EnumFloatParameter("Carrier Tremolo",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Tremolo"),
+                                  String("Carrier Tremolo"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Carrier Vibrato",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Vibrato"),
+                                  String("Carrier Vibrato"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Carrier Sustain",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Sustain"),
+                                  String("Carrier Sustain"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Carrier Keyscale Rate",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Keyscale Rate"),
+                                  String("Carrier Keyscale Rate"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Tremolo",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Tremolo"),
+                                  String("Modulator Tremolo"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Vibrato",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Vibrato"),
+                                  String("Modulator Vibrato"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Sustain",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Sustain"),
+                                  String("Modulator Sustain"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Keyscale Rate",
 		StringArray(onoff, sizeof(onoff)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Keyscale Rate"),
+                                  String("Modulator Keyscale Rate"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(onoff)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	const String ksrs[] = {"None","1.5 dB/8ve","3 dB/8ve","6 dB/8ve"};
 	params.push_back(new EnumFloatParameter("Carrier Keyscale Level",
 		StringArray(ksrs, sizeof(ksrs)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Keyscale Level"),
+                                  String("Carrier Keyscale Level"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(ksrs)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Keyscale Level",
 		StringArray(ksrs, sizeof(ksrs)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Keyscale Level"),
+                                  String("Modulator Keyscale Level"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(ksrs)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	const String algos[] = {"Frequency Modulation", "Additive"};
 	params.push_back(new EnumFloatParameter("Algorithm",
 		StringArray(algos, sizeof(algos)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Algorithm"),
+                                  String("Algorithm"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(algos)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 
 	params.push_back(new IntFloatParameter("Modulator Feedback", 0, 7));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Feedback"),
+                                  String("Modulator Feedback"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 7.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Carrier Attack", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Attack"),
+                                  String("Carrier Attack"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Carrier Decay", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Decay"),
+                                  String("Carrier Decay"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Carrier Sustain Level", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Sustain Level"),
+                                  String("Carrier Sustain Level"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Carrier Release", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Release"),
+                                  String("Carrier Release"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Modulator Attack", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Attack"),
+                                  String("Modulator Attack"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Modulator Decay", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Decay"),
+                                  String("Modulator Decay"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Modulator Sustain Level", 0, 15));
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Sustain Level"),
+                                  String("Modulator Sustain Level"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new IntFloatParameter("Modulator Release", 0, 15));
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Release"),
+                                  String("Modulator Release"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, 15.0f),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
+    
 	const String sensitivitySettings[] = {"None", "Low", "High"};
 	params.push_back(new EnumFloatParameter("Carrier Velocity Sensitivity",
 		StringArray(sensitivitySettings, sizeof(sensitivitySettings)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Carrier Velocity Sensitivity"),
+                                  String("Carrier Velocity Sensitivity"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(sensitivitySettings)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	params.push_back(new EnumFloatParameter("Modulator Velocity Sensitivity",
 		StringArray(sensitivitySettings, sizeof(sensitivitySettings)/sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Modulator Velocity Sensitivity"),
+                                  String("Modulator Velocity Sensitivity"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(sensitivitySettings)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 
 	const String emulators[] = {"DOSBox", "ZDoom"};
 	params.push_back(new EnumFloatParameter("Emulator",
 		StringArray(emulators, sizeof(emulators)/sizeof(String)))
 	);
-
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Emulator"),
+                                  String("Emulator"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(emulators)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 	const String percussion[] = { "Off", "Bass drum", "Snare", "Tom", "Cymbal", "Hi-hat" };
 	params.push_back(new EnumFloatParameter("Percussion Mode",
 		StringArray(percussion, sizeof(percussion) / sizeof(String)))
 	);
+    valueTree->createAndAddParameter(std::make_unique<Parameter> (String("Percussion Mode"),
+                                  String("Percussion Mode"),
+                                  "",
+                                  //NormalisableRange<float>(0.0f, sizeof(percussion)/sizeof(String)),
+                                                                  NormalisableRange<float>(0.0f, 1.0f),
+                                  0.0f,
+                                  doubleToString,
+                                  stringToDouble,
+                                  false,
+                                  true)
+    );
 
 	for(unsigned int i = 0; i < params.size(); i++) {
 		paramIdxByName[params[i]->getName()] = i;
+        valueTree->addParameterListener (params[i]->getName(), this);
 	}
-
+    
+    valueTree->state = ValueTree (JucePlugin_Name);
+    
 	initPrograms();
 
 	for(std::map<String,std::vector<float>>::iterator it = programs.begin(); it != programs.end(); ++it) {
@@ -453,7 +824,7 @@ void AdlibBlasterAudioProcessor::setIntParameter (String name, int value)
 	int i = paramIdxByName[name];
 	IntFloatParameter* p = (IntFloatParameter*)params[i];
 	p->setParameterValue(value);
-	setParameter(i, p->getParameter());
+	setParameter(i, p->getParameter(), true);
 }
 
 void AdlibBlasterAudioProcessor::setEnumParameter (String name, int index)
@@ -461,7 +832,7 @@ void AdlibBlasterAudioProcessor::setEnumParameter (String name, int index)
 	int i = paramIdxByName[name];
 	EnumFloatParameter* p = (EnumFloatParameter*)params[i];
 	p->setParameterIndex(index);
-	setParameter(i, p->getParameter());
+	setParameter(i, p->getParameter(), true);
 }
 
 int AdlibBlasterAudioProcessor::getIntParameter (String name)
@@ -483,12 +854,33 @@ bool AdlibBlasterAudioProcessor::getBoolParameter(String name)
 	return 0 != getEnumParameter(name);
 }
 
+void AdlibBlasterAudioProcessor::parameterChanged (const String& parameterID, float newValue) {
+    int i = paramIdxByName[parameterID];
+    DBG("Change: "<< parameterID);
+    setParameter (i, newValue, false, false);
+}
+
+void AdlibBlasterAudioProcessor::beginChangeGesture (String name) {
+    getParameterPointer(name)->beginChangeGesture();
+}
+void AdlibBlasterAudioProcessor::endChangeGesture (String name) {
+    getParameterPointer(name)->endChangeGesture();
+}
 // Parameters which apply directly to the OPL
-void AdlibBlasterAudioProcessor::setParameter (int index, float newValue)
+void AdlibBlasterAudioProcessor::setParameter (int index, float newValue, bool notify, bool updatetoHost)
 {
 	FloatParameter* p = params[index];
 	p->setParameter(newValue);
 	String name = p->getName();
+    if (updatetoHost) {
+        if (notify) {
+            valueTree->getParameter(name)->setValueNotifyingHost(newValue);
+        } else {
+            valueTree->getParameter(name)->setValue(newValue);
+        }
+    }
+    
+    DBG("Parameter: " << name << " - " << newValue <<" - "<< p->getParameter() <<" Notify: " << String::formatted("%d", notify) << " updatetoHost" << String::formatted("%d", updatetoHost) );
 	int osc = 2;	// Carrier
 	if (name.startsWith("Modulator")) {
 		osc = 1;
@@ -672,9 +1064,14 @@ int AdlibBlasterAudioProcessor::getCurrentProgram()
 
 void AdlibBlasterAudioProcessor::updateGuiIfPresent()
 {
-    PluginEditor* gui = (PluginEditor*)getActiveEditor();
-    if (gui) {
-        gui->updateFromParameters();
+    if (auto activeEditor = getActiveEditor())
+    {
+#if JUCE_IOS
+        if (auto editor = dynamic_cast<iOSPluginEditorWrapper*>(activeEditor))
+            activeEditor = editor->getEditor();
+#endif
+        if (auto editor = dynamic_cast<PluginEditor*>(activeEditor))
+            editor->updateFromParameters();
     }
 }
 
@@ -832,9 +1229,15 @@ bool AdlibBlasterAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* AdlibBlasterAudioProcessor::createEditor()
 {
-	PluginEditor* gui = new PluginEditor(this);
-	gui->updateFromParameters();
-	return gui;
+    
+    AudioProcessorEditor* editor = new PluginEditor(this);
+	static_cast<PluginEditor*>(editor)->updateFromParameters();
+
+#if JUCE_IOS
+    editor = new iOSPluginEditorWrapper(*this, editor);
+#endif
+    
+	return editor;
 }
 
 //==============================================================================
@@ -965,7 +1368,6 @@ const char* AdlibBlasterAudioProcessor::getChannelEnvelopeStage(int idx) const
 {
 	return isChannelEnabled(idx) ? Opl->GetState(idx) : CHANNEL_DISABLED_STRING;
 }
-
 
 //==============================================================================
 // This creates new instances of the plugin..

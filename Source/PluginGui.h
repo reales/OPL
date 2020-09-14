@@ -61,6 +61,12 @@ public:
     bool showLoadMenu();
     bool loadBrowserFile();
     void loadPreNextFile(bool pre = true);
+
+    void syncGUI();
+
+    void sliderDragStarted (Slider* sliderThatWasMoved) override;
+    void sliderDragEnded (Slider* sliderThatWasMoved) override;
+
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -130,6 +136,8 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    bool updateFromHost = true;
+
     void loadandUpdateInstrument(String path);
 class OPLComboBoxLookAndFeelMethods:
     public OPLLookAndFeel

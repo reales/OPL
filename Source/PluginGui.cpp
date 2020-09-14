@@ -69,8 +69,8 @@ void PluginGui::updateFromParameters()
 	fmButton->setToggleState(false, dontSendNotification);
 	additiveButton->setToggleState(false, dontSendNotification);
 	switch (processor->getEnumParameter("Algorithm")) {
-	case 0: fmButton->setToggleState(true, dontSendNotification); break;
-	case 1: additiveButton->setToggleState(true, dontSendNotification); break;
+        case 0: fmButton->setToggleState(true, dontSendNotification); break;
+        case 1: additiveButton->setToggleState(true, dontSendNotification); break;
 	}
 
 	disablePercussionButton->setToggleState(false, dontSendNotification);
@@ -80,12 +80,12 @@ void PluginGui::updateFromParameters()
 	cymbalButton->setToggleState(false, dontSendNotification);
 	hiHatButton->setToggleState(false, dontSendNotification);
 	switch (processor->getEnumParameter("Percussion Mode")) {
-	case 0: disablePercussionButton->setToggleState(true, dontSendNotification); break;
-	case 1: bassDrumButton->setToggleState(true, dontSendNotification); break;
-	case 2: snareDrumButton->setToggleState(true, dontSendNotification); break;
-	case 3: tomTomButton->setToggleState(true, dontSendNotification); break;
-	case 4: cymbalButton->setToggleState(true, dontSendNotification); break;
-	case 5: hiHatButton->setToggleState(true, dontSendNotification); break;
+        case 0: disablePercussionButton->setToggleState(true, dontSendNotification); break;
+        case 1: bassDrumButton->setToggleState(true, dontSendNotification); break;
+        case 2: snareDrumButton->setToggleState(true, dontSendNotification); break;
+        case 3: tomTomButton->setToggleState(true, dontSendNotification); break;
+        case 4: cymbalButton->setToggleState(true, dontSendNotification); break;
+        case 5: hiHatButton->setToggleState(true, dontSendNotification); break;
 	}
 
 	frequencyComboBox->setSelectedItemIndex (
@@ -2446,7 +2446,9 @@ void PluginGui::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         //[UserComboBoxCode_frequencyComboBox] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId();
 		if (id > 15) id = 0;
+        processor->beginChangeGesture("Modulator Frequency Multiplier");
 		processor->setEnumParameter("Modulator Frequency Multiplier", id);
+        processor->endChangeGesture("Modulator Frequency Multiplier");
         //[/UserComboBoxCode_frequencyComboBox]
     }
     else if (comboBoxThatHasChanged == frequencyComboBox2.get())
@@ -2454,35 +2456,45 @@ void PluginGui::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         //[UserComboBoxCode_frequencyComboBox2] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId();
 		if (id > 15) id = 0;
+        processor->beginChangeGesture("Carrier Frequency Multiplier");
 		processor->setEnumParameter("Carrier Frequency Multiplier", id);
+        processor->endChangeGesture("Carrier Frequency Multiplier");
         //[/UserComboBoxCode_frequencyComboBox2]
     }
     else if (comboBoxThatHasChanged == velocityComboBox.get())
     {
         //[UserComboBoxCode_velocityComboBox] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId() - 1;
+        processor->beginChangeGesture("Modulator Velocity Sensitivity");
 		processor->setEnumParameter("Modulator Velocity Sensitivity", id);
+        processor->endChangeGesture("Modulator Velocity Sensitivity");
         //[/UserComboBoxCode_velocityComboBox]
     }
     else if (comboBoxThatHasChanged == velocityComboBox2.get())
     {
         //[UserComboBoxCode_velocityComboBox2] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId() - 1;
+        processor->beginChangeGesture("Carrier Velocity Sensitivity");
 		processor->setEnumParameter("Carrier Velocity Sensitivity", id);
+        processor->endChangeGesture("Carrier Velocity Sensitivity");
         //[/UserComboBoxCode_velocityComboBox2]
     }
     else if (comboBoxThatHasChanged == keyscaleAttenuationComboBox2.get())
     {
         //[UserComboBoxCode_keyscaleAttenuationComboBox2] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId() - 1;
+        processor->beginChangeGesture("Carrier Keyscale Level");
 		processor->setEnumParameter("Carrier Keyscale Level", id);
+        processor->endChangeGesture("Carrier Keyscale Level");
         //[/UserComboBoxCode_keyscaleAttenuationComboBox2]
     }
     else if (comboBoxThatHasChanged == keyscaleAttenuationComboBox.get())
     {
         //[UserComboBoxCode_keyscaleAttenuationComboBox] -- add your combo box handling code here..
 		int id = comboBoxThatHasChanged->getSelectedId() - 1;
+        processor->beginChangeGesture("Modulator Keyscale Level");
 		processor->setEnumParameter("Modulator Keyscale Level", id);
+        processor->endChangeGesture("Modulator Keyscale Level");
         //[/UserComboBoxCode_keyscaleAttenuationComboBox]
     }
 
@@ -2608,145 +2620,241 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == sineImageButton.get())
     {
         //[UserButtonCode_sineImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 0);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_sineImageButton]
     }
     else if (buttonThatWasClicked == halfsineImageButton.get())
     {
         //[UserButtonCode_halfsineImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 1);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_halfsineImageButton]
     }
     else if (buttonThatWasClicked == abssineImageButton.get())
     {
         //[UserButtonCode_abssineImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 2);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_abssineImageButton]
     }
     else if (buttonThatWasClicked == quartersineImageButton.get())
     {
         //[UserButtonCode_quartersineImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 3);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_quartersineImageButton]
     }
     else if (buttonThatWasClicked == tremoloButton.get())
     {
         //[UserButtonCode_tremoloButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Tremolo");
 		processor->setEnumParameter("Modulator Tremolo", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Modulator Tremolo");
+        updateFromHost=true;
         //[/UserButtonCode_tremoloButton]
     }
     else if (buttonThatWasClicked == vibratoButton.get())
     {
         //[UserButtonCode_vibratoButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Vibrato");
 		processor->setEnumParameter("Modulator Vibrato", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Modulator Vibrato");
+        updateFromHost=true;
         //[/UserButtonCode_vibratoButton]
     }
     else if (buttonThatWasClicked == sustainButton.get())
     {
         //[UserButtonCode_sustainButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Sustain");
 		processor->setEnumParameter("Modulator Sustain", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Modulator Sustain");
+        updateFromHost=true;
         //[/UserButtonCode_sustainButton]
     }
     else if (buttonThatWasClicked == keyscaleEnvButton.get())
     {
         //[UserButtonCode_keyscaleEnvButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Keyscale Rate");
 		processor->setEnumParameter("Modulator Keyscale Rate", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Modulator Keyscale Rate");
+        updateFromHost=true;
         //[/UserButtonCode_keyscaleEnvButton]
     }
     else if (buttonThatWasClicked == sineImageButton2.get())
     {
         //[UserButtonCode_sineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 0);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_sineImageButton2]
     }
     else if (buttonThatWasClicked == halfsineImageButton2.get())
     {
         //[UserButtonCode_halfsineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 1);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_halfsineImageButton2]
     }
     else if (buttonThatWasClicked == abssineImageButton2.get())
     {
         //[UserButtonCode_abssineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 2);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_abssineImageButton2]
     }
     else if (buttonThatWasClicked == quartersineImageButton2.get())
     {
         //[UserButtonCode_quartersineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 3);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_quartersineImageButton2]
     }
     else if (buttonThatWasClicked == tremoloButton2.get())
     {
         //[UserButtonCode_tremoloButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Tremolo");
 		processor->setEnumParameter("Carrier Tremolo", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Carrier Tremolo");
+        updateFromHost=true;
         //[/UserButtonCode_tremoloButton2]
     }
     else if (buttonThatWasClicked == vibratoButton2.get())
     {
         //[UserButtonCode_vibratoButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Vibrato");
 		processor->setEnumParameter("Carrier Vibrato", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Carrier Vibrato");
+        updateFromHost=true;
         //[/UserButtonCode_vibratoButton2]
     }
     else if (buttonThatWasClicked == sustainButton2.get())
     {
         //[UserButtonCode_sustainButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Sustain");
 		processor->setEnumParameter("Carrier Sustain", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Carrier Sustain");
+        updateFromHost=true;
         //[/UserButtonCode_sustainButton2]
     }
     else if (buttonThatWasClicked == keyscaleEnvButton2.get())
     {
         //[UserButtonCode_keyscaleEnvButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Keyscale Rate");
 		processor->setEnumParameter("Carrier Keyscale Rate", buttonThatWasClicked->getToggleState() ? 1 : 0);
+        processor->endChangeGesture("Carrier Keyscale Rate");
+        updateFromHost=true;
         //[/UserButtonCode_keyscaleEnvButton2]
     }
     else if (buttonThatWasClicked == alternatingsineImageButton.get())
     {
         //[UserButtonCode_alternatingsineImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 4);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_alternatingsineImageButton]
     }
     else if (buttonThatWasClicked == camelsineImageButton.get())
     {
         //[UserButtonCode_camelsineImageButton] -- add your button handler code here..
-		processor->setEnumParameter("Modulator Wave", 5);
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
+		processor->setEnumParameter("Carrier Wave", 5);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_camelsineImageButton]
     }
     else if (buttonThatWasClicked == squareImageButton.get())
     {
         //[UserButtonCode_squareImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 6);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_squareImageButton]
     }
     else if (buttonThatWasClicked == logsawImageButton.get())
     {
         //[UserButtonCode_logsawImageButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Modulator Wave");
 		processor->setEnumParameter("Modulator Wave", 7);
+        processor->endChangeGesture("Modulator Wave");
+        updateFromHost=true;
         //[/UserButtonCode_logsawImageButton]
     }
     else if (buttonThatWasClicked == alternatingsineImageButton2.get())
     {
         //[UserButtonCode_alternatingsineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 4);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_alternatingsineImageButton2]
     }
     else if (buttonThatWasClicked == camelsineImageButton2.get())
     {
         //[UserButtonCode_camelsineImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 5);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_camelsineImageButton2]
     }
     else if (buttonThatWasClicked == squareImageButton2.get())
     {
         //[UserButtonCode_squareImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 6);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_squareImageButton2]
     }
     else if (buttonThatWasClicked == logsawImageButton2.get())
     {
         //[UserButtonCode_logsawImageButton2] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Carrier Wave");
 		processor->setEnumParameter("Carrier Wave", 7);
+        processor->endChangeGesture("Carrier Wave");
+        updateFromHost=true;
         //[/UserButtonCode_logsawImageButton2]
     }
     else if (buttonThatWasClicked == recordButton.get())
@@ -2917,49 +3025,81 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == fmButton.get())
     {
         //[UserButtonCode_fmButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Algorithm");
 		processor->setEnumParameter("Algorithm", 0);
+        processor->endChangeGesture("Algorithm");
+        updateFromHost=true;
         //[/UserButtonCode_fmButton]
     }
     else if (buttonThatWasClicked == additiveButton.get())
     {
         //[UserButtonCode_additiveButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Algorithm");
 		processor->setEnumParameter("Algorithm", 1);
+        processor->endChangeGesture("Algorithm");
+        updateFromHost=true;
         //[/UserButtonCode_additiveButton]
     }
     else if (buttonThatWasClicked == bassDrumButton.get())
     {
         //[UserButtonCode_bassDrumButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 1);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_bassDrumButton]
     }
     else if (buttonThatWasClicked == snareDrumButton.get())
     {
         //[UserButtonCode_snareDrumButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 2);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_snareDrumButton]
     }
     else if (buttonThatWasClicked == disablePercussionButton.get())
     {
         //[UserButtonCode_disablePercussionButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 0);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_disablePercussionButton]
     }
     else if (buttonThatWasClicked == tomTomButton.get())
     {
         //[UserButtonCode_tomTomButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 3);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_tomTomButton]
     }
     else if (buttonThatWasClicked == cymbalButton.get())
     {
         //[UserButtonCode_cymbalButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 4);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_cymbalButton]
     }
     else if (buttonThatWasClicked == hiHatButton.get())
     {
         //[UserButtonCode_hiHatButton] -- add your button handler code here..
+        updateFromHost=false;
+        processor->beginChangeGesture("Percussion Mode");
 		processor->setEnumParameter("Percussion Mode", 5);
+        processor->endChangeGesture("Percussion Mode");
+        updateFromHost=true;
         //[/UserButtonCode_hiHatButton]
     }
     else if (buttonThatWasClicked == previousButton.get())
@@ -2982,6 +3122,193 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+    void PluginGui::sliderDragStarted (Slider* sliderThatWasMoved) {
+        //[UsersliderValueChanged_Pre]
+        DBG("Slider -> Start");
+        updateFromHost=false;
+        //[/UsersliderValueChanged_Pre]
+
+        if (sliderThatWasMoved == aSlider.get())
+        {
+            //[UserSliderCode_aSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Attack");
+            //[/UserSliderCode_aSlider]
+        }
+        else if (sliderThatWasMoved == dSlider.get())
+        {
+            //[UserSliderCode_dSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Decay");
+            //[/UserSliderCode_dSlider]
+        }
+        else if (sliderThatWasMoved == sSlider.get())
+        {
+            //[UserSliderCode_sSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Sustain Level");
+            //[/UserSliderCode_sSlider]
+        }
+        else if (sliderThatWasMoved == rSlider.get())
+        {
+            //[UserSliderCode_rSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Release");
+            //[/UserSliderCode_rSlider]
+        }
+        else if (sliderThatWasMoved == attenuationSlider.get())
+        {
+            //[UserSliderCode_attenuationSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Attenuation");
+            //[/UserSliderCode_attenuationSlider]
+        }
+        else if (sliderThatWasMoved == aSlider2.get())
+        {
+            //[UserSliderCode_aSlider2] -- add your slider handling code here..
+            processor->beginChangeGesture("Carrier Attack");
+            //[/UserSliderCode_aSlider2]
+        }
+        else if (sliderThatWasMoved == dSlider2.get())
+        {
+            //[UserSliderCode_dSlider2] -- add your slider handling code here..
+            processor->beginChangeGesture("Carrier Decay");
+            //[/UserSliderCode_dSlider2]
+        }
+        else if (sliderThatWasMoved == sSlider2.get())
+        {
+            //[UserSliderCode_sSlider2] -- add your slider handling code here..
+            processor->beginChangeGesture("Carrier Sustain Level");
+            //[/UserSliderCode_sSlider2]
+        }
+        else if (sliderThatWasMoved == rSlider2.get())
+        {
+            //[UserSliderCode_rSlider2] -- add your slider handling code here..
+            processor->beginChangeGesture("Carrier Release");
+            //[/UserSliderCode_rSlider2]
+        }
+        else if (sliderThatWasMoved == attenuationSlider2.get())
+        {
+            //[UserSliderCode_attenuationSlider2] -- add your slider handling code here..
+            processor->beginChangeGesture("Carrier Attenuation");
+            //[/UserSliderCode_attenuationSlider2]
+        }
+        else if (sliderThatWasMoved == tremoloSlider.get())
+        {
+            //[UserSliderCode_tremoloSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Tremolo Depth");
+            //[/UserSliderCode_tremoloSlider]
+        }
+        else if (sliderThatWasMoved == vibratoSlider.get())
+        {
+            //[UserSliderCode_vibratoSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Vibrato Depth");
+            //[/UserSliderCode_vibratoSlider]
+        }
+        else if (sliderThatWasMoved == feedbackSlider.get())
+        {
+            //[UserSliderCode_feedbackSlider] -- add your slider handling code here..
+            processor->beginChangeGesture("Modulator Feedback");
+            //[/UserSliderCode_feedbackSlider]
+        }
+        else if (sliderThatWasMoved == emulatorSlider.get())
+        {
+            //[UserSliderCode_emulatorSlider] -- add your slider handling code here..
+            //[/UserSliderCode_emulatorSlider]
+        }
+
+        //[UsersliderValueChanged_Post]
+        //[/UsersliderValueChanged_Post]
+    }
+    void PluginGui::sliderDragEnded (Slider* sliderThatWasMoved) {
+        //[UsersliderValueChanged_Pre]
+
+        //[/UsersliderValueChanged_Pre]
+
+        if (sliderThatWasMoved == aSlider.get())
+        {
+            //[UserSliderCode_aSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Attack");
+            //[/UserSliderCode_aSlider]
+        }
+        else if (sliderThatWasMoved == dSlider.get())
+        {
+            //[UserSliderCode_dSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Decay");
+            //[/UserSliderCode_dSlider]
+        }
+        else if (sliderThatWasMoved == sSlider.get())
+        {
+            //[UserSliderCode_sSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Sustain Level");
+            //[/UserSliderCode_sSlider]
+        }
+        else if (sliderThatWasMoved == rSlider.get())
+        {
+            //[UserSliderCode_rSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Release");
+            //[/UserSliderCode_rSlider]
+        }
+        else if (sliderThatWasMoved == attenuationSlider.get())
+        {
+            //[UserSliderCode_attenuationSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Attenuation");
+            //[/UserSliderCode_attenuationSlider]
+        }
+        else if (sliderThatWasMoved == aSlider2.get())
+        {
+            //[UserSliderCode_aSlider2] -- add your slider handling code here..
+            processor->endChangeGesture("Carrier Attack");
+            //[/UserSliderCode_aSlider2]
+        }
+        else if (sliderThatWasMoved == dSlider2.get())
+        {
+            //[UserSliderCode_dSlider2] -- add your slider handling code here..
+            processor->endChangeGesture("Carrier Decay");
+            //[/UserSliderCode_dSlider2]
+        }
+        else if (sliderThatWasMoved == sSlider2.get())
+        {
+            //[UserSliderCode_sSlider2] -- add your slider handling code here..
+            processor->endChangeGesture("Carrier Sustain Level");
+            //[/UserSliderCode_sSlider2]
+        }
+        else if (sliderThatWasMoved == rSlider2.get())
+        {
+            //[UserSliderCode_rSlider2] -- add your slider handling code here..
+            processor->endChangeGesture("Carrier Release");
+            //[/UserSliderCode_rSlider2]
+        }
+        else if (sliderThatWasMoved == attenuationSlider2.get())
+        {
+            //[UserSliderCode_attenuationSlider2] -- add your slider handling code here..
+            processor->endChangeGesture("Carrier Attenuation");
+            //[/UserSliderCode_attenuationSlider2]
+        }
+        else if (sliderThatWasMoved == tremoloSlider.get())
+        {
+            //[UserSliderCode_tremoloSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Tremolo Depth");
+            //[/UserSliderCode_tremoloSlider]
+        }
+        else if (sliderThatWasMoved == vibratoSlider.get())
+        {
+            //[UserSliderCode_vibratoSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Vibrato Depth");
+            //[/UserSliderCode_vibratoSlider]
+        }
+        else if (sliderThatWasMoved == feedbackSlider.get())
+        {
+            //[UserSliderCode_feedbackSlider] -- add your slider handling code here..
+            processor->endChangeGesture("Modulator Feedback");
+            //[/UserSliderCode_feedbackSlider]
+        }
+        else if (sliderThatWasMoved == emulatorSlider.get())
+        {
+            //[UserSliderCode_emulatorSlider] -- add your slider handling code here..
+            //[/UserSliderCode_emulatorSlider]
+        }
+
+        //[UsersliderValueChanged_Post]
+        updateFromHost=true;
+        DBG("Slider -> End");
+        //[/UsersliderValueChanged_Post]
+    }
 	//==============================================================================
     // These methods implement the FileDragAndDropTarget interface, and allow our component
     // to accept drag-and-drop of files..
@@ -3019,6 +3346,7 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 		for (int i = 0; i < Hiopl::CHANNELS; ++i) {
 			channels[i]->setButtonText(processor->getChannelEnvelopeStage(i + 1));
 		}
+        syncGUI();
     }
     void PluginGui::loadPreNextFile(bool pre){
         if (pre){
@@ -3102,46 +3430,53 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
         bool hasFile = false;
         instrumentLoadDirectory.findChildFiles(dirs, File::findDirectories, false);
         dirs.sort();
-        for (auto dir: dirs){
+        for (auto dir: dirs)
+        {
             Array<File> files;
             dir.findChildFiles (files, File::findFiles, false, "*.sbi");
             files.sort();
-            if (files.size() > 0){
+            if (files.size() > 0)
+            {
                 bool selectedSub = false;
                 PopupMenu subMenu;
-                for (auto file : files){
+                for (auto file : files)
+                {
                     allSbiFiles.add(file);
                     hasFile = true;
-                    if (processor->lastLoadFile == file.getFullPathName()){
+                    if (processor->lastLoadFile == file.getFullPathName())
+                    {
                         selectedSub = true;
                         subMenu.addItem(allSbiFiles.size(), file.getFileNameWithoutExtension(), true, true);
-                    } else {
-                        subMenu.addItem(allSbiFiles.size(), file.getFileNameWithoutExtension());
                     }
+                    else
+                        subMenu.addItem(allSbiFiles.size(), file.getFileNameWithoutExtension());
                 }
-                if(selectedSub){
-                    menuLoad.addSubMenu (std::move (dir.getFileName()), std::move (subMenu), true, nullptr, true, 0);
-                }
-                else{
+                if(selectedSub)
+                    menuLoad.addSubMenu (dir.getFileName(), std::move (subMenu), true, nullptr, true, 0);
+                else
                     menuLoad.addSubMenu(dir.getFileName(), subMenu);
-                }
 
             }
         }
-        if(hasFile){
+        if(hasFile)
+        {
             //int id = menuLoad.show();
-            menuLoad.showMenuAsync (PopupMenu::Options().withParentComponent (this->getTopLevelComponent()), [this](int id){
-                if (id > 0) {
-                    processor->selectedIdxFile = id -1;
-                    if (this->allSbiFiles[processor->selectedIdxFile].existsAsFile()){
-                        this->loadandUpdateInstrument(allSbiFiles[processor->selectedIdxFile].getFullPathName());
-                    } else {
-                        this->loadBrowserFile();
-                    }
+            menuLoad.showMenuAsync (PopupMenu::Options().withParentComponent (this->getTopLevelComponent()), [this](int id)
+            {
+                if (id > 0)
+                {
+                    auto fileId = id - 1;
+                    processor->selectedIdxFile = fileId;
+                    auto sbiFile = this->allSbiFiles[fileId];
 
+                    if (sbiFile.existsAsFile())
+                        this->loadandUpdateInstrument(sbiFile.getFullPathName());
+                    else
+                        this->loadBrowserFile();
                 }
                 // No select, return true to ignore the popup menu
-                else{
+                else
+                {
                     return;
                 }
             });
@@ -3156,6 +3491,12 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 
         File file(path);
         loadButton->setButtonText(file.getFileNameWithoutExtension());
+    }
+
+    void PluginGui::syncGUI(){
+        if (updateFromHost){
+            updateFromParameters();
+        }
     }
 //[/MiscUserCode]
 

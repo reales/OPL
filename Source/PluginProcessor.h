@@ -17,7 +17,7 @@
 
 
 //==============================================================================
-class AdlibBlasterAudioProcessor  : public AudioProcessor
+class AdlibBlasterAudioProcessor  : public AudioProcessor, public AudioProcessorValueTreeState::Listener
 {
 public:
     //==============================================================================
@@ -27,29 +27,35 @@ public:
     ~AdlibBlasterAudioProcessor();
 
     //==============================================================================
-    void prepareToPlay (double sampleRate, int samplesPerBlock);
-    void releaseResources();
+    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void releaseResources() override;
 
-    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages);
-
-    //==============================================================================
-    AudioProcessorEditor* createEditor();
-    bool hasEditor() const;
+    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages) override;
 
     //==============================================================================
-    const String getName() const;
+    AudioProcessorEditor* createEditor() override;
+    bool hasEditor() const override;
+
+    //==============================================================================
+    const String getName() const override;
 
     static const int MAX_INSTRUMENT_FILE_SIZE_BYTES = 1024;
 	
-	int getNumParameters();
+	int getNumParameters() override;
 
-    float getParameter (int index);
-    void setParameter (int index, float newValue);
+    float getParameter (int index) override;
+    void setParameter (int index, float newValue, bool notify = false, bool updatetoHost= true);
+    
 	void setEnumParameter (String name, int newValue);
 	void setIntParameter (String name, int newValue);
+
+    void beginChangeGesture (String name);
+    void endChangeGesture (String name);
+    
 	int getIntParameter (String name);
 	int getEnumParameter (String name);
 	bool getBoolParameter(String name);
+    
 	void loadInstrumentFromFile(String filename);
 	void saveInstrumentToFile(String filename);
 	void setParametersByRegister(int register_base, int op, uint8 value);
@@ -63,29 +69,31 @@ public:
 
 	void updateGuiIfPresent();
 
-    const String getParameterName (int index);
-    const String getParameterText (int index);
+    const String getParameterName (int index) override;
+    const String getParameterText (int index) override;
+    const String getInputChannelName (int channelIndex) const override;
+    const String getOutputChannelName (int channelIndex) const override;
+    bool isInputChannelStereoPair (int index) const override;
+    bool isOutputChannelStereoPair (int index) const override;
 
-    const String getInputChannelName (int channelIndex) const;
-    const String getOutputChannelName (int channelIndex) const;
-    bool isInputChannelStereoPair (int index) const;
-    bool isOutputChannelStereoPair (int index) const;
-
-    bool acceptsMidi() const;
-    bool producesMidi() const;
-    bool silenceInProducesSilenceOut() const;
-    double getTailLengthSeconds() const;
-
+    bool acceptsMidi() const override;
+    bool producesMidi() const override;
+    bool silenceInProducesSilenceOut() const override;
+    double getTailLengthSeconds() const override;
     //==============================================================================
-    int getNumPrograms();
-    int getCurrentProgram();
-    void setCurrentProgram (int index);
-    const String getProgramName (int index);
-    void changeProgramName (int index, const String& newName);
-
+    int getNumPrograms() override;
+    int getCurrentProgram() override;
+    void setCurrentProgram (int index) override;
+    const String getProgramName (int index) override;
+    void changeProgramName (int index, const String& newName) override;
+    
+    RangedAudioParameter* getParameterPointer(String parameterId) {
+        return valueTree->getParameter(parameterId);
+    }
+    void parameterChanged (const String& parameterID, float newValue) override;
     //==============================================================================
-    void getStateInformation (MemoryBlock& destData);
-    void setStateInformation (const void* data, int sizeInBytes);
+    void getStateInformation (MemoryBlock& destData) override;
+    void setStateInformation (const void* data, int sizeInBytes) override;
 
 public:
     String lastLoadFile;
@@ -105,7 +113,9 @@ private:
 	std::deque<int> available_channels;			// most recently freed at end
 	std::deque<int> used_channels;				// most recently used at end
 	float currentScaledBend;
-
+    
+    std::unique_ptr<UndoManager> undoManager;
+    std::unique_ptr<AudioProcessorValueTreeState> valueTree;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AdlibBlasterAudioProcessor)
 };
