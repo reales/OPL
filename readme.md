@@ -15,7 +15,7 @@ This instrument provides an emulated OPL sound chip. It provides all features of
 **iOS** https://apps.apple.com/us/app/opl-auv3-fm-synth/id1516617949?ls=1
 
 - AU / VST / VST3 / Standalone.
-- Built with JUCE 5.4.7
+- Built with JUCE 6.0.5.
 - Notarized and code signed.
 
 ## What's an OPL? ##
