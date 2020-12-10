@@ -2791,9 +2791,9 @@ void PluginGui::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_camelsineImageButton] -- add your button handler code here..
         updateFromHost=false;
-        processor->beginChangeGesture("Carrier Wave");
-		processor->setEnumParameter("Carrier Wave", 5);
-        processor->endChangeGesture("Carrier Wave");
+        processor->beginChangeGesture("Modulator Wave");
+		processor->setEnumParameter("Modulator Wave", 5);
+        processor->endChangeGesture("Modulator Wave");
         updateFromHost=true;
         //[/UserButtonCode_camelsineImageButton]
     }
