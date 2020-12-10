@@ -87,13 +87,35 @@ void PluginGui::updateFromParameters()
         case 4: cymbalButton->setToggleState(true, dontSendNotification); break;
         case 5: hiHatButton->setToggleState(true, dontSendNotification); break;
 	}
-
-	frequencyComboBox->setSelectedItemIndex (
-                processor->getEnumParameter("Modulator Frequency Multiplier"),
-                                            sendNotificationAsync);
-	frequencyComboBox2->setSelectedItemIndex (
-                processor->getEnumParameter("Carrier Frequency Multiplier"),
-                                              sendNotificationAsync);
+    
+    //DBG(" multipler " << processor->getEnumParameter("Modulator Frequency Multiplier"));
+    
+    int val = processor->getEnumParameter("Modulator Frequency Multiplier");
+    if (val <=10 ){
+        frequencyComboBox->setSelectedItemIndex (val,
+                                    sendNotificationAsync);
+    }
+    else if (val == 12){
+        frequencyComboBox->setSelectedItemIndex (11,
+        sendNotificationAsync);
+    }
+    else if (val == 15){
+        frequencyComboBox->setSelectedItemIndex (12,
+        sendNotificationAsync);
+    }
+    val = processor->getEnumParameter("Carrier Frequency Multiplier");
+    if (val <=10 ){
+        frequencyComboBox2->setSelectedItemIndex (val,
+                                    sendNotificationAsync);
+    }
+    else if (val == 12){
+        frequencyComboBox2->setSelectedItemIndex (11,
+        sendNotificationAsync);
+    }
+    else if (val == 15){
+        frequencyComboBox2->setSelectedItemIndex (12,
+        sendNotificationAsync);
+    }
 
 	attenuationSlider->setValue(processor->getEnumParameter("Modulator Attenuation") * -0.75, juce::NotificationType::dontSendNotification);
 	attenuationSlider2->setValue(processor->getEnumParameter("Carrier Attenuation") * -0.75, juce::NotificationType::dontSendNotification);
