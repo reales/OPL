@@ -3,18 +3,18 @@
 <JUCERPROJECT id="wUKQiT" name="OPL" projectType="audioplug" version="1.9.0"
               bundleIdentifier="com.discodsp.OPL" pluginName="OPL" pluginDesc="Digital sound synthesis chip developed by Yamaha in the mid 1980s"
               pluginManufacturer="discoDSP" pluginManufacturerCode="DDSP" pluginCode="OPL1"
-              pluginChannelConfigs="{0, 2}, {2,2}" pluginIsSynth="1" pluginWantsMidiIn="1"
-              pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
+              pluginIsSynth="1" pluginWantsMidiIn="1" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginEditorRequiresKeys="0"
               pluginAUExportPrefix="oplAU" aaxIdentifier="com.discodsp.opl"
               includeBinaryInAppConfig="1" pluginIsMidiEffectPlugin="0" companyWebsite="https://www.discodsp.com/"
               splashScreenColour="Dark" companyCopyright="" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               companyName="discoDSP" companyEmail="contactus@discodsp.com"
               pluginRTASDisableBypass="0" pluginRTASDisableMultiMono="0" pluginAAXDisableBypass="0"
               pluginAAXDisableMultiMono="0" pluginAUMainType="'aumu'" pluginVST3Category="Instrument,Synth"
-              pluginVSTCategory="kPlugCategSynth" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
-              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" buildStandalone="1" enableIAA="0" jucerFormatVersion="1"
-              pluginAAXCategory="2048" displaySplashScreen="1">
+              pluginVSTCategory="kPlugCategSynth" pluginFormats="buildAU,buildStandalone,buildVST3,enableIAA"
+              buildVST="0" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" buildStandalone="1" enableIAA="1" jucerFormatVersion="1"
+              pluginAAXCategory="2048" displaySplashScreen="1" pluginChannelConfigs="{0,2}">
   <MAINGROUP id="TOefyq" name="OPL">
     <GROUP id="{DCA755EB-7953-0641-E719-95C7850E5B2B}" name="Source">
       <GROUP id="{8A2D4016-5C21-02E2-63A0-70230FA5D74F}" name="iOSPluginEditorWrapper">
@@ -104,7 +104,7 @@
                   UIStatusBarHidden="1" iosBackgroundAudio="1" iosBackgroundBle="1"
                   smallIcon="lWChlc" bigIcon="lWChlc" iosAppGroupsId="group.com.discodsp.opl"
                   extraDefs="JUCE_DISABLE_NATIVE_FILECHOOSERS=1" customXcodeResourceFolders="sbi"
-                  iosDevelopmentTeamID="96UBP6BN94" iCloudPermissions="0" UISupportsDocumentBrowser="0"
+                  iCloudPermissions="0" UISupportsDocumentBrowser="0"
                   UIFileSharingEnabled="0">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" iosCompatibility="11.0" binaryPath="Bin/iOS/Debug"/>
