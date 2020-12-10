@@ -1075,8 +1075,8 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     keyscaleAttenuationComboBox2->setTextWhenNothingSelected (String());
     keyscaleAttenuationComboBox2->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     keyscaleAttenuationComboBox2->addItem (TRANS("-0.0"), 1);
-    keyscaleAttenuationComboBox2->addItem (TRANS("-3.0"), 2);
-    keyscaleAttenuationComboBox2->addItem (TRANS("-1.5"), 3);
+    keyscaleAttenuationComboBox2->addItem (TRANS("-1.5"), 2);
+    keyscaleAttenuationComboBox2->addItem (TRANS("-3.0"), 3);
     keyscaleAttenuationComboBox2->addItem (TRANS("-6.0"), 4);
     keyscaleAttenuationComboBox2->addListener (this);
 
@@ -1089,8 +1089,8 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     keyscaleAttenuationComboBox->setTextWhenNothingSelected (String());
     keyscaleAttenuationComboBox->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     keyscaleAttenuationComboBox->addItem (TRANS("-0.0"), 1);
-    keyscaleAttenuationComboBox->addItem (TRANS("-3.0"), 2);
-    keyscaleAttenuationComboBox->addItem (TRANS("-1.5"), 3);
+    keyscaleAttenuationComboBox->addItem (TRANS("-1.5"), 2);
+    keyscaleAttenuationComboBox->addItem (TRANS("-3.0"), 3);
     keyscaleAttenuationComboBox->addItem (TRANS("-6.0"), 4);
     keyscaleAttenuationComboBox->addListener (this);
 
