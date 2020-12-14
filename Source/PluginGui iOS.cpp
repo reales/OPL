@@ -7,12 +7,12 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 6.0.5
+  Created with Projucer version: 5.4.7
 
   ------------------------------------------------------------------------------
 
   The Projucer is part of the JUCE library.
-  Copyright (c) 2020 - Raw Material Software Limited.
+  Copyright (c) 2017 - ROLI Ltd.
 
   ==============================================================================
 */
@@ -192,761 +192,761 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     //[/Constructor_pre]
 
-    groupComponent2.reset (new juce::GroupComponent ("new group",
-                                                     TRANS("Carrier")));
+    groupComponent2.reset (new GroupComponent ("new group",
+                                               TRANS("Carrier")));
     addAndMakeVisible (groupComponent2.get());
-    groupComponent2->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent2->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent2->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent2->setTextLabelPosition (Justification::centredLeft);
+    groupComponent2->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent2->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent2->setBounds (440, 88, 408, 344);
 
-    groupComponent4.reset (new juce::GroupComponent ("new group",
-                                                     TRANS("Channels")));
+    groupComponent4.reset (new GroupComponent ("new group",
+                                               TRANS("Channels")));
     addAndMakeVisible (groupComponent4.get());
-    groupComponent4->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent4->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent4->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent4->setTextLabelPosition (Justification::centredLeft);
+    groupComponent4->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent4->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent4->setBounds (16, 8, 832, 64);
 
-    groupComponent11.reset (new juce::GroupComponent ("new group",
-                                                      TRANS("Percussion")));
+    groupComponent11.reset (new GroupComponent ("new group",
+                                                TRANS("Percussion")));
     addAndMakeVisible (groupComponent11.get());
-    groupComponent11->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent11->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent11->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent11->setTextLabelPosition (Justification::centredLeft);
+    groupComponent11->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent11->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent11->setBounds (496, 440, 192, 120);
 
-    groupComponent10.reset (new juce::GroupComponent ("new group",
-                                                      TRANS("Algorithm")));
+    groupComponent10.reset (new GroupComponent ("new group",
+                                                TRANS("Algorithm")));
     addAndMakeVisible (groupComponent10.get());
-    groupComponent10->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent10->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent10->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent10->setTextLabelPosition (Justification::centredLeft);
+    groupComponent10->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent10->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent10->setBounds (280, 440, 200, 120);
 
-    groupComponent9.reset (new juce::GroupComponent ("new group",
-                                                     TRANS("File")));
+    groupComponent9.reset (new GroupComponent ("new group",
+                                               TRANS("File")));
     addAndMakeVisible (groupComponent9.get());
-    groupComponent9->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent9->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent9->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent9->setTextLabelPosition (Justification::centredLeft);
+    groupComponent9->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent9->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent9->setBounds (704, 440, 144, 120);
 
-    groupComponent.reset (new juce::GroupComponent ("new group",
-                                                    TRANS("Modulator")));
+    groupComponent.reset (new GroupComponent ("new group",
+                                              TRANS("Modulator")));
     addAndMakeVisible (groupComponent.get());
-    groupComponent->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent->setTextLabelPosition (Justification::centredLeft);
+    groupComponent->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent->setBounds (16, 88, 408, 344);
 
-    frequencyComboBox.reset (new juce::ComboBox ("frequency combo box"));
+    frequencyComboBox.reset (new ComboBox ("frequency combo box"));
     addAndMakeVisible (frequencyComboBox.get());
     frequencyComboBox->setEditableText (false);
-    frequencyComboBox->setJustificationType (juce::Justification::centredLeft);
-    frequencyComboBox->setTextWhenNothingSelected (juce::String());
+    frequencyComboBox->setJustificationType (Justification::centredLeft);
+    frequencyComboBox->setTextWhenNothingSelected (String());
     frequencyComboBox->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     frequencyComboBox->addListener (this);
 
     frequencyComboBox->setBounds (200, 168, 64, 24);
 
-    frequencyLabel.reset (new juce::Label ("frequency label",
-                                           TRANS("Frequency Multiplier")));
+    frequencyLabel.reset (new Label ("frequency label",
+                                     TRANS("Frequency Multiplier")));
     addAndMakeVisible (frequencyLabel.get());
     frequencyLabel->setTooltip (TRANS("Multiplier applied to base note frequency"));
-    frequencyLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel->setJustificationType (juce::Justification::centredLeft);
+    frequencyLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel->setJustificationType (Justification::centredLeft);
     frequencyLabel->setEditable (false, false, false);
-    frequencyLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel->setBounds (40, 168, 152, 24);
 
-    aSlider.reset (new juce::Slider ("a slider"));
+    aSlider.reset (new Slider ("a slider"));
     addAndMakeVisible (aSlider.get());
     aSlider->setTooltip (TRANS("Envelope attack rate"));
     aSlider->setRange (0, 15, 1);
-    aSlider->setSliderStyle (juce::Slider::LinearVertical);
-    aSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 30, 20);
-    aSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    aSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    aSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    aSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    aSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    aSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    aSlider->setSliderStyle (Slider::LinearVertical);
+    aSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
+    aSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    aSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    aSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    aSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    aSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    aSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     aSlider->addListener (this);
 
     aSlider->setBounds (40, 200, 30, 104);
 
-    aLabel.reset (new juce::Label ("a label",
-                                   TRANS("A")));
+    aLabel.reset (new Label ("a label",
+                             TRANS("A")));
     addAndMakeVisible (aLabel.get());
     aLabel->setTooltip (TRANS("Attack rate"));
-    aLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    aLabel->setJustificationType (juce::Justification::centred);
+    aLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    aLabel->setJustificationType (Justification::centred);
     aLabel->setEditable (false, false, false);
-    aLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    aLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    aLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    aLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    aLabel->setColour (TextEditor::textColourId, Colours::black);
+    aLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     aLabel->setBounds (40, 304, 30, 24);
 
-    dSlider.reset (new juce::Slider ("d slider"));
+    dSlider.reset (new Slider ("d slider"));
     addAndMakeVisible (dSlider.get());
     dSlider->setTooltip (TRANS("Envelope decay rate"));
     dSlider->setRange (0, 15, 1);
-    dSlider->setSliderStyle (juce::Slider::LinearVertical);
-    dSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 30, 20);
-    dSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    dSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    dSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    dSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    dSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    dSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    dSlider->setSliderStyle (Slider::LinearVertical);
+    dSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
+    dSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    dSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    dSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    dSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    dSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    dSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     dSlider->addListener (this);
 
     dSlider->setBounds (88, 200, 30, 104);
 
-    dLabel.reset (new juce::Label ("d label",
-                                   TRANS("D")));
+    dLabel.reset (new Label ("d label",
+                             TRANS("D")));
     addAndMakeVisible (dLabel.get());
     dLabel->setTooltip (TRANS("Decay rate"));
-    dLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dLabel->setJustificationType (juce::Justification::centred);
+    dLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dLabel->setJustificationType (Justification::centred);
     dLabel->setEditable (false, false, false);
-    dLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    dLabel->setColour (TextEditor::textColourId, Colours::black);
+    dLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dLabel->setBounds (88, 304, 30, 24);
 
-    sSlider.reset (new juce::Slider ("s slider"));
+    sSlider.reset (new Slider ("s slider"));
     addAndMakeVisible (sSlider.get());
     sSlider->setTooltip (TRANS("Envelope sustain level"));
     sSlider->setRange (0, 15, 1);
-    sSlider->setSliderStyle (juce::Slider::LinearVertical);
-    sSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 30, 20);
-    sSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    sSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    sSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    sSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    sSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    sSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    sSlider->setSliderStyle (Slider::LinearVertical);
+    sSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
+    sSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    sSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    sSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    sSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    sSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    sSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     sSlider->addListener (this);
 
     sSlider->setBounds (136, 200, 30, 104);
 
-    dLabel2.reset (new juce::Label ("d label",
-                                    TRANS("S")));
+    dLabel2.reset (new Label ("d label",
+                              TRANS("S")));
     addAndMakeVisible (dLabel2.get());
     dLabel2->setTooltip (TRANS("Sustain level"));
-    dLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dLabel2->setJustificationType (juce::Justification::centred);
+    dLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dLabel2->setJustificationType (Justification::centred);
     dLabel2->setEditable (false, false, false);
-    dLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    dLabel2->setColour (TextEditor::textColourId, Colours::black);
+    dLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dLabel2->setBounds (136, 304, 30, 24);
 
-    rSlider.reset (new juce::Slider ("r slider"));
+    rSlider.reset (new Slider ("r slider"));
     addAndMakeVisible (rSlider.get());
     rSlider->setTooltip (TRANS("Envelope release rate"));
     rSlider->setRange (0, 15, 1);
-    rSlider->setSliderStyle (juce::Slider::LinearVertical);
-    rSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 30, 20);
-    rSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    rSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    rSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    rSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    rSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    rSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    rSlider->setSliderStyle (Slider::LinearVertical);
+    rSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
+    rSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    rSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    rSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    rSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    rSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    rSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     rSlider->addListener (this);
 
     rSlider->setBounds (184, 200, 30, 104);
 
-    rLabel.reset (new juce::Label ("r label",
-                                   TRANS("R")));
+    rLabel.reset (new Label ("r label",
+                             TRANS("R")));
     addAndMakeVisible (rLabel.get());
     rLabel->setTooltip (TRANS("Release rate"));
-    rLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    rLabel->setJustificationType (juce::Justification::centred);
+    rLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    rLabel->setJustificationType (Justification::centred);
     rLabel->setEditable (false, false, false);
-    rLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    rLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    rLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    rLabel->setColour (TextEditor::textColourId, Colours::black);
+    rLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     rLabel->setBounds (184, 304, 30, 24);
 
-    attenuationSlider.reset (new juce::Slider ("attenuation slider"));
+    attenuationSlider.reset (new Slider ("attenuation slider"));
     addAndMakeVisible (attenuationSlider.get());
     attenuationSlider->setRange (-47.25, 0, 0.75);
-    attenuationSlider->setSliderStyle (juce::Slider::LinearVertical);
-    attenuationSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 64, 20);
-    attenuationSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    attenuationSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    attenuationSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    attenuationSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    attenuationSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    attenuationSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    attenuationSlider->setSliderStyle (Slider::LinearVertical);
+    attenuationSlider->setTextBoxStyle (Slider::TextBoxBelow, false, 64, 20);
+    attenuationSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    attenuationSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    attenuationSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    attenuationSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    attenuationSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    attenuationSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     attenuationSlider->addListener (this);
 
     attenuationSlider->setBounds (328, 184, 56, 142);
 
-    attenuationLabel.reset (new juce::Label ("attenuation label",
-                                             TRANS("Attenuation")));
+    attenuationLabel.reset (new Label ("attenuation label",
+                                       TRANS("Attenuation")));
     addAndMakeVisible (attenuationLabel.get());
     attenuationLabel->setTooltip (TRANS("Final output level adjustment"));
-    attenuationLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    attenuationLabel->setJustificationType (juce::Justification::centred);
+    attenuationLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    attenuationLabel->setJustificationType (Justification::centred);
     attenuationLabel->setEditable (false, false, false);
-    attenuationLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    attenuationLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    attenuationLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    attenuationLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    attenuationLabel->setColour (TextEditor::textColourId, Colours::black);
+    attenuationLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     attenuationLabel->setBounds (304, 160, 112, 24);
 
-    dbLabel.reset (new juce::Label ("db label",
-                                    TRANS("dB")));
+    dbLabel.reset (new Label ("db label",
+                              TRANS("dB")));
     addAndMakeVisible (dbLabel.get());
-    dbLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel->setJustificationType (juce::Justification::centred);
+    dbLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel->setJustificationType (Justification::centred);
     dbLabel->setEditable (false, false, false);
-    dbLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel->setBounds (384, 304, 32, 24);
 
-    sineImageButton.reset (new juce::ImageButton ("sine image button"));
+    sineImageButton.reset (new ImageButton ("sine image button"));
     addAndMakeVisible (sineImageButton.get());
     sineImageButton->setButtonText (TRANS("Sine"));
     sineImageButton->setRadioGroupId (1);
     sineImageButton->addListener (this);
 
     sineImageButton->setImages (false, true, true,
-                                juce::ImageCache::getFromMemory (full_sine_png, full_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                ImageCache::getFromMemory (full_sine_png, full_sine_pngSize), 0.500f, Colour (0x00000000),
+                                Image(), 0.500f, Colour (0x00000000),
+                                Image(), 1.000f, Colour (0x00000000));
     sineImageButton->setBounds (88, 113, 34, 30);
 
-    halfsineImageButton.reset (new juce::ImageButton ("half sine image button"));
+    halfsineImageButton.reset (new ImageButton ("half sine image button"));
     addAndMakeVisible (halfsineImageButton.get());
     halfsineImageButton->setButtonText (TRANS("Half Sine"));
     halfsineImageButton->setRadioGroupId (1);
     halfsineImageButton->addListener (this);
 
     halfsineImageButton->setImages (false, true, true,
-                                    juce::ImageCache::getFromMemory (half_sine_png, half_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                    juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                    juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (half_sine_png, half_sine_pngSize), 0.500f, Colour (0x00000000),
+                                    Image(), 0.500f, Colour (0x00000000),
+                                    Image(), 1.000f, Colour (0x00000000));
     halfsineImageButton->setBounds (128, 113, 34, 30);
 
-    abssineImageButton.reset (new juce::ImageButton ("abs sine image button"));
+    abssineImageButton.reset (new ImageButton ("abs sine image button"));
     addAndMakeVisible (abssineImageButton.get());
     abssineImageButton->setButtonText (TRANS("Abs Sine"));
     abssineImageButton->setRadioGroupId (1);
     abssineImageButton->addListener (this);
 
     abssineImageButton->setImages (false, true, true,
-                                   juce::ImageCache::getFromMemory (abs_sine_png, abs_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (abs_sine_png, abs_sine_pngSize), 0.500f, Colour (0x00000000),
+                                   Image(), 0.500f, Colour (0x00000000),
+                                   Image(), 1.000f, Colour (0x00000000));
     abssineImageButton->setBounds (168, 113, 34, 30);
 
-    quartersineImageButton.reset (new juce::ImageButton ("quarter sine image button"));
+    quartersineImageButton.reset (new ImageButton ("quarter sine image button"));
     addAndMakeVisible (quartersineImageButton.get());
     quartersineImageButton->setButtonText (TRANS("Quarter Sine"));
     quartersineImageButton->setRadioGroupId (1);
     quartersineImageButton->addListener (this);
 
     quartersineImageButton->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (quarter_sine_png, quarter_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                       juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                       juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (quarter_sine_png, quarter_sine_pngSize), 0.500f, Colour (0x00000000),
+                                       Image(), 0.500f, Colour (0x00000000),
+                                       Image(), 1.000f, Colour (0x00000000));
     quartersineImageButton->setBounds (208, 113, 34, 30);
 
-    waveLabel.reset (new juce::Label ("wave label",
-                                      TRANS("Wave")));
+    waveLabel.reset (new Label ("wave label",
+                                TRANS("Wave")));
     addAndMakeVisible (waveLabel.get());
-    waveLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    waveLabel->setJustificationType (juce::Justification::centredLeft);
+    waveLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    waveLabel->setJustificationType (Justification::centredLeft);
     waveLabel->setEditable (false, false, false);
-    waveLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    waveLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    waveLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    waveLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    waveLabel->setColour (TextEditor::textColourId, Colours::black);
+    waveLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     waveLabel->setBounds (32, 115, 48, 24);
 
-    tremoloButton.reset (new juce::ToggleButton ("tremolo button"));
+    tremoloButton.reset (new ToggleButton ("tremolo button"));
     addAndMakeVisible (tremoloButton.get());
     tremoloButton->setTooltip (TRANS("Modulate amplitude at 3.7 Hz"));
     tremoloButton->setButtonText (TRANS("Tremolo"));
     tremoloButton->addListener (this);
-    tremoloButton->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    tremoloButton->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     tremoloButton->setBounds (120, 352, 80, 24);
 
-    vibratoButton.reset (new juce::ToggleButton ("vibrato button"));
+    vibratoButton.reset (new ToggleButton ("vibrato button"));
     addAndMakeVisible (vibratoButton.get());
     vibratoButton->setTooltip (TRANS("Modulate frequency at 6.1 Hz"));
     vibratoButton->setButtonText (TRANS("Vibrato"));
     vibratoButton->addListener (this);
-    vibratoButton->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    vibratoButton->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     vibratoButton->setBounds (32, 352, 72, 24);
 
-    sustainButton.reset (new juce::ToggleButton ("sustain button"));
+    sustainButton.reset (new ToggleButton ("sustain button"));
     addAndMakeVisible (sustainButton.get());
     sustainButton->setTooltip (TRANS("Enable or disable sustain when note is held"));
     sustainButton->setButtonText (TRANS("Sustain"));
     sustainButton->addListener (this);
-    sustainButton->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    sustainButton->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     sustainButton->setBounds (32, 384, 70, 32);
 
-    keyscaleEnvButton.reset (new juce::ToggleButton ("keyscale env button"));
+    keyscaleEnvButton.reset (new ToggleButton ("keyscale env button"));
     addAndMakeVisible (keyscaleEnvButton.get());
     keyscaleEnvButton->setTooltip (TRANS("Speed up envelope rate with note frequency"));
     keyscaleEnvButton->setButtonText (TRANS("Keyscale Env. Rate"));
     keyscaleEnvButton->addListener (this);
-    keyscaleEnvButton->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    keyscaleEnvButton->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     keyscaleEnvButton->setBounds (120, 376, 101, 48);
 
-    dbLabel2.reset (new juce::Label ("db label",
-                                     TRANS("dB/8ve\n")));
+    dbLabel2.reset (new Label ("db label",
+                               TRANS("dB/8ve\n")));
     addAndMakeVisible (dbLabel2.get());
-    dbLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel2->setJustificationType (juce::Justification::centred);
+    dbLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel2->setJustificationType (Justification::centred);
     dbLabel2->setEditable (false, false, false);
-    dbLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel2->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel2->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel2->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel2->setBounds (792, 712, 72, 16);
 
-    frequencyComboBox2.reset (new juce::ComboBox ("frequency combo box"));
+    frequencyComboBox2.reset (new ComboBox ("frequency combo box"));
     addAndMakeVisible (frequencyComboBox2.get());
     frequencyComboBox2->setEditableText (false);
-    frequencyComboBox2->setJustificationType (juce::Justification::centredLeft);
-    frequencyComboBox2->setTextWhenNothingSelected (juce::String());
+    frequencyComboBox2->setJustificationType (Justification::centredLeft);
+    frequencyComboBox2->setTextWhenNothingSelected (String());
     frequencyComboBox2->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     frequencyComboBox2->addListener (this);
 
     frequencyComboBox2->setBounds (624, 168, 66, 24);
 
-    frequencyLabel3.reset (new juce::Label ("frequency label",
-                                            TRANS("Frequency Multiplier")));
+    frequencyLabel3.reset (new Label ("frequency label",
+                                      TRANS("Frequency Multiplier")));
     addAndMakeVisible (frequencyLabel3.get());
     frequencyLabel3->setTooltip (TRANS("Multiplier applied to base note frequency"));
-    frequencyLabel3->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel3->setJustificationType (juce::Justification::centredLeft);
+    frequencyLabel3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel3->setJustificationType (Justification::centredLeft);
     frequencyLabel3->setEditable (false, false, false);
-    frequencyLabel3->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel3->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel3->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel3->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel3->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel3->setBounds (464, 168, 152, 24);
 
-    aSlider2.reset (new juce::Slider ("a slider"));
+    aSlider2.reset (new Slider ("a slider"));
     addAndMakeVisible (aSlider2.get());
     aSlider2->setRange (0, 15, 1);
-    aSlider2->setSliderStyle (juce::Slider::LinearVertical);
-    aSlider2->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 40, 20);
-    aSlider2->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    aSlider2->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    aSlider2->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    aSlider2->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    aSlider2->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    aSlider2->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    aSlider2->setSliderStyle (Slider::LinearVertical);
+    aSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
+    aSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    aSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    aSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    aSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    aSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    aSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     aSlider2->addListener (this);
 
     aSlider2->setBounds (464, 200, 30, 104);
 
-    aLabel2.reset (new juce::Label ("a label",
-                                    TRANS("A")));
+    aLabel2.reset (new Label ("a label",
+                              TRANS("A")));
     addAndMakeVisible (aLabel2.get());
     aLabel2->setTooltip (TRANS("Attack rate"));
-    aLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    aLabel2->setJustificationType (juce::Justification::centred);
+    aLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    aLabel2->setJustificationType (Justification::centred);
     aLabel2->setEditable (false, false, false);
-    aLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    aLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    aLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    aLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    aLabel2->setColour (TextEditor::textColourId, Colours::black);
+    aLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     aLabel2->setBounds (464, 304, 30, 24);
 
-    dSlider2.reset (new juce::Slider ("d slider"));
+    dSlider2.reset (new Slider ("d slider"));
     addAndMakeVisible (dSlider2.get());
     dSlider2->setRange (0, 15, 1);
-    dSlider2->setSliderStyle (juce::Slider::LinearVertical);
-    dSlider2->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 40, 20);
-    dSlider2->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    dSlider2->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    dSlider2->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    dSlider2->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    dSlider2->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    dSlider2->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    dSlider2->setSliderStyle (Slider::LinearVertical);
+    dSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
+    dSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    dSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    dSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    dSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    dSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    dSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     dSlider2->addListener (this);
 
     dSlider2->setBounds (512, 200, 30, 104);
 
-    dLabel3.reset (new juce::Label ("d label",
-                                    TRANS("D")));
+    dLabel3.reset (new Label ("d label",
+                              TRANS("D")));
     addAndMakeVisible (dLabel3.get());
     dLabel3->setTooltip (TRANS("Decay rate"));
-    dLabel3->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dLabel3->setJustificationType (juce::Justification::centred);
+    dLabel3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dLabel3->setJustificationType (Justification::centred);
     dLabel3->setEditable (false, false, false);
-    dLabel3->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dLabel3->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dLabel3->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dLabel3->setColour (Label::textColourId, Colour (0xff007f00));
+    dLabel3->setColour (TextEditor::textColourId, Colours::black);
+    dLabel3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dLabel3->setBounds (512, 304, 30, 24);
 
-    sSlider2.reset (new juce::Slider ("s slider"));
+    sSlider2.reset (new Slider ("s slider"));
     addAndMakeVisible (sSlider2.get());
     sSlider2->setRange (0, 15, 1);
-    sSlider2->setSliderStyle (juce::Slider::LinearVertical);
-    sSlider2->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 40, 20);
-    sSlider2->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    sSlider2->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    sSlider2->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    sSlider2->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    sSlider2->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    sSlider2->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    sSlider2->setSliderStyle (Slider::LinearVertical);
+    sSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
+    sSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    sSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    sSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    sSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    sSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    sSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     sSlider2->addListener (this);
 
     sSlider2->setBounds (560, 200, 30, 104);
 
-    dLabel4.reset (new juce::Label ("d label",
-                                    TRANS("S")));
+    dLabel4.reset (new Label ("d label",
+                              TRANS("S")));
     addAndMakeVisible (dLabel4.get());
     dLabel4->setTooltip (TRANS("Sustain level"));
-    dLabel4->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dLabel4->setJustificationType (juce::Justification::centred);
+    dLabel4->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dLabel4->setJustificationType (Justification::centred);
     dLabel4->setEditable (false, false, false);
-    dLabel4->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dLabel4->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dLabel4->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dLabel4->setColour (Label::textColourId, Colour (0xff007f00));
+    dLabel4->setColour (TextEditor::textColourId, Colours::black);
+    dLabel4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dLabel4->setBounds (560, 304, 30, 24);
 
-    rSlider2.reset (new juce::Slider ("r slider"));
+    rSlider2.reset (new Slider ("r slider"));
     addAndMakeVisible (rSlider2.get());
     rSlider2->setRange (0, 15, 1);
-    rSlider2->setSliderStyle (juce::Slider::LinearVertical);
-    rSlider2->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 40, 20);
-    rSlider2->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    rSlider2->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    rSlider2->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    rSlider2->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    rSlider2->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    rSlider2->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    rSlider2->setSliderStyle (Slider::LinearVertical);
+    rSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 40, 20);
+    rSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    rSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    rSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    rSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    rSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    rSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     rSlider2->addListener (this);
 
     rSlider2->setBounds (608, 200, 30, 104);
 
-    rLabel2.reset (new juce::Label ("r label",
-                                    TRANS("R")));
+    rLabel2.reset (new Label ("r label",
+                              TRANS("R")));
     addAndMakeVisible (rLabel2.get());
     rLabel2->setTooltip (TRANS("Release rate"));
-    rLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    rLabel2->setJustificationType (juce::Justification::centred);
+    rLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    rLabel2->setJustificationType (Justification::centred);
     rLabel2->setEditable (false, false, false);
-    rLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    rLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    rLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    rLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    rLabel2->setColour (TextEditor::textColourId, Colours::black);
+    rLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     rLabel2->setBounds (608, 304, 30, 24);
 
-    attenuationSlider2.reset (new juce::Slider ("attenuation slider"));
+    attenuationSlider2.reset (new Slider ("attenuation slider"));
     addAndMakeVisible (attenuationSlider2.get());
     attenuationSlider2->setRange (-47.25, 0, 0.75);
-    attenuationSlider2->setSliderStyle (juce::Slider::LinearVertical);
-    attenuationSlider2->setTextBoxStyle (juce::Slider::TextBoxBelow, false, 64, 20);
-    attenuationSlider2->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    attenuationSlider2->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    attenuationSlider2->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    attenuationSlider2->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    attenuationSlider2->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    attenuationSlider2->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    attenuationSlider2->setSliderStyle (Slider::LinearVertical);
+    attenuationSlider2->setTextBoxStyle (Slider::TextBoxBelow, false, 64, 20);
+    attenuationSlider2->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    attenuationSlider2->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    attenuationSlider2->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    attenuationSlider2->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    attenuationSlider2->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    attenuationSlider2->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     attenuationSlider2->addListener (this);
 
     attenuationSlider2->setBounds (752, 184, 56, 142);
 
-    attenuationLabel2.reset (new juce::Label ("attenuation label",
-                                              TRANS("Attenuation")));
+    attenuationLabel2.reset (new Label ("attenuation label",
+                                        TRANS("Attenuation")));
     addAndMakeVisible (attenuationLabel2.get());
     attenuationLabel2->setTooltip (TRANS("Final output level adjustment"));
-    attenuationLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    attenuationLabel2->setJustificationType (juce::Justification::centred);
+    attenuationLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    attenuationLabel2->setJustificationType (Justification::centred);
     attenuationLabel2->setEditable (false, false, false);
-    attenuationLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    attenuationLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    attenuationLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    attenuationLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    attenuationLabel2->setColour (TextEditor::textColourId, Colours::black);
+    attenuationLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     attenuationLabel2->setBounds (728, 160, 112, 24);
 
-    dbLabel3.reset (new juce::Label ("db label",
-                                     TRANS("dB")));
+    dbLabel3.reset (new Label ("db label",
+                               TRANS("dB")));
     addAndMakeVisible (dbLabel3.get());
-    dbLabel3->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel3->setJustificationType (juce::Justification::centred);
+    dbLabel3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel3->setJustificationType (Justification::centred);
     dbLabel3->setEditable (false, false, false);
-    dbLabel3->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel3->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel3->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel3->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel3->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel3->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel3->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel3->setBounds (800, 304, 40, 24);
 
-    sineImageButton2.reset (new juce::ImageButton ("sine image button"));
+    sineImageButton2.reset (new ImageButton ("sine image button"));
     addAndMakeVisible (sineImageButton2.get());
     sineImageButton2->setButtonText (TRANS("Sine"));
     sineImageButton2->setRadioGroupId (2);
     sineImageButton2->addListener (this);
 
     sineImageButton2->setImages (false, true, true,
-                                 juce::ImageCache::getFromMemory (full_sine_png, full_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                 juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                 juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                 ImageCache::getFromMemory (full_sine_png, full_sine_pngSize), 0.500f, Colour (0x00000000),
+                                 Image(), 0.500f, Colour (0x00000000),
+                                 Image(), 1.000f, Colour (0x00000000));
     sineImageButton2->setBounds (512, 113, 34, 30);
 
-    halfsineImageButton2.reset (new juce::ImageButton ("half sine image button"));
+    halfsineImageButton2.reset (new ImageButton ("half sine image button"));
     addAndMakeVisible (halfsineImageButton2.get());
     halfsineImageButton2->setButtonText (TRANS("Half Sine"));
     halfsineImageButton2->setRadioGroupId (2);
     halfsineImageButton2->addListener (this);
 
     halfsineImageButton2->setImages (false, true, true,
-                                     juce::ImageCache::getFromMemory (half_sine_png, half_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                     juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                     juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                     ImageCache::getFromMemory (half_sine_png, half_sine_pngSize), 0.500f, Colour (0x00000000),
+                                     Image(), 0.500f, Colour (0x00000000),
+                                     Image(), 1.000f, Colour (0x00000000));
     halfsineImageButton2->setBounds (552, 113, 34, 30);
 
-    abssineImageButton2.reset (new juce::ImageButton ("abs sine image button"));
+    abssineImageButton2.reset (new ImageButton ("abs sine image button"));
     addAndMakeVisible (abssineImageButton2.get());
     abssineImageButton2->setButtonText (TRANS("Abs Sine"));
     abssineImageButton2->setRadioGroupId (2);
     abssineImageButton2->addListener (this);
 
     abssineImageButton2->setImages (false, true, true,
-                                    juce::ImageCache::getFromMemory (abs_sine_png, abs_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                    juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                    juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (abs_sine_png, abs_sine_pngSize), 0.500f, Colour (0x00000000),
+                                    Image(), 0.500f, Colour (0x00000000),
+                                    Image(), 1.000f, Colour (0x00000000));
     abssineImageButton2->setBounds (592, 113, 34, 30);
 
-    quartersineImageButton2.reset (new juce::ImageButton ("quarter sine image button"));
+    quartersineImageButton2.reset (new ImageButton ("quarter sine image button"));
     addAndMakeVisible (quartersineImageButton2.get());
     quartersineImageButton2->setButtonText (TRANS("Quarter Sine"));
     quartersineImageButton2->setRadioGroupId (2);
     quartersineImageButton2->addListener (this);
 
     quartersineImageButton2->setImages (false, true, true,
-                                        juce::ImageCache::getFromMemory (quarter_sine_png, quarter_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                        juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                        juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                        ImageCache::getFromMemory (quarter_sine_png, quarter_sine_pngSize), 0.500f, Colour (0x00000000),
+                                        Image(), 0.500f, Colour (0x00000000),
+                                        Image(), 1.000f, Colour (0x00000000));
     quartersineImageButton2->setBounds (632, 113, 34, 30);
 
-    waveLabel2.reset (new juce::Label ("wave label",
-                                       TRANS("Wave")));
+    waveLabel2.reset (new Label ("wave label",
+                                 TRANS("Wave")));
     addAndMakeVisible (waveLabel2.get());
-    waveLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    waveLabel2->setJustificationType (juce::Justification::centredLeft);
+    waveLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    waveLabel2->setJustificationType (Justification::centredLeft);
     waveLabel2->setEditable (false, false, false);
-    waveLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    waveLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    waveLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    waveLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    waveLabel2->setColour (TextEditor::textColourId, Colours::black);
+    waveLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     waveLabel2->setBounds (456, 115, 48, 24);
 
-    tremoloButton2.reset (new juce::ToggleButton ("tremolo button"));
+    tremoloButton2.reset (new ToggleButton ("tremolo button"));
     addAndMakeVisible (tremoloButton2.get());
     tremoloButton2->setTooltip (TRANS("Modulate amplitude at 3.7 Hz"));
     tremoloButton2->setButtonText (TRANS("Tremolo"));
     tremoloButton2->addListener (this);
-    tremoloButton2->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    tremoloButton2->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     tremoloButton2->setBounds (544, 352, 80, 24);
 
-    vibratoButton2.reset (new juce::ToggleButton ("vibrato button"));
+    vibratoButton2.reset (new ToggleButton ("vibrato button"));
     addAndMakeVisible (vibratoButton2.get());
     vibratoButton2->setTooltip (TRANS("Modulate frequency at 6.1 Hz"));
     vibratoButton2->setButtonText (TRANS("Vibrato"));
     vibratoButton2->addListener (this);
-    vibratoButton2->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    vibratoButton2->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     vibratoButton2->setBounds (456, 352, 72, 24);
 
-    sustainButton2.reset (new juce::ToggleButton ("sustain button"));
+    sustainButton2.reset (new ToggleButton ("sustain button"));
     addAndMakeVisible (sustainButton2.get());
     sustainButton2->setTooltip (TRANS("Enable or disable sustain when note is held"));
     sustainButton2->setButtonText (TRANS("Sustain"));
     sustainButton2->addListener (this);
-    sustainButton2->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    sustainButton2->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     sustainButton2->setBounds (456, 384, 70, 24);
 
-    keyscaleEnvButton2.reset (new juce::ToggleButton ("keyscale env button"));
+    keyscaleEnvButton2.reset (new ToggleButton ("keyscale env button"));
     addAndMakeVisible (keyscaleEnvButton2.get());
     keyscaleEnvButton2->setTooltip (TRANS("Speed up envelope rate with note frequency"));
     keyscaleEnvButton2->setButtonText (TRANS("Keyscale Env. Rate"));
     keyscaleEnvButton2->addListener (this);
-    keyscaleEnvButton2->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    keyscaleEnvButton2->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     keyscaleEnvButton2->setBounds (544, 376, 102, 48);
 
-    frequencyLabel4.reset (new juce::Label ("frequency label",
-                                            TRANS("Keyscale Attenuation")));
+    frequencyLabel4.reset (new Label ("frequency label",
+                                      TRANS("Keyscale Attenuation")));
     addAndMakeVisible (frequencyLabel4.get());
     frequencyLabel4->setTooltip (TRANS("Attenuate amplitude with note frequency in dB per octave"));
-    frequencyLabel4->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel4->setJustificationType (juce::Justification::centred);
+    frequencyLabel4->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel4->setJustificationType (Justification::centred);
     frequencyLabel4->setEditable (false, false, false);
-    frequencyLabel4->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel4->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel4->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel4->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel4->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel4->setBounds (656, 376, 88, 48);
 
-    groupComponent3.reset (new juce::GroupComponent ("new group",
-                                                     TRANS("Effect depth")));
+    groupComponent3.reset (new GroupComponent ("new group",
+                                               TRANS("Effect depth")));
     addAndMakeVisible (groupComponent3.get());
-    groupComponent3->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent3->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0x00007f00));
-    groupComponent3->setColour (juce::GroupComponent::textColourId, juce::Colour (0x00007f00));
+    groupComponent3->setTextLabelPosition (Justification::centredLeft);
+    groupComponent3->setColour (GroupComponent::outlineColourId, Colour (0x00007f00));
+    groupComponent3->setColour (GroupComponent::textColourId, Colour (0x00007f00));
 
     groupComponent3->setBounds (16, 440, 248, 120);
 
-    tremoloSlider.reset (new juce::Slider ("tremolo slider"));
+    tremoloSlider.reset (new Slider ("tremolo slider"));
     addAndMakeVisible (tremoloSlider.get());
     tremoloSlider->setRange (1, 4.8, 3.8);
-    tremoloSlider->setSliderStyle (juce::Slider::LinearHorizontal);
-    tremoloSlider->setTextBoxStyle (juce::Slider::TextBoxRight, true, 32, 20);
-    tremoloSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    tremoloSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    tremoloSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    tremoloSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    tremoloSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    tremoloSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    tremoloSlider->setSliderStyle (Slider::LinearHorizontal);
+    tremoloSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
+    tremoloSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    tremoloSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    tremoloSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    tremoloSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    tremoloSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    tremoloSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     tremoloSlider->addListener (this);
 
     tremoloSlider->setBounds (112, 472, 80, 24);
 
-    frequencyLabel5.reset (new juce::Label ("frequency label",
-                                            TRANS("Tremolo\n")));
+    frequencyLabel5.reset (new Label ("frequency label",
+                                      TRANS("Tremolo\n")));
     addAndMakeVisible (frequencyLabel5.get());
     frequencyLabel5->setTooltip (TRANS("OPL global tremolo depth"));
-    frequencyLabel5->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel5->setJustificationType (juce::Justification::centredLeft);
+    frequencyLabel5->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel5->setJustificationType (Justification::centredLeft);
     frequencyLabel5->setEditable (false, false, false);
-    frequencyLabel5->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel5->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel5->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel5->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel5->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel5->setBounds (32, 472, 80, 24);
 
-    dbLabel5.reset (new juce::Label ("db label",
-                                     TRANS("dB")));
+    dbLabel5.reset (new Label ("db label",
+                               TRANS("dB")));
     addAndMakeVisible (dbLabel5.get());
-    dbLabel5->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel5->setJustificationType (juce::Justification::centredLeft);
+    dbLabel5->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel5->setJustificationType (Justification::centredLeft);
     dbLabel5->setEditable (false, false, false);
-    dbLabel5->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel5->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel5->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel5->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel5->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel5->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel5->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel5->setBounds (200, 464, 32, 40);
 
-    vibratoSlider.reset (new juce::Slider ("vibrato slider"));
+    vibratoSlider.reset (new Slider ("vibrato slider"));
     addAndMakeVisible (vibratoSlider.get());
     vibratoSlider->setRange (7, 14, 7);
-    vibratoSlider->setSliderStyle (juce::Slider::LinearHorizontal);
-    vibratoSlider->setTextBoxStyle (juce::Slider::TextBoxRight, true, 32, 20);
-    vibratoSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff007f00));
-    vibratoSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    vibratoSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    vibratoSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    vibratoSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    vibratoSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    vibratoSlider->setSliderStyle (Slider::LinearHorizontal);
+    vibratoSlider->setTextBoxStyle (Slider::TextBoxRight, true, 32, 20);
+    vibratoSlider->setColour (Slider::thumbColourId, Colour (0xff007f00));
+    vibratoSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    vibratoSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    vibratoSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    vibratoSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    vibratoSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     vibratoSlider->addListener (this);
 
     vibratoSlider->setBounds (112, 512, 80, 24);
 
-    frequencyLabel6.reset (new juce::Label ("frequency label",
-                                            TRANS("Vibrato")));
+    frequencyLabel6.reset (new Label ("frequency label",
+                                      TRANS("Vibrato")));
     addAndMakeVisible (frequencyLabel6.get());
     frequencyLabel6->setTooltip (TRANS("OPL global vibrato depth"));
-    frequencyLabel6->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel6->setJustificationType (juce::Justification::centredLeft);
+    frequencyLabel6->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel6->setJustificationType (Justification::centredLeft);
     frequencyLabel6->setEditable (false, false, false);
-    frequencyLabel6->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel6->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel6->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel6->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel6->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel6->setBounds (32, 512, 80, 24);
 
-    dbLabel6.reset (new juce::Label ("db label",
-                                     TRANS("cents\n")));
+    dbLabel6.reset (new Label ("db label",
+                               TRANS("cents\n")));
     addAndMakeVisible (dbLabel6.get());
     dbLabel6->setTooltip (TRANS("A unit of pitch; 100 cents per semitone"));
-    dbLabel6->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel6->setJustificationType (juce::Justification::centredLeft);
+    dbLabel6->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel6->setJustificationType (Justification::centredLeft);
     dbLabel6->setEditable (false, false, false);
-    dbLabel6->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel6->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel6->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel6->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel6->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel6->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel6->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel6->setBounds (200, 504, 48, 40);
 
-    feedbackSlider.reset (new juce::Slider ("feedback slider"));
+    feedbackSlider.reset (new Slider ("feedback slider"));
     addAndMakeVisible (feedbackSlider.get());
     feedbackSlider->setRange (0, 7, 1);
-    feedbackSlider->setSliderStyle (juce::Slider::RotaryHorizontalVerticalDrag);
-    feedbackSlider->setTextBoxStyle (juce::Slider::TextBoxBelow, true, 30, 20);
-    feedbackSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff00af00));
-    feedbackSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    feedbackSlider->setColour (juce::Slider::rotarySliderFillColourId, juce::Colour (0xff00af00));
-    feedbackSlider->setColour (juce::Slider::rotarySliderOutlineColourId, juce::Colour (0xff007f00));
-    feedbackSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    feedbackSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    feedbackSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
-    feedbackSlider->setColour (juce::Slider::textBoxOutlineColourId, juce::Colour (0x008e989b));
+    feedbackSlider->setSliderStyle (Slider::RotaryHorizontalVerticalDrag);
+    feedbackSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 30, 20);
+    feedbackSlider->setColour (Slider::thumbColourId, Colour (0xff00af00));
+    feedbackSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    feedbackSlider->setColour (Slider::rotarySliderFillColourId, Colour (0xff00af00));
+    feedbackSlider->setColour (Slider::rotarySliderOutlineColourId, Colour (0xff007f00));
+    feedbackSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    feedbackSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    feedbackSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
+    feedbackSlider->setColour (Slider::textBoxOutlineColourId, Colour (0x008e989b));
     feedbackSlider->addListener (this);
 
     feedbackSlider->setBounds (248, 237, 30, 67);
 
-    frequencyLabel7.reset (new juce::Label ("frequency label",
-                                            TRANS("Feedback")));
+    frequencyLabel7.reset (new Label ("frequency label",
+                                      TRANS("Feedback")));
     addAndMakeVisible (frequencyLabel7.get());
     frequencyLabel7->setTooltip (TRANS("Extent to which modulator output is fed back into itself"));
-    frequencyLabel7->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel7->setJustificationType (juce::Justification::centred);
+    frequencyLabel7->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel7->setJustificationType (Justification::centred);
     frequencyLabel7->setEditable (false, false, false);
-    frequencyLabel7->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel7->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel7->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel7->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel7->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel7->setBounds (224, 304, 80, 24);
 
-    velocityComboBox.reset (new juce::ComboBox ("velocity combo box"));
+    velocityComboBox.reset (new ComboBox ("velocity combo box"));
     addAndMakeVisible (velocityComboBox.get());
     velocityComboBox->setEditableText (false);
-    velocityComboBox->setJustificationType (juce::Justification::centredLeft);
-    velocityComboBox->setTextWhenNothingSelected (juce::String());
+    velocityComboBox->setJustificationType (Justification::centredLeft);
+    velocityComboBox->setTextWhenNothingSelected (String());
     velocityComboBox->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     velocityComboBox->addItem (TRANS("Off"), 1);
     velocityComboBox->addItem (TRANS("Light"), 2);
@@ -955,11 +955,11 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     velocityComboBox->setBounds (328, 352, 76, 24);
 
-    velocityComboBox2.reset (new juce::ComboBox ("velocity combo box"));
+    velocityComboBox2.reset (new ComboBox ("velocity combo box"));
     addAndMakeVisible (velocityComboBox2.get());
     velocityComboBox2->setEditableText (false);
-    velocityComboBox2->setJustificationType (juce::Justification::centredLeft);
-    velocityComboBox2->setTextWhenNothingSelected (juce::String());
+    velocityComboBox2->setJustificationType (Justification::centredLeft);
+    velocityComboBox2->setTextWhenNothingSelected (String());
     velocityComboBox2->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     velocityComboBox2->addItem (TRANS("Off"), 1);
     velocityComboBox2->addItem (TRANS("Light"), 2);
@@ -968,133 +968,133 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     velocityComboBox2->setBounds (760, 352, 72, 24);
 
-    attenuationLabel4.reset (new juce::Label ("attenuation label",
-                                              TRANS("Velocity Sensitivity")));
+    attenuationLabel4.reset (new Label ("attenuation label",
+                                        TRANS("Velocity Sensitivity")));
     addAndMakeVisible (attenuationLabel4.get());
     attenuationLabel4->setTooltip (TRANS("Set or disable velocity senstivity"));
-    attenuationLabel4->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    attenuationLabel4->setJustificationType (juce::Justification::centred);
+    attenuationLabel4->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    attenuationLabel4->setJustificationType (Justification::centred);
     attenuationLabel4->setEditable (false, false, false);
-    attenuationLabel4->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    attenuationLabel4->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    attenuationLabel4->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    attenuationLabel4->setColour (Label::textColourId, Colour (0xff007f00));
+    attenuationLabel4->setColour (TextEditor::textColourId, Colours::black);
+    attenuationLabel4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     attenuationLabel4->setBounds (760, 376, 80, 48);
 
-    alternatingsineImageButton.reset (new juce::ImageButton ("alternating sine image button"));
+    alternatingsineImageButton.reset (new ImageButton ("alternating sine image button"));
     addAndMakeVisible (alternatingsineImageButton.get());
     alternatingsineImageButton->setButtonText (TRANS("Alternating Sine"));
     alternatingsineImageButton->setRadioGroupId (1);
     alternatingsineImageButton->addListener (this);
 
     alternatingsineImageButton->setImages (false, true, true,
-                                           juce::ImageCache::getFromMemory (alternating_sine_png, alternating_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                           juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                           juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                           ImageCache::getFromMemory (alternating_sine_png, alternating_sine_pngSize), 0.500f, Colour (0x00000000),
+                                           Image(), 0.500f, Colour (0x00000000),
+                                           Image(), 1.000f, Colour (0x00000000));
     alternatingsineImageButton->setBounds (288, 113, 34, 30);
 
-    camelsineImageButton.reset (new juce::ImageButton ("camel sine image button"));
+    camelsineImageButton.reset (new ImageButton ("camel sine image button"));
     addAndMakeVisible (camelsineImageButton.get());
     camelsineImageButton->setButtonText (TRANS("Camel Sine"));
     camelsineImageButton->setRadioGroupId (1);
     camelsineImageButton->addListener (this);
 
     camelsineImageButton->setImages (false, true, true,
-                                     juce::ImageCache::getFromMemory (camel_sine_png, camel_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                     juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                     juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                     ImageCache::getFromMemory (camel_sine_png, camel_sine_pngSize), 0.500f, Colour (0x00000000),
+                                     Image(), 0.500f, Colour (0x00000000),
+                                     Image(), 1.000f, Colour (0x00000000));
     camelsineImageButton->setBounds (248, 113, 34, 30);
 
-    squareImageButton.reset (new juce::ImageButton ("square image button"));
+    squareImageButton.reset (new ImageButton ("square image button"));
     addAndMakeVisible (squareImageButton.get());
     squareImageButton->setButtonText (TRANS("Square"));
     squareImageButton->setRadioGroupId (1);
     squareImageButton->addListener (this);
 
     squareImageButton->setImages (false, true, true,
-                                  juce::ImageCache::getFromMemory (square_png, square_pngSize), 0.500f, juce::Colour (0x00000000),
-                                  juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                  juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                  ImageCache::getFromMemory (square_png, square_pngSize), 0.500f, Colour (0x00000000),
+                                  Image(), 0.500f, Colour (0x00000000),
+                                  Image(), 1.000f, Colour (0x00000000));
     squareImageButton->setBounds (328, 113, 34, 30);
 
-    logsawImageButton.reset (new juce::ImageButton ("logsaw image button"));
+    logsawImageButton.reset (new ImageButton ("logsaw image button"));
     addAndMakeVisible (logsawImageButton.get());
     logsawImageButton->setButtonText (TRANS("Logarithmic Sawtooth"));
     logsawImageButton->setRadioGroupId (1);
     logsawImageButton->addListener (this);
 
     logsawImageButton->setImages (false, true, true,
-                                  juce::ImageCache::getFromMemory (logarithmic_saw_png, logarithmic_saw_pngSize), 0.500f, juce::Colour (0x00000000),
-                                  juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                  juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                  ImageCache::getFromMemory (logarithmic_saw_png, logarithmic_saw_pngSize), 0.500f, Colour (0x00000000),
+                                  Image(), 0.500f, Colour (0x00000000),
+                                  Image(), 1.000f, Colour (0x00000000));
     logsawImageButton->setBounds (368, 113, 34, 30);
 
-    alternatingsineImageButton2.reset (new juce::ImageButton ("alternating sine image button"));
+    alternatingsineImageButton2.reset (new ImageButton ("alternating sine image button"));
     addAndMakeVisible (alternatingsineImageButton2.get());
     alternatingsineImageButton2->setButtonText (TRANS("Alternating Sine"));
     alternatingsineImageButton2->setRadioGroupId (2);
     alternatingsineImageButton2->addListener (this);
 
     alternatingsineImageButton2->setImages (false, true, true,
-                                            juce::ImageCache::getFromMemory (alternating_sine_png, alternating_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                            juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                            juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                            ImageCache::getFromMemory (alternating_sine_png, alternating_sine_pngSize), 0.500f, Colour (0x00000000),
+                                            Image(), 0.500f, Colour (0x00000000),
+                                            Image(), 1.000f, Colour (0x00000000));
     alternatingsineImageButton2->setBounds (714, 114, 34, 30);
 
-    camelsineImageButton2.reset (new juce::ImageButton ("camel sine image button"));
+    camelsineImageButton2.reset (new ImageButton ("camel sine image button"));
     addAndMakeVisible (camelsineImageButton2.get());
     camelsineImageButton2->setButtonText (TRANS("Camel Sine"));
     camelsineImageButton2->setRadioGroupId (2);
     camelsineImageButton2->addListener (this);
 
     camelsineImageButton2->setImages (false, true, true,
-                                      juce::ImageCache::getFromMemory (camel_sine_png, camel_sine_pngSize), 0.500f, juce::Colour (0x00000000),
-                                      juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                      juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                      ImageCache::getFromMemory (camel_sine_png, camel_sine_pngSize), 0.500f, Colour (0x00000000),
+                                      Image(), 0.500f, Colour (0x00000000),
+                                      Image(), 1.000f, Colour (0x00000000));
     camelsineImageButton2->setBounds (674, 114, 34, 30);
 
-    squareImageButton2.reset (new juce::ImageButton ("square image button"));
+    squareImageButton2.reset (new ImageButton ("square image button"));
     addAndMakeVisible (squareImageButton2.get());
     squareImageButton2->setButtonText (TRANS("Square"));
     squareImageButton2->setRadioGroupId (2);
     squareImageButton2->addListener (this);
 
     squareImageButton2->setImages (false, true, true,
-                                   juce::ImageCache::getFromMemory (square_png, square_pngSize), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (square_png, square_pngSize), 0.500f, Colour (0x00000000),
+                                   Image(), 0.500f, Colour (0x00000000),
+                                   Image(), 1.000f, Colour (0x00000000));
     squareImageButton2->setBounds (754, 114, 34, 30);
 
-    logsawImageButton2.reset (new juce::ImageButton ("logsaw image button"));
+    logsawImageButton2.reset (new ImageButton ("logsaw image button"));
     addAndMakeVisible (logsawImageButton2.get());
     logsawImageButton2->setButtonText (TRANS("Logarithmic Sawtooth"));
     logsawImageButton2->setRadioGroupId (2);
     logsawImageButton2->addListener (this);
 
     logsawImageButton2->setImages (false, true, true,
-                                   juce::ImageCache::getFromMemory (logarithmic_saw_png, logarithmic_saw_pngSize), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                   juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (logarithmic_saw_png, logarithmic_saw_pngSize), 0.500f, Colour (0x00000000),
+                                   Image(), 0.500f, Colour (0x00000000),
+                                   Image(), 1.000f, Colour (0x00000000));
     logsawImageButton2->setBounds (794, 114, 34, 30);
 
-    dbLabel4.reset (new juce::Label ("db label",
-                                     TRANS("dB/8ve\n")));
+    dbLabel4.reset (new Label ("db label",
+                               TRANS("dB/8ve\n")));
     addAndMakeVisible (dbLabel4.get());
-    dbLabel4->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel4->setJustificationType (juce::Justification::centred);
+    dbLabel4->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel4->setJustificationType (Justification::centred);
     dbLabel4->setEditable (false, false, false);
-    dbLabel4->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel4->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel4->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel4->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel4->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel4->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel4->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel4->setBounds (792, 688, 72, 16);
 
-    keyscaleAttenuationComboBox2.reset (new juce::ComboBox ("keyscale combo box"));
+    keyscaleAttenuationComboBox2.reset (new ComboBox ("keyscale combo box"));
     addAndMakeVisible (keyscaleAttenuationComboBox2.get());
     keyscaleAttenuationComboBox2->setEditableText (false);
-    keyscaleAttenuationComboBox2->setJustificationType (juce::Justification::centredLeft);
-    keyscaleAttenuationComboBox2->setTextWhenNothingSelected (juce::String());
+    keyscaleAttenuationComboBox2->setJustificationType (Justification::centredLeft);
+    keyscaleAttenuationComboBox2->setTextWhenNothingSelected (String());
     keyscaleAttenuationComboBox2->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     keyscaleAttenuationComboBox2->addItem (TRANS("-0.0"), 1);
     keyscaleAttenuationComboBox2->addItem (TRANS("-3.0"), 2);
@@ -1104,11 +1104,11 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     keyscaleAttenuationComboBox2->setBounds (664, 352, 76, 24);
 
-    keyscaleAttenuationComboBox.reset (new juce::ComboBox ("keyscale combo box"));
+    keyscaleAttenuationComboBox.reset (new ComboBox ("keyscale combo box"));
     addAndMakeVisible (keyscaleAttenuationComboBox.get());
     keyscaleAttenuationComboBox->setEditableText (false);
-    keyscaleAttenuationComboBox->setJustificationType (juce::Justification::centredLeft);
-    keyscaleAttenuationComboBox->setTextWhenNothingSelected (juce::String());
+    keyscaleAttenuationComboBox->setJustificationType (Justification::centredLeft);
+    keyscaleAttenuationComboBox->setTextWhenNothingSelected (String());
     keyscaleAttenuationComboBox->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     keyscaleAttenuationComboBox->addItem (TRANS("-0.0"), 1);
     keyscaleAttenuationComboBox->addItem (TRANS("-3.0"), 2);
@@ -1118,809 +1118,799 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
 
     keyscaleAttenuationComboBox->setBounds (232, 352, 76, 24);
 
-    groupComponent5.reset (new juce::GroupComponent ("new group",
-                                                     TRANS("Emulator (currently locked)")));
+    groupComponent5.reset (new GroupComponent ("new group",
+                                               TRANS("Emulator (currently locked)")));
     addAndMakeVisible (groupComponent5.get());
-    groupComponent5->setTextLabelPosition (juce::Justification::centredLeft);
-    groupComponent5->setColour (juce::GroupComponent::outlineColourId, juce::Colour (0xff007f00));
-    groupComponent5->setColour (juce::GroupComponent::textColourId, juce::Colour (0xff007f00));
+    groupComponent5->setTextLabelPosition (Justification::centredLeft);
+    groupComponent5->setColour (GroupComponent::outlineColourId, Colour (0xff007f00));
+    groupComponent5->setColour (GroupComponent::textColourId, Colour (0xff007f00));
 
     groupComponent5->setBounds (24, 712, 408, 64);
 
-    emulatorSlider.reset (new juce::Slider ("emulator slider"));
+    emulatorSlider.reset (new Slider ("emulator slider"));
     addAndMakeVisible (emulatorSlider.get());
     emulatorSlider->setRange (0, 1, 1);
-    emulatorSlider->setSliderStyle (juce::Slider::LinearHorizontal);
-    emulatorSlider->setTextBoxStyle (juce::Slider::NoTextBox, true, 44, 20);
-    emulatorSlider->setColour (juce::Slider::thumbColourId, juce::Colour (0xff00af00));
-    emulatorSlider->setColour (juce::Slider::trackColourId, juce::Colour (0x7f007f00));
-    emulatorSlider->setColour (juce::Slider::textBoxTextColourId, juce::Colour (0xff007f00));
-    emulatorSlider->setColour (juce::Slider::textBoxBackgroundColourId, juce::Colours::black);
-    emulatorSlider->setColour (juce::Slider::textBoxHighlightColourId, juce::Colour (0xff00af00));
+    emulatorSlider->setSliderStyle (Slider::LinearHorizontal);
+    emulatorSlider->setTextBoxStyle (Slider::NoTextBox, true, 44, 20);
+    emulatorSlider->setColour (Slider::thumbColourId, Colour (0xff00af00));
+    emulatorSlider->setColour (Slider::trackColourId, Colour (0x7f007f00));
+    emulatorSlider->setColour (Slider::textBoxTextColourId, Colour (0xff007f00));
+    emulatorSlider->setColour (Slider::textBoxBackgroundColourId, Colours::black);
+    emulatorSlider->setColour (Slider::textBoxHighlightColourId, Colour (0xff00af00));
     emulatorSlider->addListener (this);
 
     emulatorSlider->setBounds (208, 736, 40, 24);
 
-    emulatorLabel.reset (new juce::Label ("emulator label",
-                                          TRANS("DOSBox")));
+    emulatorLabel.reset (new Label ("emulator label",
+                                    TRANS("DOSBox")));
     addAndMakeVisible (emulatorLabel.get());
     emulatorLabel->setTooltip (TRANS("Use the OPL emulator from the DOSBox project"));
-    emulatorLabel->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    emulatorLabel->setJustificationType (juce::Justification::centredRight);
+    emulatorLabel->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    emulatorLabel->setJustificationType (Justification::centredRight);
     emulatorLabel->setEditable (false, false, false);
-    emulatorLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    emulatorLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    emulatorLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    emulatorLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    emulatorLabel->setColour (TextEditor::textColourId, Colours::black);
+    emulatorLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     emulatorLabel->setBounds (120, 736, 72, 24);
 
-    emulatorLabel2.reset (new juce::Label ("emulator label",
-                                           TRANS("ZDoom")));
+    emulatorLabel2.reset (new Label ("emulator label",
+                                     TRANS("ZDoom")));
     addAndMakeVisible (emulatorLabel2.get());
     emulatorLabel2->setTooltip (TRANS("Use the OPL emulator from the ZDoom project"));
-    emulatorLabel2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    emulatorLabel2->setJustificationType (juce::Justification::centredLeft);
+    emulatorLabel2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    emulatorLabel2->setJustificationType (Justification::centredLeft);
     emulatorLabel2->setEditable (false, false, false);
-    emulatorLabel2->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    emulatorLabel2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    emulatorLabel2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    emulatorLabel2->setColour (Label::textColourId, Colour (0xff007f00));
+    emulatorLabel2->setColour (TextEditor::textColourId, Colours::black);
+    emulatorLabel2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     emulatorLabel2->setBounds (256, 736, 72, 24);
 
-    recordButton.reset (new juce::ToggleButton ("record button"));
+    recordButton.reset (new ToggleButton ("record button"));
     addAndMakeVisible (recordButton.get());
     recordButton->setTooltip (TRANS("Start recording all register writes to a DRO file - an OPL recording file format defined by DOSBox"));
     recordButton->setButtonText (TRANS("Record to DRO (not working yet)"));
     recordButton->addListener (this);
-    recordButton->setColour (juce::ToggleButton::textColourId, juce::Colour (0xff007f00));
+    recordButton->setColour (ToggleButton::textColourId, Colour (0xff007f00));
 
     recordButton->setBounds (32, 680, 224, 24);
 
-    exportButton.reset (new juce::TextButton ("export button"));
-    addAndMakeVisible (exportButton.get());
-    exportButton->setButtonText (TRANS("Export"));
-    exportButton->setConnectedEdges (juce::Button::ConnectedOnLeft | juce::Button::ConnectedOnRight);
-    exportButton->addListener (this);
-    exportButton->setColour (juce::TextButton::buttonColourId, juce::Colour (0xff007f00));
-    exportButton->setColour (juce::TextButton::buttonOnColourId, juce::Colours::lime);
-
-    exportButton->setBounds (728, 512, 48, 24);
-
-    loadButton.reset (new juce::TextButton ("load button"));
+    loadButton.reset (new TextButton ("load button"));
     addAndMakeVisible (loadButton.get());
     loadButton->setButtonText (TRANS("Load"));
-    loadButton->setConnectedEdges (juce::Button::ConnectedOnLeft | juce::Button::ConnectedOnRight);
+    loadButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     loadButton->addListener (this);
-    loadButton->setColour (juce::TextButton::buttonColourId, juce::Colour (0xff007f00));
-    loadButton->setColour (juce::TextButton::buttonOnColourId, juce::Colours::lime);
+    loadButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
+    loadButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
     loadButton->setBounds (728, 472, 96, 24);
 
-    versionLabel.reset (new juce::Label ("version label",
-                                         juce::String()));
+    versionLabel.reset (new Label ("version label",
+                                   String()));
     addAndMakeVisible (versionLabel.get());
-    versionLabel->setFont (juce::Font (12.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    versionLabel->setJustificationType (juce::Justification::centredRight);
+    versionLabel->setFont (Font (12.00f, Font::plain).withTypefaceStyle ("Regular"));
+    versionLabel->setJustificationType (Justification::centredRight);
     versionLabel->setEditable (false, false, false);
-    versionLabel->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    versionLabel->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    versionLabel->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    versionLabel->setColour (Label::textColourId, Colour (0xff007f00));
+    versionLabel->setColour (TextEditor::textColourId, Colours::black);
+    versionLabel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     versionLabel->setBounds (648, 560, 198, 16);
 
-    ToggleButtonOffExample.reset (new juce::ImageButton ("Toggle Button Off Example"));
+    ToggleButtonOffExample.reset (new ImageButton ("Toggle Button Off Example"));
     addAndMakeVisible (ToggleButtonOffExample.get());
     ToggleButtonOffExample->setButtonText (TRANS("new button"));
     ToggleButtonOffExample->addListener (this);
 
     ToggleButtonOffExample->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (toggle_off_sq_png, toggle_off_sq_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::Image(), 1.000f, juce::Colour (0x00000000),
-                                       juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (toggle_off_sq_png, toggle_off_sq_pngSize), 1.000f, Colour (0x00000000),
+                                       Image(), 1.000f, Colour (0x00000000),
+                                       Image(), 1.000f, Colour (0x00000000));
     ToggleButtonOffExample->setBounds (1032, 584, 12, 12);
 
-    ToggleButtonOnExample.reset (new juce::ImageButton ("Toggle Button On Example"));
+    ToggleButtonOnExample.reset (new ImageButton ("Toggle Button On Example"));
     addAndMakeVisible (ToggleButtonOnExample.get());
     ToggleButtonOnExample->setButtonText (TRANS("new button"));
     ToggleButtonOnExample->addListener (this);
 
     ToggleButtonOnExample->setImages (false, true, true,
-                                      juce::ImageCache::getFromMemory (toggle_on_sq_png, toggle_on_sq_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::Image(), 1.000f, juce::Colour (0x00000000),
-                                      juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                      ImageCache::getFromMemory (toggle_on_sq_png, toggle_on_sq_pngSize), 1.000f, Colour (0x00000000),
+                                      Image(), 1.000f, Colour (0x00000000),
+                                      Image(), 1.000f, Colour (0x00000000));
     ToggleButtonOnExample->setBounds (1064, 584, 12, 12);
 
-    label.reset (new juce::Label ("new label",
-                                  TRANS("Toggle buttons")));
+    label.reset (new Label ("new label",
+                            TRANS("Toggle buttons")));
     addAndMakeVisible (label.get());
-    label->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label->setJustificationType (juce::Justification::centred);
+    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label->setJustificationType (Justification::centred);
     label->setEditable (false, false, false);
-    label->setColour (juce::Label::textColourId, juce::Colours::green);
-    label->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label->setColour (Label::textColourId, Colours::green);
+    label->setColour (TextEditor::textColourId, Colours::black);
+    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label->setBounds (1000, 608, 104, 24);
 
-    label2.reset (new juce::Label ("new label",
-                                   TRANS("Line borders")));
+    label2.reset (new Label ("new label",
+                             TRANS("Line borders")));
     addAndMakeVisible (label2.get());
-    label2->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label2->setJustificationType (juce::Justification::centred);
+    label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label2->setJustificationType (Justification::centred);
     label2->setEditable (false, false, false);
-    label2->setColour (juce::Label::textColourId, juce::Colours::green);
-    label2->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label2->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label2->setColour (Label::textColourId, Colours::green);
+    label2->setColour (TextEditor::textColourId, Colours::black);
+    label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label2->setBounds (872, 608, 104, 24);
 
-    LineBorderButton1C.reset (new juce::ImageButton ("Line Border 1C"));
+    LineBorderButton1C.reset (new ImageButton ("Line Border 1C"));
     addAndMakeVisible (LineBorderButton1C.get());
     LineBorderButton1C->setButtonText (TRANS("new button"));
 
     LineBorderButton1C->setImages (false, true, false,
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1C->setBounds (20, 336, 400, 6);
 
-    LineBorderButton1A.reset (new juce::ImageButton ("Line Border 1A"));
+    LineBorderButton1A.reset (new ImageButton ("Line Border 1A"));
     addAndMakeVisible (LineBorderButton1A.get());
     LineBorderButton1A->setButtonText (TRANS("new button"));
 
     LineBorderButton1A->setImages (false, true, false,
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1A->setBounds (20, 152, 400, 6);
 
-    LineBorderButton1B.reset (new juce::ImageButton ("Line Border 1B"));
+    LineBorderButton1B.reset (new ImageButton ("Line Border 1B"));
     addAndMakeVisible (LineBorderButton1B.get());
     LineBorderButton1B->setButtonText (TRANS("new button"));
 
     LineBorderButton1B->setImages (false, true, false,
-                                   juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                   juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000));
+                                   ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                   ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1B->setBounds (296, 156, 6, 182);
 
-    label3.reset (new juce::Label ("new label",
-                                   TRANS("Temporarily removed labels to avoid making wider boxes.")));
+    label3.reset (new Label ("new label",
+                             TRANS("Temporarily removed labels to avoid making wider boxes.")));
     addAndMakeVisible (label3.get());
-    label3->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label3->setJustificationType (juce::Justification::centred);
+    label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label3->setJustificationType (Justification::centred);
     label3->setEditable (false, false, false);
-    label3->setColour (juce::Label::textColourId, juce::Colours::green);
-    label3->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label3->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label3->setColour (Label::textColourId, Colours::green);
+    label3->setColour (TextEditor::textColourId, Colours::black);
+    label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label3->setBounds (776, 736, 104, 56);
 
-    LineBorderButton1C2.reset (new juce::ImageButton ("Line Border 1C"));
+    LineBorderButton1C2.reset (new ImageButton ("Line Border 1C"));
     addAndMakeVisible (LineBorderButton1C2.get());
     LineBorderButton1C2->setButtonText (TRANS("new button"));
 
     LineBorderButton1C2->setImages (false, true, false,
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1C2->setBounds (444, 336, 400, 6);
 
-    LineBorderButton1A2.reset (new juce::ImageButton ("Line Border 1A"));
+    LineBorderButton1A2.reset (new ImageButton ("Line Border 1A"));
     addAndMakeVisible (LineBorderButton1A2.get());
     LineBorderButton1A2->setButtonText (TRANS("new button"));
 
     LineBorderButton1A2->setImages (false, true, false,
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1A2->setBounds (444, 152, 400, 6);
 
-    LineBorderButton1B2.reset (new juce::ImageButton ("Line Border 1B"));
+    LineBorderButton1B2.reset (new ImageButton ("Line Border 1B"));
     addAndMakeVisible (LineBorderButton1B2.get());
     LineBorderButton1B2->setButtonText (TRANS("new button"));
 
     LineBorderButton1B2->setImages (false, true, false,
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1B2->setBounds (720, 156, 6, 182);
 
-    LineBorderButton1C3.reset (new juce::ImageButton ("Line Border 1C"));
+    LineBorderButton1C3.reset (new ImageButton ("Line Border 1C"));
     addAndMakeVisible (LineBorderButton1C3.get());
     LineBorderButton1C3->setButtonText (TRANS("new button"));
 
     LineBorderButton1C3->setImages (false, true, false,
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_horiz_png, line_border_horiz_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1C3->setBounds (892, 584, 20, 6);
 
-    LineBorderButton1B3.reset (new juce::ImageButton ("Line Border 1B"));
+    LineBorderButton1B3.reset (new ImageButton ("Line Border 1B"));
     addAndMakeVisible (LineBorderButton1B3.get());
     LineBorderButton1B3->setButtonText (TRANS("new button"));
 
     LineBorderButton1B3->setImages (false, true, false,
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000),
-                                    juce::ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, juce::Colour (0x00000000));
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000),
+                                    ImageCache::getFromMemory (line_border_vert_png, line_border_vert_pngSize), 0.600f, Colour (0x00000000));
     LineBorderButton1B3->setBounds (936, 576, 6, 20);
 
-    algoSwitchButtonOffEx1.reset (new juce::ImageButton ("Algorithm Switch Off AM"));
+    algoSwitchButtonOffEx1.reset (new ImageButton ("Algorithm Switch Off AM"));
     addAndMakeVisible (algoSwitchButtonOffEx1.get());
     algoSwitchButtonOffEx1->setButtonText (TRANS("new button"));
     algoSwitchButtonOffEx1->addListener (this);
 
     algoSwitchButtonOffEx1->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOffEx1->setBounds (952, 701, 64, 24);
 
-    algoSwitchButtonOffEx2.reset (new juce::ImageButton ("Algorithm Switch Off FM"));
+    algoSwitchButtonOffEx2.reset (new ImageButton ("Algorithm Switch Off FM"));
     addAndMakeVisible (algoSwitchButtonOffEx2.get());
     algoSwitchButtonOffEx2->setButtonText (TRANS("new button"));
     algoSwitchButtonOffEx2->addListener (this);
 
     algoSwitchButtonOffEx2->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOffEx2->setBounds (952, 727, 64, 24);
 
-    algoSwitchButtonOnEx1.reset (new juce::ImageButton ("Algorithm Switch On AM"));
+    algoSwitchButtonOnEx1.reset (new ImageButton ("Algorithm Switch On AM"));
     addAndMakeVisible (algoSwitchButtonOnEx1.get());
     algoSwitchButtonOnEx1->setButtonText (TRANS("new button"));
     algoSwitchButtonOnEx1->addListener (this);
 
     algoSwitchButtonOnEx1->setImages (false, true, true,
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000));
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOnEx1->setBounds (1040, 701, 64, 24);
 
-    algoSwitchButtonOnEx2.reset (new juce::ImageButton ("Algorithm Switch On FM"));
+    algoSwitchButtonOnEx2.reset (new ImageButton ("Algorithm Switch On FM"));
     addAndMakeVisible (algoSwitchButtonOnEx2.get());
     algoSwitchButtonOnEx2->setButtonText (TRANS("new button"));
     algoSwitchButtonOnEx2->addListener (this);
 
     algoSwitchButtonOnEx2->setImages (false, true, true,
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000));
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOnEx2->setBounds (1040, 727, 64, 24);
 
-    label4.reset (new juce::Label ("new label",
-                                   TRANS("AM")));
+    label4.reset (new Label ("new label",
+                             TRANS("AM")));
     addAndMakeVisible (label4.get());
-    label4->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label4->setJustificationType (juce::Justification::centredLeft);
+    label4->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label4->setJustificationType (Justification::centredLeft);
     label4->setEditable (false, false, false);
-    label4->setColour (juce::Label::textColourId, juce::Colours::green);
-    label4->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label4->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label4->setColour (Label::textColourId, Colours::green);
+    label4->setColour (TextEditor::textColourId, Colours::black);
+    label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label4->setBounds (970, 701, 32, 24);
 
-    label5.reset (new juce::Label ("new label",
-                                   TRANS("FM")));
+    label5.reset (new Label ("new label",
+                             TRANS("FM")));
     addAndMakeVisible (label5.get());
-    label5->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label5->setJustificationType (juce::Justification::centredLeft);
+    label5->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label5->setJustificationType (Justification::centredLeft);
     label5->setEditable (false, false, false);
-    label5->setColour (juce::Label::textColourId, juce::Colours::green);
-    label5->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label5->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label5->setColour (Label::textColourId, Colours::green);
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label5->setBounds (971, 727, 32, 24);
 
-    label6.reset (new juce::Label ("new label",
-                                   TRANS("AM")));
+    label6.reset (new Label ("new label",
+                             TRANS("AM")));
     addAndMakeVisible (label6.get());
-    label6->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label6->setJustificationType (juce::Justification::centredLeft);
+    label6->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label6->setJustificationType (Justification::centredLeft);
     label6->setEditable (false, false, false);
-    label6->setColour (juce::Label::textColourId, juce::Colours::black);
-    label6->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label6->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label6->setColour (Label::textColourId, Colours::black);
+    label6->setColour (TextEditor::textColourId, Colours::black);
+    label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label6->setBounds (1057, 701, 32, 24);
 
-    label7.reset (new juce::Label ("new label",
-                                   TRANS("FM")));
+    label7.reset (new Label ("new label",
+                             TRANS("FM")));
     addAndMakeVisible (label7.get());
-    label7->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label7->setJustificationType (juce::Justification::centredLeft);
+    label7->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label7->setJustificationType (Justification::centredLeft);
     label7->setEditable (false, false, false);
-    label7->setColour (juce::Label::textColourId, juce::Colours::black);
-    label7->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label7->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label7->setColour (Label::textColourId, Colours::black);
+    label7->setColour (TextEditor::textColourId, Colours::black);
+    label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label7->setBounds (1058, 727, 32, 24);
 
-    label8.reset (new juce::Label ("new label",
-                                   TRANS("Example AM/FM switches")));
+    label8.reset (new Label ("new label",
+                             TRANS("Example AM/FM switches")));
     addAndMakeVisible (label8.get());
-    label8->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label8->setJustificationType (juce::Justification::centred);
+    label8->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label8->setJustificationType (Justification::centred);
     label8->setEditable (false, false, false);
-    label8->setColour (juce::Label::textColourId, juce::Colours::green);
-    label8->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label8->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label8->setColour (Label::textColourId, Colours::green);
+    label8->setColour (TextEditor::textColourId, Colours::black);
+    label8->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label8->setBounds (944, 816, 320, 24);
 
-    algoSwitchButtonOn2Ex1.reset (new juce::ImageButton ("Algorithm Switch On2 AM"));
+    algoSwitchButtonOn2Ex1.reset (new ImageButton ("Algorithm Switch On2 AM"));
     addAndMakeVisible (algoSwitchButtonOn2Ex1.get());
     algoSwitchButtonOn2Ex1->setButtonText (TRANS("new button"));
     algoSwitchButtonOn2Ex1->addListener (this);
 
     algoSwitchButtonOn2Ex1->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn2Ex1->setBounds (1128, 700, 64, 24);
 
-    algoSwitchButtonOn2Ex2.reset (new juce::ImageButton ("Algorithm Switch On2 FM"));
+    algoSwitchButtonOn2Ex2.reset (new ImageButton ("Algorithm Switch On2 FM"));
     addAndMakeVisible (algoSwitchButtonOn2Ex2.get());
     algoSwitchButtonOn2Ex2->setButtonText (TRANS("new button"));
     algoSwitchButtonOn2Ex2->addListener (this);
 
     algoSwitchButtonOn2Ex2->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on2_png, algo_switch_on2_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn2Ex2->setBounds (1128, 727, 64, 24);
 
-    label9.reset (new juce::Label ("new label",
-                                   TRANS("AM")));
+    label9.reset (new Label ("new label",
+                             TRANS("AM")));
     addAndMakeVisible (label9.get());
-    label9->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label9->setJustificationType (juce::Justification::centredLeft);
+    label9->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label9->setJustificationType (Justification::centredLeft);
     label9->setEditable (false, false, false);
-    label9->setColour (juce::Label::textColourId, juce::Colours::black);
-    label9->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label9->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label9->setColour (Label::textColourId, Colours::black);
+    label9->setColour (TextEditor::textColourId, Colours::black);
+    label9->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label9->setBounds (1145, 700, 32, 24);
 
-    label10.reset (new juce::Label ("new label",
-                                    TRANS("FM")));
+    label10.reset (new Label ("new label",
+                              TRANS("FM")));
     addAndMakeVisible (label10.get());
-    label10->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label10->setJustificationType (juce::Justification::centredLeft);
+    label10->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label10->setJustificationType (Justification::centredLeft);
     label10->setEditable (false, false, false);
-    label10->setColour (juce::Label::textColourId, juce::Colours::black);
-    label10->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label10->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label10->setColour (Label::textColourId, Colours::black);
+    label10->setColour (TextEditor::textColourId, Colours::black);
+    label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label10->setBounds (1146, 727, 32, 24);
 
-    algoSwitchButtonOn3Ex1.reset (new juce::ImageButton ("Algorithm Switch On3 AM"));
+    algoSwitchButtonOn3Ex1.reset (new ImageButton ("Algorithm Switch On3 AM"));
     addAndMakeVisible (algoSwitchButtonOn3Ex1.get());
     algoSwitchButtonOn3Ex1->setButtonText (TRANS("new button"));
     algoSwitchButtonOn3Ex1->addListener (this);
 
     algoSwitchButtonOn3Ex1->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn3Ex1->setBounds (1216, 700, 64, 24);
 
-    algoSwitchButtonOn3Ex2.reset (new juce::ImageButton ("Algorithm Switch On3 FM"));
+    algoSwitchButtonOn3Ex2.reset (new ImageButton ("Algorithm Switch On3 FM"));
     addAndMakeVisible (algoSwitchButtonOn3Ex2.get());
     algoSwitchButtonOn3Ex2->setButtonText (TRANS("new button"));
     algoSwitchButtonOn3Ex2->addListener (this);
 
     algoSwitchButtonOn3Ex2->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn3Ex2->setBounds (1216, 727, 64, 24);
 
-    label11.reset (new juce::Label ("new label",
-                                    TRANS("AM")));
+    label11.reset (new Label ("new label",
+                              TRANS("AM")));
     addAndMakeVisible (label11.get());
-    label11->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label11->setJustificationType (juce::Justification::centredLeft);
+    label11->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label11->setJustificationType (Justification::centredLeft);
     label11->setEditable (false, false, false);
-    label11->setColour (juce::Label::textColourId, juce::Colours::black);
-    label11->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label11->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label11->setColour (Label::textColourId, Colours::black);
+    label11->setColour (TextEditor::textColourId, Colours::black);
+    label11->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label11->setBounds (1233, 700, 31, 24);
 
-    label12.reset (new juce::Label ("new label",
-                                    TRANS("FM")));
+    label12.reset (new Label ("new label",
+                              TRANS("FM")));
     addAndMakeVisible (label12.get());
-    label12->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label12->setJustificationType (juce::Justification::centredLeft);
+    label12->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label12->setJustificationType (Justification::centredLeft);
     label12->setEditable (false, false, false);
-    label12->setColour (juce::Label::textColourId, juce::Colours::black);
-    label12->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label12->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label12->setColour (Label::textColourId, Colours::black);
+    label12->setColour (TextEditor::textColourId, Colours::black);
+    label12->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label12->setBounds (1234, 727, 32, 24);
 
-    TwoOpAMButton.reset (new juce::ImageButton ("Two OP AM Button"));
+    TwoOpAMButton.reset (new ImageButton ("Two OP AM Button"));
     addAndMakeVisible (TwoOpAMButton.get());
     TwoOpAMButton->setButtonText (TRANS("new button"));
     TwoOpAMButton->addListener (this);
 
     TwoOpAMButton->setImages (false, true, false,
-                              juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000),
-                              juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000),
-                              juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000));
+                              ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000),
+                              ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000),
+                              ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000));
     TwoOpAMButton->setBounds (1173, 484, 60, 56);
 
-    TwoOpFMButton.reset (new juce::ImageButton ("Two OP FM Button"));
+    TwoOpFMButton.reset (new ImageButton ("Two OP FM Button"));
     addAndMakeVisible (TwoOpFMButton.get());
     TwoOpFMButton->setButtonText (TRANS("new button"));
     TwoOpFMButton->addListener (this);
 
     TwoOpFMButton->setImages (false, true, true,
-                              juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000),
-                              juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000),
-                              juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000));
+                              ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000),
+                              ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000),
+                              ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000));
     TwoOpFMButton->setBounds (1156, 568, 80, 26);
 
-    label13.reset (new juce::Label ("new label",
-                                    TRANS("M")));
+    label13.reset (new Label ("new label",
+                              TRANS("M")));
     addAndMakeVisible (label13.get());
-    label13->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label13->setJustificationType (juce::Justification::centred);
+    label13->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label13->setJustificationType (Justification::centred);
     label13->setEditable (false, false, false);
-    label13->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label13->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label13->setColour (TextEditor::textColourId, Colours::black);
+    label13->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label13->setBounds (1179, 489, 24, 24);
 
-    label14.reset (new juce::Label ("new label",
-                                    TRANS("C")));
+    label14.reset (new Label ("new label",
+                              TRANS("C")));
     addAndMakeVisible (label14.get());
-    label14->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label14->setJustificationType (juce::Justification::centred);
+    label14->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label14->setJustificationType (Justification::centred);
     label14->setEditable (false, false, false);
-    label14->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label14->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label14->setColour (TextEditor::textColourId, Colours::black);
+    label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label14->setBounds (1179, 518, 24, 24);
 
-    label15.reset (new juce::Label ("new label",
-                                    TRANS("M")));
+    label15.reset (new Label ("new label",
+                              TRANS("M")));
     addAndMakeVisible (label15.get());
-    label15->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label15->setJustificationType (juce::Justification::centred);
+    label15->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label15->setJustificationType (Justification::centred);
     label15->setEditable (false, false, false);
-    label15->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label15->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label15->setColour (TextEditor::textColourId, Colours::black);
+    label15->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label15->setBounds (1166, 572, 24, 24);
 
-    label16.reset (new juce::Label ("new label",
-                                    TRANS("C")));
+    label16.reset (new Label ("new label",
+                              TRANS("C")));
     addAndMakeVisible (label16.get());
-    label16->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label16->setJustificationType (juce::Justification::centred);
+    label16->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label16->setJustificationType (Justification::centred);
     label16->setEditable (false, false, false);
-    label16->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label16->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label16->setColour (TextEditor::textColourId, Colours::black);
+    label16->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label16->setBounds (1195, 572, 24, 24);
 
-    label17.reset (new juce::Label ("new label",
-                                    TRANS("Example Algorithms")));
+    label17.reset (new Label ("new label",
+                              TRANS("Example Algorithms")));
     addAndMakeVisible (label17.get());
-    label17->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label17->setJustificationType (juce::Justification::centred);
+    label17->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label17->setJustificationType (Justification::centred);
     label17->setEditable (false, false, false);
-    label17->setColour (juce::Label::textColourId, juce::Colours::green);
-    label17->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label17->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label17->setColour (Label::textColourId, Colours::green);
+    label17->setColour (TextEditor::textColourId, Colours::black);
+    label17->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label17->setBounds (1128, 608, 136, 24);
 
-    groupComponent6.reset (new juce::GroupComponent ("new group",
-                                                     juce::String()));
+    groupComponent6.reset (new GroupComponent ("new group",
+                                               String()));
     addAndMakeVisible (groupComponent6.get());
-    groupComponent6->setColour (juce::GroupComponent::outlineColourId, juce::Colours::green);
+    groupComponent6->setColour (GroupComponent::outlineColourId, Colours::green);
 
     groupComponent6->setBounds (933, 56, 168, 95);
 
-    algoSwitchButtonOnEx3.reset (new juce::ImageButton ("Algorithm Switch On AM"));
+    algoSwitchButtonOnEx3.reset (new ImageButton ("Algorithm Switch On AM"));
     addAndMakeVisible (algoSwitchButtonOnEx3.get());
     algoSwitchButtonOnEx3->setButtonText (TRANS("new button"));
     algoSwitchButtonOnEx3->addListener (this);
 
     algoSwitchButtonOnEx3->setImages (false, true, true,
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000),
-                                      juce::ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, juce::Colour (0x00000000));
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000),
+                                      ImageCache::getFromMemory (algo_switch_on_png, algo_switch_on_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOnEx3->setBounds (949, 82, 64, 24);
 
-    label18.reset (new juce::Label ("new label",
-                                    TRANS("AM")));
+    label18.reset (new Label ("new label",
+                              TRANS("AM")));
     addAndMakeVisible (label18.get());
-    label18->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label18->setJustificationType (juce::Justification::centredLeft);
+    label18->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label18->setJustificationType (Justification::centredLeft);
     label18->setEditable (false, false, false);
-    label18->setColour (juce::Label::textColourId, juce::Colours::black);
-    label18->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label18->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label18->setColour (Label::textColourId, Colours::black);
+    label18->setColour (TextEditor::textColourId, Colours::black);
+    label18->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label18->setBounds (966, 82, 32, 24);
 
-    algoSwitchButtonOffEx3.reset (new juce::ImageButton ("Algorithm Switch Off FM"));
+    algoSwitchButtonOffEx3.reset (new ImageButton ("Algorithm Switch Off FM"));
     addAndMakeVisible (algoSwitchButtonOffEx3.get());
     algoSwitchButtonOffEx3->setButtonText (TRANS("new button"));
     algoSwitchButtonOffEx3->addListener (this);
 
     algoSwitchButtonOffEx3->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOffEx3->setBounds (949, 108, 64, 24);
 
-    label19.reset (new juce::Label ("new label",
-                                    TRANS("FM")));
+    label19.reset (new Label ("new label",
+                              TRANS("FM")));
     addAndMakeVisible (label19.get());
-    label19->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label19->setJustificationType (juce::Justification::centredLeft);
+    label19->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label19->setJustificationType (Justification::centredLeft);
     label19->setEditable (false, false, false);
-    label19->setColour (juce::Label::textColourId, juce::Colours::green);
-    label19->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label19->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label19->setColour (Label::textColourId, Colours::green);
+    label19->setColour (TextEditor::textColourId, Colours::black);
+    label19->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label19->setBounds (968, 108, 32, 24);
 
-    TwoOpAMButton2.reset (new juce::ImageButton ("Two OP AM Button"));
+    TwoOpAMButton2.reset (new ImageButton ("Two OP AM Button"));
     addAndMakeVisible (TwoOpAMButton2.get());
     TwoOpAMButton2->setButtonText (TRANS("new button"));
     TwoOpAMButton2->addListener (this);
 
     TwoOpAMButton2->setImages (false, true, false,
-                               juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000),
-                               juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000),
-                               juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, juce::Colour (0x00000000));
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 1.000f, Colour (0x00000000));
     TwoOpAMButton2->setBounds (1029, 77, 60, 56);
 
-    label20.reset (new juce::Label ("new label",
-                                    TRANS("M")));
+    label20.reset (new Label ("new label",
+                              TRANS("M")));
     addAndMakeVisible (label20.get());
-    label20->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label20->setJustificationType (juce::Justification::centred);
+    label20->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label20->setJustificationType (Justification::centred);
     label20->setEditable (false, false, false);
-    label20->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label20->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label20->setColour (TextEditor::textColourId, Colours::black);
+    label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label20->setBounds (1035, 82, 24, 24);
 
-    label21.reset (new juce::Label ("new label",
-                                    TRANS("C")));
+    label21.reset (new Label ("new label",
+                              TRANS("C")));
     addAndMakeVisible (label21.get());
-    label21->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label21->setJustificationType (juce::Justification::centred);
+    label21->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label21->setJustificationType (Justification::centred);
     label21->setEditable (false, false, false);
-    label21->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label21->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label21->setColour (TextEditor::textColourId, Colours::black);
+    label21->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label21->setBounds (1035, 111, 24, 24);
 
-    label22.reset (new juce::Label ("new label",
-                                    TRANS("Example Algo Sections w/ Diagram")));
+    label22.reset (new Label ("new label",
+                              TRANS("Example Algo Sections w/ Diagram")));
     addAndMakeVisible (label22.get());
-    label22->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label22->setJustificationType (juce::Justification::centred);
+    label22->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label22->setJustificationType (Justification::centred);
     label22->setEditable (false, false, false);
-    label22->setColour (juce::Label::textColourId, juce::Colours::green);
-    label22->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label22->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label22->setColour (Label::textColourId, Colours::green);
+    label22->setColour (TextEditor::textColourId, Colours::black);
+    label22->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label22->setBounds (952, 160, 328, 40);
 
-    algoSwitchButtonOffEx4.reset (new juce::ImageButton ("Algorithm Switch Off AM"));
+    algoSwitchButtonOffEx4.reset (new ImageButton ("Algorithm Switch Off AM"));
     addAndMakeVisible (algoSwitchButtonOffEx4.get());
     algoSwitchButtonOffEx4->setButtonText (TRANS("new button"));
     algoSwitchButtonOffEx4->addListener (this);
 
     algoSwitchButtonOffEx4->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOffEx4->setBounds (1125, 82, 64, 24);
 
-    label23.reset (new juce::Label ("new label",
-                                    TRANS("AM")));
+    label23.reset (new Label ("new label",
+                              TRANS("AM")));
     addAndMakeVisible (label23.get());
-    label23->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label23->setJustificationType (juce::Justification::centredLeft);
+    label23->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label23->setJustificationType (Justification::centredLeft);
     label23->setEditable (false, false, false);
-    label23->setColour (juce::Label::textColourId, juce::Colours::green);
-    label23->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label23->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label23->setColour (Label::textColourId, Colours::green);
+    label23->setColour (TextEditor::textColourId, Colours::black);
+    label23->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label23->setBounds (1143, 82, 32, 24);
 
-    algoSwitchButtonOn3Ex3.reset (new juce::ImageButton ("Algorithm Switch On3 FM"));
+    algoSwitchButtonOn3Ex3.reset (new ImageButton ("Algorithm Switch On3 FM"));
     addAndMakeVisible (algoSwitchButtonOn3Ex3.get());
     algoSwitchButtonOn3Ex3->setButtonText (TRANS("new button"));
     algoSwitchButtonOn3Ex3->addListener (this);
 
     algoSwitchButtonOn3Ex3->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn3Ex3->setBounds (1125, 109, 64, 24);
 
-    label24.reset (new juce::Label ("new label",
-                                    TRANS("FM")));
+    label24.reset (new Label ("new label",
+                              TRANS("FM")));
     addAndMakeVisible (label24.get());
-    label24->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label24->setJustificationType (juce::Justification::centredLeft);
+    label24->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label24->setJustificationType (Justification::centredLeft);
     label24->setEditable (false, false, false);
-    label24->setColour (juce::Label::textColourId, juce::Colours::black);
-    label24->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label24->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label24->setColour (Label::textColourId, Colours::black);
+    label24->setColour (TextEditor::textColourId, Colours::black);
+    label24->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label24->setBounds (1143, 109, 32, 24);
 
-    TwoOpFMButton2.reset (new juce::ImageButton ("Two OP FM Button"));
+    TwoOpFMButton2.reset (new ImageButton ("Two OP FM Button"));
     addAndMakeVisible (TwoOpFMButton2.get());
     TwoOpFMButton2->setButtonText (TRANS("new button"));
     TwoOpFMButton2->addListener (this);
 
     TwoOpFMButton2->setImages (false, true, true,
-                               juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000),
-                               juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000),
-                               juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, juce::Colour (0x00000000));
+                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000),
+                               ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 1.000f, Colour (0x00000000));
     TwoOpFMButton2->setBounds (1196, 94, 80, 26);
 
-    label25.reset (new juce::Label ("new label",
-                                    TRANS("M")));
+    label25.reset (new Label ("new label",
+                              TRANS("M")));
     addAndMakeVisible (label25.get());
-    label25->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label25->setJustificationType (juce::Justification::centred);
+    label25->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label25->setJustificationType (Justification::centred);
     label25->setEditable (false, false, false);
-    label25->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label25->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label25->setColour (TextEditor::textColourId, Colours::black);
+    label25->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label25->setBounds (1206, 98, 24, 24);
 
-    label26.reset (new juce::Label ("new label",
-                                    TRANS("C")));
+    label26.reset (new Label ("new label",
+                              TRANS("C")));
     addAndMakeVisible (label26.get());
-    label26->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label26->setJustificationType (juce::Justification::centred);
+    label26->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label26->setJustificationType (Justification::centred);
     label26->setEditable (false, false, false);
-    label26->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label26->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label26->setColour (TextEditor::textColourId, Colours::black);
+    label26->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label26->setBounds (1235, 98, 24, 24);
 
-    groupComponent7.reset (new juce::GroupComponent ("new group",
-                                                     juce::String()));
+    groupComponent7.reset (new GroupComponent ("new group",
+                                               String()));
     addAndMakeVisible (groupComponent7.get());
-    groupComponent7->setColour (juce::GroupComponent::outlineColourId, juce::Colours::green);
+    groupComponent7->setColour (GroupComponent::outlineColourId, Colours::green);
 
     groupComponent7->setBounds (1112, 56, 168, 95);
 
-    algoSwitchButtonOffEx5.reset (new juce::ImageButton ("Algorithm Switch Off AM"));
+    algoSwitchButtonOffEx5.reset (new ImageButton ("Algorithm Switch Off AM"));
     addAndMakeVisible (algoSwitchButtonOffEx5.get());
     algoSwitchButtonOffEx5->setButtonText (TRANS("new button"));
     algoSwitchButtonOffEx5->addListener (this);
 
     algoSwitchButtonOffEx5->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_off_png, algo_switch_off_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOffEx5->setBounds (1037, 250, 64, 24);
 
-    label27.reset (new juce::Label ("new label",
-                                    TRANS("AM")));
+    label27.reset (new Label ("new label",
+                              TRANS("AM")));
     addAndMakeVisible (label27.get());
-    label27->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label27->setJustificationType (juce::Justification::centredLeft);
+    label27->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label27->setJustificationType (Justification::centredLeft);
     label27->setEditable (false, false, false);
-    label27->setColour (juce::Label::textColourId, juce::Colours::green);
-    label27->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label27->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label27->setColour (Label::textColourId, Colours::green);
+    label27->setColour (TextEditor::textColourId, Colours::black);
+    label27->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label27->setBounds (1055, 250, 32, 24);
 
-    algoSwitchButtonOn3Ex4.reset (new juce::ImageButton ("Algorithm Switch On3 FM"));
+    algoSwitchButtonOn3Ex4.reset (new ImageButton ("Algorithm Switch On3 FM"));
     addAndMakeVisible (algoSwitchButtonOn3Ex4.get());
     algoSwitchButtonOn3Ex4->setButtonText (TRANS("new button"));
     algoSwitchButtonOn3Ex4->addListener (this);
 
     algoSwitchButtonOn3Ex4->setImages (false, true, true,
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000),
-                                       juce::ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, juce::Colour (0x00000000));
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000),
+                                       ImageCache::getFromMemory (algo_switch_on3_png, algo_switch_on3_pngSize), 1.000f, Colour (0x00000000));
     algoSwitchButtonOn3Ex4->setBounds (1103, 250, 64, 24);
 
-    label28.reset (new juce::Label ("new label",
-                                    TRANS("FM")));
+    label28.reset (new Label ("new label",
+                              TRANS("FM")));
     addAndMakeVisible (label28.get());
-    label28->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label28->setJustificationType (juce::Justification::centredLeft);
+    label28->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label28->setJustificationType (Justification::centredLeft);
     label28->setEditable (false, false, false);
-    label28->setColour (juce::Label::textColourId, juce::Colours::black);
-    label28->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label28->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label28->setColour (Label::textColourId, Colours::black);
+    label28->setColour (TextEditor::textColourId, Colours::black);
+    label28->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label28->setBounds (1121, 250, 32, 24);
 
-    groupComponent8.reset (new juce::GroupComponent ("new group",
-                                                     juce::String()));
+    groupComponent8.reset (new GroupComponent ("new group",
+                                               String()));
     addAndMakeVisible (groupComponent8.get());
-    groupComponent8->setColour (juce::GroupComponent::outlineColourId, juce::Colours::green);
+    groupComponent8->setColour (GroupComponent::outlineColourId, Colours::green);
 
     groupComponent8->setBounds (1008, 208, 168, 95);
 
-    frequencyLabel9.reset (new juce::Label ("frequency label",
-                                            TRANS("Algorithm")));
+    frequencyLabel9.reset (new Label ("frequency label",
+                                      TRANS("Algorithm")));
     addAndMakeVisible (frequencyLabel9.get());
     frequencyLabel9->setTooltip (TRANS("In additive mode, carrier and modulator output are simply summed rather than modulated"));
-    frequencyLabel9->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel9->setJustificationType (juce::Justification::centredLeft);
+    frequencyLabel9->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel9->setJustificationType (Justification::centredLeft);
     frequencyLabel9->setEditable (false, false, false);
-    frequencyLabel9->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel9->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel9->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel9->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel9->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel9->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel9->setBounds (1067, 216, 72, 24);
 
-    label29.reset (new juce::Label ("new label",
-                                    TRANS("Example Algo Section w/o Diagram")));
+    label29.reset (new Label ("new label",
+                              TRANS("Example Algo Section w/o Diagram")));
     addAndMakeVisible (label29.get());
-    label29->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label29->setJustificationType (juce::Justification::centred);
+    label29->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label29->setJustificationType (Justification::centred);
     label29->setEditable (false, false, false);
-    label29->setColour (juce::Label::textColourId, juce::Colours::green);
-    label29->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label29->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label29->setColour (Label::textColourId, Colours::green);
+    label29->setColour (TextEditor::textColourId, Colours::black);
+    label29->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label29->setBounds (944, 304, 328, 40);
 
-    label30.reset (new juce::Label ("new label",
-                                    TRANS("Off             On (Bright)          On (Dark)       On (Solid)")));
+    label30.reset (new Label ("new label",
+                              TRANS("Off             On (Bright)          On (Dark)       On (Solid)")));
     addAndMakeVisible (label30.get());
-    label30->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    label30->setJustificationType (juce::Justification::centred);
+    label30->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label30->setJustificationType (Justification::centred);
     label30->setEditable (false, false, false);
-    label30->setColour (juce::Label::textColourId, juce::Colours::green);
-    label30->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    label30->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    label30->setColour (Label::textColourId, Colours::green);
+    label30->setColour (TextEditor::textColourId, Colours::black);
+    label30->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     label30->setBounds (961, 768, 319, 24);
 
-    frequencyLabel10.reset (new juce::Label ("frequency label",
-                                             TRANS("Keyscale Attenuation")));
+    frequencyLabel10.reset (new Label ("frequency label",
+                                       TRANS("Keyscale Attenuation")));
     addAndMakeVisible (frequencyLabel10.get());
     frequencyLabel10->setTooltip (TRANS("Attenuate amplitude with note frequency in dB per octave"));
-    frequencyLabel10->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    frequencyLabel10->setJustificationType (juce::Justification::centred);
+    frequencyLabel10->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    frequencyLabel10->setJustificationType (Justification::centred);
     frequencyLabel10->setEditable (false, false, false);
-    frequencyLabel10->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    frequencyLabel10->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    frequencyLabel10->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    frequencyLabel10->setColour (Label::textColourId, Colour (0xff007f00));
+    frequencyLabel10->setColour (TextEditor::textColourId, Colours::black);
+    frequencyLabel10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     frequencyLabel10->setBounds (224, 376, 88, 48);
 
-    attenuationLabel5.reset (new juce::Label ("attenuation label",
-                                              TRANS("Velocity Sensitivity")));
+    attenuationLabel5.reset (new Label ("attenuation label",
+                                        TRANS("Velocity Sensitivity")));
     addAndMakeVisible (attenuationLabel5.get());
     attenuationLabel5->setTooltip (TRANS("Set or disable velocity senstivity"));
-    attenuationLabel5->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    attenuationLabel5->setJustificationType (juce::Justification::centred);
+    attenuationLabel5->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    attenuationLabel5->setJustificationType (Justification::centred);
     attenuationLabel5->setEditable (false, false, false);
-    attenuationLabel5->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    attenuationLabel5->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    attenuationLabel5->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    attenuationLabel5->setColour (Label::textColourId, Colour (0xff007f00));
+    attenuationLabel5->setColour (TextEditor::textColourId, Colours::black);
+    attenuationLabel5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     attenuationLabel5->setBounds (328, 376, 80, 48);
 
-    fmButton.reset (new juce::ImageButton ("fm button"));
+    fmButton.reset (new ImageButton ("fm button"));
     addAndMakeVisible (fmButton.get());
     fmButton->setTooltip (TRANS("FM: carrier frequency is modulated by the modulator"));
     fmButton->setButtonText (TRANS("FM"));
@@ -1928,12 +1918,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     fmButton->addListener (this);
 
     fmButton->setImages (false, true, true,
-                         juce::ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, juce::Colour (0x00000000),
-                         juce::Image(), 0.500f, juce::Colour (0x00000000),
-                         juce::Image(), 1.000f, juce::Colour (0x00000000));
+                         ImageCache::getFromMemory (twoopFm_png, twoopFm_pngSize), 0.500f, Colour (0x00000000),
+                         Image(), 0.500f, Colour (0x00000000),
+                         Image(), 1.000f, Colour (0x00000000));
     fmButton->setBounds (298, 472, 72, 56);
 
-    additiveButton.reset (new juce::ImageButton ("Additive mode button"));
+    additiveButton.reset (new ImageButton ("Additive mode button"));
     addAndMakeVisible (additiveButton.get());
     additiveButton->setTooltip (TRANS("Additive: output the sum of the modulator and carrier"));
     additiveButton->setButtonText (TRANS("Additive Mode"));
@@ -1941,12 +1931,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     additiveButton->addListener (this);
 
     additiveButton->setImages (false, true, true,
-                               juce::ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, juce::Colour (0x00000000),
-                               juce::Image(), 0.500f, juce::Colour (0x00000000),
-                               juce::Image(), 1.000f, juce::Colour (0x00000000));
+                               ImageCache::getFromMemory (twoopAm_png, twoopAm_pngSize), 0.500f, Colour (0x00000000),
+                               Image(), 0.500f, Colour (0x00000000),
+                               Image(), 1.000f, Colour (0x00000000));
     additiveButton->setBounds (400, 472, 56, 56);
 
-    bassDrumButton.reset (new juce::ImageButton ("bass drum button"));
+    bassDrumButton.reset (new ImageButton ("bass drum button"));
     addAndMakeVisible (bassDrumButton.get());
     bassDrumButton->setTooltip (TRANS("Bass drum"));
     bassDrumButton->setButtonText (TRANS("bass drum"));
@@ -1954,12 +1944,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     bassDrumButton->addListener (this);
 
     bassDrumButton->setImages (false, true, true,
-                               juce::ImageCache::getFromMemory (bassdrum_png, bassdrum_pngSize), 0.500f, juce::Colour (0x00000000),
-                               juce::Image(), 0.500f, juce::Colour (0x00000000),
-                               juce::Image(), 1.000f, juce::Colour (0x00000000));
+                               ImageCache::getFromMemory (bassdrum_png, bassdrum_pngSize), 0.500f, Colour (0x00000000),
+                               Image(), 0.500f, Colour (0x00000000),
+                               Image(), 1.000f, Colour (0x00000000));
     bassDrumButton->setBounds (576, 464, 30, 30);
 
-    snareDrumButton.reset (new juce::ImageButton ("snare drum button"));
+    snareDrumButton.reset (new ImageButton ("snare drum button"));
     addAndMakeVisible (snareDrumButton.get());
     snareDrumButton->setTooltip (TRANS("Snare"));
     snareDrumButton->setButtonText (TRANS("snare"));
@@ -1967,12 +1957,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     snareDrumButton->addListener (this);
 
     snareDrumButton->setImages (false, true, true,
-                                juce::ImageCache::getFromMemory (snare_png, snare_pngSize), 0.500f, juce::Colour (0x00000000),
-                                juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                ImageCache::getFromMemory (snare_png, snare_pngSize), 0.500f, Colour (0x00000000),
+                                Image(), 0.500f, Colour (0x00000000),
+                                Image(), 1.000f, Colour (0x00000000));
     snareDrumButton->setBounds (632, 464, 30, 30);
 
-    disablePercussionButton.reset (new juce::ImageButton ("percussion disabled button"));
+    disablePercussionButton.reset (new ImageButton ("percussion disabled button"));
     addAndMakeVisible (disablePercussionButton.get());
     disablePercussionButton->setTooltip (TRANS("Disable percussion"));
     disablePercussionButton->setButtonText (TRANS("disabled"));
@@ -1980,12 +1970,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     disablePercussionButton->addListener (this);
 
     disablePercussionButton->setImages (false, true, true,
-                                        juce::ImageCache::getFromMemory (disabled_png, disabled_pngSize), 0.500f, juce::Colour (0x00000000),
-                                        juce::Image(), 0.500f, juce::Colour (0x00000000),
-                                        juce::Image(), 1.000f, juce::Colour (0x00000000));
+                                        ImageCache::getFromMemory (disabled_png, disabled_pngSize), 0.500f, Colour (0x00000000),
+                                        Image(), 0.500f, Colour (0x00000000),
+                                        Image(), 1.000f, Colour (0x00000000));
     disablePercussionButton->setBounds (520, 464, 30, 30);
 
-    tomTomButton.reset (new juce::ImageButton ("tom tom button"));
+    tomTomButton.reset (new ImageButton ("tom tom button"));
     addAndMakeVisible (tomTomButton.get());
     tomTomButton->setTooltip (TRANS("Tom-tom"));
     tomTomButton->setButtonText (TRANS("tom tom"));
@@ -1993,12 +1983,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     tomTomButton->addListener (this);
 
     tomTomButton->setImages (false, true, true,
-                             juce::ImageCache::getFromMemory (tom_png, tom_pngSize), 0.500f, juce::Colour (0x00000000),
-                             juce::Image(), 0.500f, juce::Colour (0x00000000),
-                             juce::Image(), 1.000f, juce::Colour (0x00000000));
+                             ImageCache::getFromMemory (tom_png, tom_pngSize), 0.500f, Colour (0x00000000),
+                             Image(), 0.500f, Colour (0x00000000),
+                             Image(), 1.000f, Colour (0x00000000));
     tomTomButton->setBounds (520, 512, 30, 30);
 
-    cymbalButton.reset (new juce::ImageButton ("cymbalButton"));
+    cymbalButton.reset (new ImageButton ("cymbalButton"));
     addAndMakeVisible (cymbalButton.get());
     cymbalButton->setTooltip (TRANS("Cymbal"));
     cymbalButton->setButtonText (TRANS("snare"));
@@ -2006,12 +1996,12 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     cymbalButton->addListener (this);
 
     cymbalButton->setImages (false, true, true,
-                             juce::ImageCache::getFromMemory (cymbal_png, cymbal_pngSize), 0.500f, juce::Colour (0x00000000),
-                             juce::Image(), 0.500f, juce::Colour (0x00000000),
-                             juce::Image(), 1.000f, juce::Colour (0x00000000));
+                             ImageCache::getFromMemory (cymbal_png, cymbal_pngSize), 0.500f, Colour (0x00000000),
+                             Image(), 0.500f, Colour (0x00000000),
+                             Image(), 1.000f, Colour (0x00000000));
     cymbalButton->setBounds (576, 512, 30, 30);
 
-    hiHatButton.reset (new juce::ImageButton ("hi hat button"));
+    hiHatButton.reset (new ImageButton ("hi hat button"));
     addAndMakeVisible (hiHatButton.get());
     hiHatButton->setTooltip (TRANS("Hi-hat"));
     hiHatButton->setButtonText (TRANS("hi-hat"));
@@ -2019,58 +2009,58 @@ PluginGui::PluginGui (AdlibBlasterAudioProcessor* ownerFilter)
     hiHatButton->addListener (this);
 
     hiHatButton->setImages (false, true, true,
-                            juce::ImageCache::getFromMemory (hihat_png, hihat_pngSize), 0.500f, juce::Colour (0x00000000),
-                            juce::Image(), 0.500f, juce::Colour (0x00000000),
-                            juce::Image(), 1.000f, juce::Colour (0x00000000));
+                            ImageCache::getFromMemory (hihat_png, hihat_pngSize), 0.500f, Colour (0x00000000),
+                            Image(), 0.500f, Colour (0x00000000),
+                            Image(), 1.000f, Colour (0x00000000));
     hiHatButton->setBounds (632, 512, 30, 30);
 
-    dbLabel7.reset (new juce::Label ("db label",
-                                     TRANS("FM")));
+    dbLabel7.reset (new Label ("db label",
+                               TRANS("FM")));
     addAndMakeVisible (dbLabel7.get());
-    dbLabel7->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel7->setJustificationType (juce::Justification::centredLeft);
+    dbLabel7->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel7->setJustificationType (Justification::centredLeft);
     dbLabel7->setEditable (false, false, false);
-    dbLabel7->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel7->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel7->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel7->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel7->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel7->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel7->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel7->setBounds (320, 520, 32, 40);
 
-    dbLabel8.reset (new juce::Label ("db label",
-                                     TRANS("Additive")));
+    dbLabel8.reset (new Label ("db label",
+                               TRANS("Additive")));
     addAndMakeVisible (dbLabel8.get());
-    dbLabel8->setFont (juce::Font (15.00f, juce::Font::plain).withTypefaceStyle ("Regular"));
-    dbLabel8->setJustificationType (juce::Justification::centred);
+    dbLabel8->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    dbLabel8->setJustificationType (Justification::centred);
     dbLabel8->setEditable (false, false, false);
-    dbLabel8->setColour (juce::Label::textColourId, juce::Colour (0xff007f00));
-    dbLabel8->setColour (juce::Label::outlineColourId, juce::Colour (0x00000000));
-    dbLabel8->setColour (juce::TextEditor::textColourId, juce::Colours::black);
-    dbLabel8->setColour (juce::TextEditor::backgroundColourId, juce::Colour (0x00000000));
+    dbLabel8->setColour (Label::textColourId, Colour (0xff007f00));
+    dbLabel8->setColour (Label::outlineColourId, Colour (0x00000000));
+    dbLabel8->setColour (TextEditor::textColourId, Colours::black);
+    dbLabel8->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     dbLabel8->setBounds (392, 520, 72, 40);
 
-    previousButton.reset (new juce::TextButton ("previous button"));
+    previousButton.reset (new TextButton ("previous button"));
     addAndMakeVisible (previousButton.get());
     previousButton->setButtonText (TRANS("-"));
-    previousButton->setConnectedEdges (juce::Button::ConnectedOnLeft | juce::Button::ConnectedOnRight);
+    previousButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     previousButton->addListener (this);
-    previousButton->setColour (juce::TextButton::buttonColourId, juce::Colour (0xff007f00));
-    previousButton->setColour (juce::TextButton::buttonOnColourId, juce::Colours::lime);
+    previousButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
+    previousButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    previousButton->setBounds (776, 512, 24, 24);
+    previousButton->setBounds (728, 512, 40, 24);
 
-    nextButton.reset (new juce::TextButton ("next button"));
+    nextButton.reset (new TextButton ("next button"));
     addAndMakeVisible (nextButton.get());
     nextButton->setButtonText (TRANS("+"));
-    nextButton->setConnectedEdges (juce::Button::ConnectedOnLeft | juce::Button::ConnectedOnRight);
+    nextButton->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     nextButton->addListener (this);
-    nextButton->setColour (juce::TextButton::buttonColourId, juce::Colour (0xff007f00));
-    nextButton->setColour (juce::TextButton::buttonOnColourId, juce::Colours::lime);
+    nextButton->setColour (TextButton::buttonColourId, Colour (0xff007f00));
+    nextButton->setColour (TextButton::buttonOnColourId, Colours::lime);
 
-    nextButton->setBounds (800, 512, 24, 24);
+    nextButton->setBounds (784, 512, 40, 24);
 
-    drawable1 = juce::Drawable::createFromImageData (gui_svg, gui_svgSize);
+    drawable1 = Drawable::createFromImageData (gui_svg, gui_svgSize);
 
     //[UserPreSize]
     oplLookAndFeel.reset(new OPLLookAndFeel());
@@ -2329,7 +2319,6 @@ PluginGui::~PluginGui()
     emulatorLabel = nullptr;
     emulatorLabel2 = nullptr;
     recordButton = nullptr;
-    exportButton = nullptr;
     loadButton = nullptr;
     versionLabel = nullptr;
     ToggleButtonOffExample = nullptr;
@@ -2424,22 +2413,22 @@ PluginGui::~PluginGui()
 }
 
 //==============================================================================
-void PluginGui::paint (juce::Graphics& g)
+void PluginGui::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (juce::Colours::black);
+    g.fillAll (Colours::black);
 
     {
         int x = 0, y = 0, width = proportionOfWidth (1.0000f), height = proportionOfHeight (1.0000f);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour (juce::Colours::black);
+        g.setColour (Colours::black);
         jassert (drawable1 != nullptr);
         if (drawable1 != nullptr)
-            drawable1->drawWithin (g, juce::Rectangle<int> (x, y, width, height).toFloat(),
-                                   juce::RectanglePlacement::stretchToFit, 1.000f);
+            drawable1->drawWithin (g, Rectangle<int> (x, y, width, height).toFloat(),
+                                   RectanglePlacement::stretchToFit, 1.000f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -2457,7 +2446,7 @@ void PluginGui::resized()
     //[/UserResized]
 }
 
-void PluginGui::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
+void PluginGui::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
     //[UsercomboBoxChanged_Pre]
 
@@ -2524,7 +2513,7 @@ void PluginGui::comboBoxChanged (juce::ComboBox* comboBoxThatHasChanged)
     //[/UsercomboBoxChanged_Post]
 }
 
-void PluginGui::sliderValueChanged (juce::Slider* sliderThatWasMoved)
+void PluginGui::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
     //[/UsersliderValueChanged_Pre]
@@ -2617,7 +2606,7 @@ void PluginGui::sliderValueChanged (juce::Slider* sliderThatWasMoved)
     //[/UsersliderValueChanged_Post]
 }
 
-void PluginGui::buttonClicked (juce::Button* buttonThatWasClicked)
+void PluginGui::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
 	// TODO:
@@ -2883,41 +2872,6 @@ void PluginGui::buttonClicked (juce::Button* buttonThatWasClicked)
     {
         //[UserButtonCode_recordButton] -- add your button handler code here..
         //[/UserButtonCode_recordButton]
-    }
-    else if (buttonThatWasClicked == exportButton.get())
-    {
-        //[UserButtonCode_exportButton] -- add your button handler code here..
-        FileChooser browser("Select SBI instrument file",
-        instrumentLoadDirectory,
-#ifdef JUCE_IOS
-        "*");
-#endif
-
-#ifndef JUCE_IOS
-        "*.sbi");
-#endif
-        if (browser.browseForFileToSave(true)){
-            File selectedFile = browser.getResult();
-            instrumentSaveDirectory = selectedFile.getParentDirectory();
-            processor->saveInstrumentToFile(selectedFile.getFullPathName());
-        }
-		/*WildcardFileFilter wildcardFilter("*.sbi", String(), "SBI files");
-		FileBrowserComponent browser(FileBrowserComponent::saveMode + FileBrowserComponent::canSelectFiles,
-			instrumentSaveDirectory,
-			&wildcardFilter,
-			nullptr);
-		FileChooserDialogBox dialogBox("Export to",
-			"Specify SBI output file",
-			browser,
-			true,
-			Colours::darkgreen, this);
-		if (dialogBox.show())
-		{
-			File selectedFile = browser.getSelectedFile(0);
-			instrumentSaveDirectory = browser.getRoot();
-			processor->saveInstrumentToFile(selectedFile.getFullPathName());
-		}*/
-        //[/UserButtonCode_exportButton]
     }
     else if (buttonThatWasClicked == loadButton.get())
     {
@@ -3975,10 +3929,6 @@ BEGIN_JUCER_METADATA
                 virtualName="" explicitFocusOrder="0" pos="32 680 224 24" tooltip="Start recording all register writes to a DRO file - an OPL recording file format defined by DOSBox"
                 txtcol="ff007f00" buttonText="Record to DRO (not working yet)"
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
-  <TEXTBUTTON name="export button" id="88c84ed1e2b284d3" memberName="exportButton"
-              virtualName="" explicitFocusOrder="0" pos="728 512 48 24" bgColOff="ff007f00"
-              bgColOn="ff00ff00" buttonText="Export" connectedEdges="3" needsCallback="1"
-              radioGroupId="0"/>
   <TEXTBUTTON name="load button" id="a42176161523f448" memberName="loadButton"
               virtualName="" explicitFocusOrder="0" pos="728 472 96 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="Load" connectedEdges="3" needsCallback="1"
@@ -4409,11 +4359,11 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <TEXTBUTTON name="previous button" id="984b463c7d35a177" memberName="previousButton"
-              virtualName="" explicitFocusOrder="0" pos="776 512 24 24" bgColOff="ff007f00"
+              virtualName="" explicitFocusOrder="0" pos="728 512 40 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="-" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
   <TEXTBUTTON name="next button" id="d6684ea8f9f9ded7" memberName="nextButton"
-              virtualName="" explicitFocusOrder="0" pos="800 512 24 24" bgColOff="ff007f00"
+              virtualName="" explicitFocusOrder="0" pos="784 512 40 24" bgColOff="ff007f00"
               bgColOn="ff00ff00" buttonText="+" connectedEdges="3" needsCallback="1"
               radioGroupId="0"/>
 </JUCER_COMPONENT>

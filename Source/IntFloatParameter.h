@@ -4,9 +4,9 @@ class IntFloatParameter :
 	public FloatParameter
 {
 public:
-	IntFloatParameter(String name, int min, int max);
+    IntFloatParameter(juce::String name, int min, int max);
 	~IntFloatParameter(void);
-	String getParameterText(void);
+    juce::String getParameterText(void);
 	int getParameterValue(void);
 	void setParameterValue(int i);
 private:

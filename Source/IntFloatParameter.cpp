@@ -1,7 +1,7 @@
 #include "IntFloatParameter.h"
 
 
-IntFloatParameter::IntFloatParameter(String name, int min, int max)
+IntFloatParameter::IntFloatParameter(juce::String name, int min, int max)
 :FloatParameter(name)
 {
 	this->min = min;
@@ -30,7 +30,7 @@ void IntFloatParameter::setParameterValue(int i)
 		this->value = 1.0f;
 }
 
-String IntFloatParameter::getParameterText(void)
+juce::String IntFloatParameter::getParameterText(void)
 {
-	return String(this->getParameterValue());
+	return juce::String(this->getParameterValue());
 }
