@@ -104,10 +104,12 @@
                   iPadScreenOrientation="UIInterfaceOrientationLandscapeLeft,UIInterfaceOrientationLandscapeRight"
                   UIStatusBarHidden="1" iosBackgroundAudio="1" iosBackgroundBle="1"
                   smallIcon="lWChlc" bigIcon="lWChlc" iosAppGroupsId="group.com.discodsp.opl"
-                  extraDefs="JUCE_DISABLE_NATIVE_FILECHOOSERS=1" customXcodeResourceFolders="sbi"
-                  iCloudPermissions="0" UISupportsDocumentBrowser="0" UIFileSharingEnabled="0">
+                  extraDefs="JUCE_DISABLE_NATIVE_FILECHOOSERS=1&#10;JUCE_MODAL_LOOPS_PERMITTED=1"
+                  customXcodeResourceFolders="sbi" iCloudPermissions="0" UISupportsDocumentBrowser="0"
+                  UIFileSharingEnabled="0">
       <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" iosCompatibility="11.0" binaryPath="Bin/iOS/Debug"/>
+        <CONFIGURATION isDebug="1" name="Debug" iosCompatibility="11.0" binaryPath="Bin/iOS/Debug"
+                       iosDeploymentTarget="11.0"/>
         <CONFIGURATION isDebug="0" name="Release" binaryPath="Bin/iOS/Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
@@ -130,13 +132,14 @@
     </XCODE_IPHONE>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstLegacyFolder="modules/vstsdk2.4"
                vst3Folder="modules/vstsdk3" smallIcon="aNR5I9" bigIcon="aNR5I9"
-               aaxFolder="modules/aax" xcodeValidArchs="arm64,x86_64">
+               aaxFolder="modules/aax" xcodeValidArchs="arm64,x86_64" extraDefs="JUCE_MODAL_LOOPS_PERMITTED=1">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="Bin/MacOS/Debug"/>
         <CONFIGURATION isDebug="0" name="Release" osxCompatibility="10.9 SDK" binaryPath="Bin/MacOS/Release"
-                       optimisation="6" enablePluginBinaryCopyStep="0"/>
+                       optimisation="6" enablePluginBinaryCopyStep="0" macOSDeploymentTarget="10.9"/>
         <CONFIGURATION isDebug="0" name="Demo" defines="DEMOVERSION=1" osxCompatibility="10.9 SDK"
-                       binaryPath="Bin/MacOS/Demo" optimisation="6" enablePluginBinaryCopyStep="0"/>
+                       binaryPath="Bin/MacOS/Demo" optimisation="6" enablePluginBinaryCopyStep="0"
+                       macOSDeploymentTarget="10.9"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="modules"/>
@@ -157,7 +160,7 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <LINUX_MAKE targetFolder="Builds/Linux" vstLegacyFolder="modules/vstsdk2.4"
-                extraLinkerFlags="-no-pie">
+                extraLinkerFlags="-no-pie" extraDefs="JUCE_MODAL_LOOPS_PERMITTED=1">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="0" name="Release" libraryPath="/usr/X11R6/lib/" linuxArchitecture="-m64"
                        headerPath="../../JuceLibraryCode&#10;../../Source&#10;../Modules/vstsdk2.4&#10;/usr/include/freetype2&#10;/usr/include"
@@ -188,7 +191,7 @@
     </LINUX_MAKE>
     <VS2019 targetFolder="Builds/VisualStudio2019" smallIcon="aNR5I9" bigIcon="aNR5I9"
             vstLegacyFolder="modules/vstsdk2.4" vst3Folder="modules/vstsdk3"
-            aaxFolder="modules/aax">
+            aaxFolder="modules/aax" extraDefs="JUCE_MODAL_LOOPS_PERMITTED=1">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug" binaryPath="Bin/Windows/Debug"/>
         <CONFIGURATION isDebug="0" name="Release" binaryPath="Bin/Windows/Release"/>

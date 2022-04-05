@@ -511,6 +511,9 @@ AdlibBlasterAudioProcessor::AdlibBlasterAudioProcessor()
 
 	for (int i = 1; i <= Hiopl::CHANNELS; ++i)
 		available_channels.push_back(i);
+    
+    
+    workaround_flag = true;
 }
 
 void AdlibBlasterAudioProcessor::initPrograms()
@@ -869,7 +872,10 @@ void AdlibBlasterAudioProcessor::endChangeGesture (String name) {
 // Parameters which apply directly to the OPL
 void AdlibBlasterAudioProcessor::setParameter (int index, float newValue, bool notify, bool updatetoHost)
 {
-	FloatParameter* p = params[index];
+
+    if (workaround_flag) return;
+    
+    FloatParameter* p = params[index];
 	p->setParameter(newValue);
 	String name = p->getName();
     if (updatetoHost) {
@@ -1253,6 +1259,9 @@ Identifier stringToIdentifier(const String &s)
 
 void AdlibBlasterAudioProcessor::getStateInformation(MemoryBlock& destData)
 {
+    
+    if (workaround_flag) workaround_flag = false;
+    
 	ReferenceCountedObjectPtr<DynamicObject> v(new DynamicObject);
 
 	v->setProperty(stringToIdentifier(PROGRAM_INDEX), i_program);
