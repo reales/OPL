@@ -116,9 +116,6 @@ private:
     
     std::unique_ptr<UndoManager> undoManager;
     std::unique_ptr<AudioProcessorValueTreeState> valueTree;
-    
-    bool workaround_flag;
-    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AdlibBlasterAudioProcessor)
 };
