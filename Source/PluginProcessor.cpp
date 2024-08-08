@@ -4,7 +4,9 @@
 #include "IntFloatParameter.h"
 #include "SbiLoader.h"
 #include "iOSPluginEditorWrapper/iOSPluginEditorWrapper.h"
-
+#include <algorithm>
+#include <unordered_map>
+#include <chrono>
 #include <iterator>
 
 const char *AdlibBlasterAudioProcessor::PROGRAM_INDEX = "Program Index";
@@ -24,7 +26,8 @@ static int stringToInt(String s) { return std::stoi(s.toStdString()); }
 
 //==============================================================================
 AdlibBlasterAudioProcessor::AdlibBlasterAudioProcessor()
-	: i_program(-1)
+	: i_program(-1),
+    oversampling(16, 1, dsp::Oversampling<float>::filterHalfBandPolyphaseIIR)
 {
     //
     undoManager.reset(new UndoManager());
@@ -764,7 +767,7 @@ void AdlibBlasterAudioProcessor::initPrograms()
     std::vector<float> v_i_params_tromba (i_params_tromba, i_params_tromba + sizeof(i_params_tromba) / sizeof(float));
     programs["Tromba"] = std::vector<float>(v_i_params_tromba);
 
-    const float i_params_bassdrum[] = {
+    const float i_params_bassdrum[] = { // init Program
         0.000000f, 0.500000f,  // waveforms
         0.000000f, 0.000000f,  // frq multipliers
         0.000000f, 0.090000f,  // attenuation
@@ -1097,128 +1100,171 @@ void AdlibBlasterAudioProcessor::changeProgramName (int index, const String& new
 {
 }
 
-//==============================================================================
 void AdlibBlasterAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-	Opl->SetSampleRate((int)sampleRate);
-	Opl->EnableWaveformControl();
+    Opl->SetSampleRate(sampleRate);
+    Opl->EnableWaveformControl();
+
     // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    // initialization that you need..
+    spec.maximumBlockSize = samplesPerBlock;
+    spec.numChannels = getTotalNumOutputChannels();
+    spec.sampleRate = sampleRate;
+    
+    oversampling.initProcessing(spec.maximumBlockSize);
+    
+    File onexFile = File::getSpecialLocation(File::userDocumentsDirectory).getChildFile("discoDSP/OPL/1x.txt");
+    useOversampling = !onexFile.exists();
+
+    if (useOversampling) {
+        oversampling.initProcessing(spec.maximumBlockSize);
+    } else {
+        oversampling.reset();
+    }
 }
 
 void AdlibBlasterAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    
+    oversampling.reset();
 }
 
 static const Drum DRUM_INDEX[] = { BDRUM, SNARE, TOM, CYMBAL, HIHAT };
 
 void AdlibBlasterAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-	buffer.clear(0, 0, buffer.getNumSamples());
-	MidiBuffer::Iterator midi_buffer_iterator(midiMessages);
-
-	MidiMessage midi_message;
-	int sample_number;
-	int perc = getEnumParameter("Percussion Mode");
-	while (midi_buffer_iterator.getNextEvent(midi_message,sample_number)) {
-		if (midi_message.isNoteOn()) {
-			//note on at sample_number samples after 
-			//the beginning of the current buffer
-			int n = midi_message.getNoteNumber();
-			float noteHz = (float)MidiMessage::getMidiNoteInHertz(n);
-			int ch;
-
-			if (perc > 0) {				
-				for (int i = 1; i <= Hiopl::CHANNELS; i++) {
-					Opl->SetFrequency(i, noteHz, false);
-				}
-				Opl->HitPercussion(DRUM_INDEX[perc - 1]);
-			} else {
-				if (!available_channels.empty())
-				{
-					ch = available_channels.front();
-					available_channels.pop_front();
-				}
-				else
-				{
-					ch = used_channels.back(); // steal earliest/longest running active channel if out of free channels
-					used_channels.pop_back();
-					Opl->KeyOff(ch);
-				}
-
-				used_channels.push_front(ch);
-
-				switch (getEnumParameter("Carrier Velocity Sensitivity")) {
-				case 0:
-					Opl->SetAttenuation(ch, 2, getEnumParameter("Carrier Attenuation"));
-					break;
-				case 1:
-					Opl->SetAttenuation(ch, 2, 32 - (midi_message.getVelocity() / 4));
-					break;
-				case 2:
-					Opl->SetAttenuation(ch, 2, 63 - (midi_message.getVelocity() / 2));
-					break;
-				}
-				switch (getEnumParameter("Modulator Velocity Sensitivity")) {
-				case 0:
-					Opl->SetAttenuation(ch, 1, getEnumParameter("Modulator Attenuation"));
-					break;
-				case 1:
-					Opl->SetAttenuation(ch, 1, 32 - (midi_message.getVelocity() / 4));
-					break;
-				case 2:
-					Opl->SetAttenuation(ch, 1, 63 - (midi_message.getVelocity() / 2));
-					break;
-				}
-				Opl->KeyOn(ch, noteHz);
-				active_notes[ch] = n;
-				applyPitchBend();
-			}
-		}
-		else if (midi_message.isNoteOff()) {
-			if (perc > 0) {
-				Opl->ReleasePercussion();
-			}
-			else {
-				int n = midi_message.getNoteNumber();
-				int ch = 1;
-				while (ch <= Hiopl::CHANNELS && n != active_notes[ch]) {
-					ch += 1;
-				}
-				if (ch <= Hiopl::CHANNELS)
-				{
-					for (auto i = used_channels.begin(); i != used_channels.end(); ++i)
-					{
-						if (*i == ch)
-						{
-							used_channels.erase(i);
-							available_channels.push_back(ch);
-
-							break;
-						}
-					}
-
-					Opl->KeyOff(ch);
-					active_notes[ch] = NO_NOTE;
-				}
-			}
-		}
-		else if (midi_message.isPitchWheel()) {
-			int bend = midi_message.getPitchWheelValue() - 0x2000;	// range -8192 to 8191
-			// 1.05946309436 == (2^(1/1200))^100 == 1 semitone == 100 cents
-			currentScaledBend = 1.0f + bend * .05775f / 8192;
-			applyPitchBend();
-		}
-	}
-/// Jeff-Russ: getSampleData(int) is deprecated. use getWritePointer(int)
-	Opl->Generate(buffer.getNumSamples(), buffer.getWritePointer(0));
+#if DEMOVERSION
+if (isNonRealtime()) {
+    // If in demo version and offline rendering, do not generate any sound
+    buffer.clear();
+    return;
+}
+#endif
     
-/// Jeff-Russ added loop to copy left channel to right channel. uncomment when building to {0,2} AU
-    const float* LChanRead  = buffer.getReadPointer(0, 0);
-    float* RChanWrite = buffer.getWritePointer(1, 0);
-    for (int i = 0; i < buffer.getNumSamples(); i++) { RChanWrite[i] = LChanRead[i]; }
+    buffer.clear(0, 0, buffer.getNumSamples());
+    MidiBuffer::Iterator midi_buffer_iterator(midiMessages);
+
+    bool isOversampling = useOversampling;
+    dsp::AudioBlock<float> block(buffer);
+    dsp::AudioBlock<float> oversampledBlock(buffer);
+
+    if (isOversampling) {
+        oversampledBlock = oversampling.processSamplesUp(block);
+    }
+
+    // Map to keep track of last use time for each channel
+    std::unordered_map<int, std::chrono::steady_clock::time_point> channelLastUsed;
+
+    auto handleNoteOn = [&](MidiMessage& midi_message, int sample_number) {
+        int n = midi_message.getNoteNumber() - (isOversampling ? 12 : 0);
+        float noteHz = static_cast<float>(MidiMessage::getMidiNoteInHertz(n));
+        int ch;
+
+        int perc = getEnumParameter("Percussion Mode");
+        if (perc > 0) {
+            for (int i = 1; i <= Hiopl::CHANNELS; i++) {
+                Opl->SetFrequency(i, noteHz, false);
+            }
+            Opl->HitPercussion(DRUM_INDEX[perc - 1]);
+        } else {
+            if (used_channels.size() >= 9) {
+                // If maximum polyphony reached, ignore note on
+                return;
+            }
+            
+            if (!available_channels.empty()) {
+                ch = available_channels.front();
+                available_channels.pop_front();
+            } else {
+                // Use LRU voice stealing strategy
+                auto oldest = std::min_element(
+                    channelLastUsed.begin(), channelLastUsed.end(),
+                    [](const auto& a, const auto& b) { return a.second < b.second; }
+                );
+                ch = oldest->first;
+                used_channels.erase(std::remove(used_channels.begin(), used_channels.end(), ch), used_channels.end());
+                Opl->KeyOff(ch);
+            }
+
+            used_channels.push_front(ch);
+            channelLastUsed[ch] = std::chrono::steady_clock::now();
+
+            auto setAttenuation = [&](int type, int sensitivityParam, int velocity) {
+                switch (sensitivityParam) {
+                case 0:
+                    Opl->SetAttenuation(ch, type, getEnumParameter(type == 2 ? "Carrier Attenuation" : "Modulator Attenuation"));
+                    break;
+                case 1:
+                    Opl->SetAttenuation(ch, type, 32 - (velocity / 4));
+                    break;
+                case 2:
+                    Opl->SetAttenuation(ch, type, 63 - (velocity / 2));
+                    break;
+                }
+            };
+
+            setAttenuation(2, getEnumParameter("Carrier Velocity Sensitivity"), midi_message.getVelocity());
+            setAttenuation(1, getEnumParameter("Modulator Velocity Sensitivity"), midi_message.getVelocity());
+
+            Opl->KeyOn(ch, noteHz);
+            active_notes[ch] = n;
+            applyPitchBend();
+        }
+    };
+
+    auto handleNoteOff = [&](MidiMessage& midi_message) {
+        int perc = getEnumParameter("Percussion Mode");
+        if (perc > 0) {
+            Opl->ReleasePercussion();
+        } else {
+            int n = midi_message.getNoteNumber() - (isOversampling ? 12 : 0);
+            int ch = 1;
+            while (ch <= Hiopl::CHANNELS && n != active_notes[ch]) {
+                ch++;
+            }
+            if (ch <= Hiopl::CHANNELS) {
+                used_channels.erase(std::remove(used_channels.begin(), used_channels.end(), ch), used_channels.end());
+                available_channels.push_back(ch);
+
+                Opl->KeyOff(ch);
+                active_notes[ch] = NO_NOTE;
+            }
+        }
+    };
+
+    MidiMessage midi_message;
+    int sample_number;
+    while (midi_buffer_iterator.getNextEvent(midi_message, sample_number)) {
+        if (midi_message.isNoteOn()) {
+            handleNoteOn(midi_message, sample_number);
+        } else if (midi_message.isNoteOff()) {
+            handleNoteOff(midi_message);
+        } else if (midi_message.isPitchWheel()) {
+            int bend = midi_message.getPitchWheelValue() - 0x2000;
+            currentScaledBend = 1.0f + bend * .05775f / 8192;
+            applyPitchBend();
+        }
+    }
+
+    auto generateAndCopyAudio = [&](dsp::AudioBlock<float>& audioBlock) {
+        Opl->Generate(static_cast<int>(audioBlock.getNumSamples()), audioBlock.getChannelPointer(0));
+
+        // Copy left channel to right channel
+        const float* LChanRead = audioBlock.getChannelPointer(0);
+        float* RChanWrite = audioBlock.getChannelPointer(1);
+        for (int i = 0; i < audioBlock.getNumSamples(); i++) {
+            RChanWrite[i] = LChanRead[i];
+        }
+    };
+
+    if (isOversampling) {
+        generateAndCopyAudio(oversampledBlock);
+        oversampling.processSamplesDown(block);
+    } else {
+        generateAndCopyAudio(block);
+    }
 }
 
 //==============================================================================

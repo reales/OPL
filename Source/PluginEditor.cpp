@@ -54,20 +54,26 @@ PluginEditor::PluginEditor (AdlibBlasterAudioProcessor* ownerFilter)
 
     //[UserPreSize]
     setResizable(true, true);
-    //[/UserPreSize]
+    
+    // Get the screen height and set the max height to screen height minus some pixels
+    auto totalHeight = juce::Desktop::getInstance().getDisplays().getPrimaryDisplay()->totalArea.getHeight();
+    int maxHeight = totalHeight - 100; // Subtracting 100 pixels for operating space
+    int maxWidth = static_cast<int>(maxHeight * 1.4828); // Maintaining aspect ratio
+    
+    setResizeLimits(860, 580, maxWidth, maxHeight); // Minimum size 860x580, maximum size based on screen height
 
-    setSize (860, 580);
-
+    // Set initial size with aspect ratio maintained
+    int w = 1438, h = 970;
+    int userWidth = pluginSettings.getUserSettings()->getIntValue("Width");
+    int userHeight = pluginSettings.getUserSettings()->getIntValue("Height");
+    if (userWidth != 0 && userHeight != 0) {
+        w = userWidth;
+        h = userHeight;
+    }
+    setSize(w, h);
+    //[UserPreSize]
 
     //[Constructor] You can add your own custom stuff here..
-    int w,h;
-    w = pluginSettings.getUserSettings()->getIntValue("Width");
-    if(w==0)
-        w=860;
-    h = pluginSettings.getUserSettings()->getIntValue("Height");
-    if(h==0)
-        h=580;
-    setSize(w,h);
     //[/Constructor]
 }
 
@@ -87,12 +93,12 @@ PluginEditor::~PluginEditor()
 }
 
 //==============================================================================
-void PluginEditor::paint (juce::Graphics& g)
+void PluginEditor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (juce::Colours::black);
+    g.fillAll (Colours::black);
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -109,6 +115,14 @@ void PluginEditor::resized()
     //[/UserPreResize]
 
     //[UserResized] Add your own custom resize handling here..
+    // Lock the aspect ratio
+    int width = getWidth();
+    int height = static_cast<int>(width / 1.4828);
+    if (height > getHeight()) {
+        height = getHeight();
+        width = static_cast<int>(height * 1.4828);
+    }
+    setSize(width, height);
     //[/UserResized]
 }
 

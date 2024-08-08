@@ -116,6 +116,10 @@ private:
     
     std::unique_ptr<UndoManager> undoManager;
     std::unique_ptr<AudioProcessorValueTreeState> valueTree;
+    
+    dsp::Oversampling<float> oversampling;
+    dsp::ProcessSpec spec;
+    bool useOversampling;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AdlibBlasterAudioProcessor)
 };
